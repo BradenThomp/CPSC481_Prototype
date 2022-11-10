@@ -1,0 +1,73 @@
+﻿@page "/Wishlist"
+
+    <head>
+        <link rel="stylesheet" href="..\wwwroot\css\app.css">
+        <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css" />
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
+        <link href="_content/Blazorise/blazorise.css" rel="stylesheet" />
+        <link href="_content/Blazorise.Bootstrap/blazorise.bootstrap.css" rel="stylesheet" />
+
+    </head>
+
+    <!-- Page content -->
+    <body>
+        <h2>Items Currently on Wishlist for Jason:</h2>
+
+        <div class="card mb-0" style="max-width: 1000px; max-height: 400px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="images/TheTwits.jpg" class="card-img img-responsive" alt="Responsive image" style="width:200px; height:auto;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <!--  https://en.wikipedia.org/wiki/The_Twits -->
+                        <h4 class="card-title">The Twits</h4>
+                        &nbsp;
+                        <h5 class="card-info">Book, 1980, 87 Pages</h5>
+                        <h5 class="card-copies">Author: Roald Dahl</h5>
+                        <h5 class="card-copies">3 in stock</h5>
+                        &nbsp;
+                        <p class="card-text"> The story features The Twits (Mr. and Mrs. Twit), a spiteful, idle unkempt couple who continuously play nasty practical jokes on each other to amuse themselves, and exercise their wickedness on their monkeys...<a href="#">[read more]</a></p>
+                        <!--<p class="card-text"><small class="text-muted">2 Copies Available</small></p>-->
+                        <div style="text-align: left;">
+                            <a href="#" class="btn btn-primary" role="button">Hold</a>
+                            <a href="#" class="btn btn-primary" role="button">Remove From Wishlist</a>
+                            <a href="#" class="btn btn-primary" role="button">Info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div> 
+
+        <div class="card mb-3" style="max-width: 1000px; max-height: 400px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <!--https://en.wikipedia.org/wiki/The_Witches_(novel)-->
+                    <img src="images/TheWitches.jpg" class="card-img" alt="Responsive image" style="width:200px; height:auto;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h4 class="card-title">The Witches</h4>
+                        &nbsp;
+                        <h5 class="card-info">Book, 1983, 208 Pages</h5>
+                        <h5 class="card-copies">Author: Roald Dahl</h5>
+                        <h5 class="card-copies">5 in stock</h5>
+                        &nbsp;
+                        <p class="card-text">The story is set partly in Norway and partly in England, and features the experiences of a young English boy...<a href="#">[read more]</a></p>
+                        <!--<p class="card-text"><small class="text-muted">7 Copies Available</small></p>-->
+                        <div style="text-align: left;">
+                            <a href="#" class="btn btn-primary" role="button">Hold</a>
+                            <a href="#" class="btn btn-primary" role="button">Remove From Wishlist</a>
+                            <a href="#" class="btn btn-primary" role="button">Info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    @code {
+
+    }

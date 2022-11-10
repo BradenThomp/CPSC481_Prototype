@@ -1,0 +1,74 @@
+﻿@page "/OnHold"
+
+    <head>
+        <link rel="stylesheet" href="..\wwwroot\css\app.css">
+        <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css" />
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
+        <link href="_content/Blazorise/blazorise.css" rel="stylesheet" />
+        <link href="_content/Blazorise.Bootstrap/blazorise.bootstrap.css" rel="stylesheet" />
+
+    </head>
+
+    <!-- Page content -->
+    <body>
+        <h2>Items Currently on Hold for Jason:</h2>
+
+        <div class="card mb-0" style="max-width: 1000px;">
+            <div class="row no-gutters">
+                <div class="col-md-4 style="width:10px; height:auto;">
+                    <img src="images/Holes.jpg" class="card-img" alt="Responsive image" style="width:275px; height:auto;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <!--  https://en.wikipedia.org/wiki/Holes_(novel)-->
+                        <!-- https://shop.scholastic.com/parent-ecommerce/books/holes-9780440414803.html-->
+                        <h4 class="card-title">Holes</h4>
+                        &nbsp;
+                        <h5 class="card-info">Book, 1998, 272 Pages</h5>
+                        <h5 class="card-copies">Author: Louis Sachar</h5>
+                        <h5 class="card-copies">Return by August 5th, 2020</h5>
+                        &nbsp;
+                        <p class="card-text">Welcome to Camp Green Lake, where Stanley, who has been wrongly accused of stealing, will be serving a juvenile detention sentence. Not only is the place not a camp, but it's not gree...<a href="#">[read more]</a></p>
+                        <!--<p class="card-text"><small class="text-muted">2 Copies Available</small></p>-->
+                        <div style="text-align: left;">
+                            <a href="#" class="btn btn-primary" role="button">Remove From Hold</a>
+                            <a href="#" class="btn btn-primary" role="button">Wishlist</a>
+                            <a href="#" class="btn btn-primary" role="button">Info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div> 
+
+        <div class="card mb-3" style="max-width: 1000px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <!-- https://en.wikipedia.org/wiki/Goodnight_Moon -->
+                    <img src="images/Goodnightmoon.jpg" class="card-img" alt="Responsive image" style="width:275px; height:auto;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h4 class="card-title">Goodnight Moon</h4>
+                        &nbsp;
+                        <h5 class="card-info">Picture Book, 1947, 32 Pages</h5>
+                        <h5 class="card-copies">Author: Margaret Wise Brown</h5>
+                        <h5 class="card-copies">Return by March 9th, 2008</h5>
+                        &nbsp;
+                        <p class="card-text">An American children's book written by Margaret Wise Brown and illustrated by Clement Hurd. It was published on September 3, 1947, and is a highly acclaimed bedtime story</p>
+                        <!--<p class="card-text"><small class="text-muted">7 Copies Available</small></p>-->
+                        <div style="text-align: left;">
+                            <a href="#" class="btn btn-primary" role="button">Remove from Hold</a>
+                            <a href="#" class="btn btn-primary" role="button">Wishlist</a>
+                            <a href="#" class="btn btn-primary" role="button">Info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    @code {
+
+    }

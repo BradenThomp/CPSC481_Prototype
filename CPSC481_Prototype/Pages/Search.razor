@@ -1,8 +1,11 @@
 ﻿@page "/searchresults"
+@inherits LayoutComponentBase
 
 <PageTitle>Search Results Page</PageTitle>
 <!-- Side navigation -->
-<div class="filters">
+
+<div style="@sidebarWidth" class="filters">
+    <a class="closebtn" @onclick="CloseNav">&times;</a>
     <a href="#">Media Type:</a>
     <div class="indent">
         <a href="#">CD's (0)</a>
@@ -76,28 +79,37 @@
     </div>
 </div>
 <!-- Page content -->
-<div class="main">
-    <div class="container">
-        <div class="row">
-            <div class="col-9">
-                <h2>3 Results For Harry Potter</h2>
-            </div>
-            <div class="col-3">
-                <div class="dropdown">
-                    <label class="btn-label">Sort By:</label>
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Relevance
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Newest</a>
-                        <a class="dropdown-item" href="#">Oldest</a>
-                    </div>
+<div style="@main">
+    <div class="row">
+        <div class="col-9">
+            <h2>3 Results For Harry Potter</h2>
+        </div>
+        <div class="col-3">
+            <div class="dropdown">
+                <label class="btn-label">Sort By:</label>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Relevance
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Newest</a>
+                    <a class="dropdown-item" href="#">Oldest</a>
                 </div>
             </div>
         </div>
+    </div>
+    &nbsp;
+    @if (width == 0)
+    {
+        <button class="openbtn" @onclick="OpenNav">&#9776; Filters</button>
+    }
+    else
+    {
+
+    }
+    <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="card mb-3" style="width: 92%;">
+                <div class="card mb-3" style="width: 100%;">
                     <div class="row no-gutters">
                         <div class="col-md-2">
                             <div class="img-responsive center-block d-block mx-auto">
@@ -131,7 +143,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card mb-3" style="width: 92%;">
+                <div class="card mb-3" style="width: 100%;">
                     <div class="row no-gutters">
                         <div class="col-md-2">
                             <div class="img-responsive center-block d-block mx-auto">
@@ -155,9 +167,9 @@
                                         The plot follows Harry's second year at Hogwarts School of Witchcraft and Wizardry, during which a series of messages on the walls of the school's corridors warn that the "Chamber of Secrets" has been opened and that the "heir of Slytherin" would kill all pupils who do not come from all-magical families. These threats are found after attacks that leave residents of the school petrified. Throughout the year, Harry and his friends Ron and Hermione investigate the attacks.
                                     </div>
                                 </div>
-                                <p class="card-text"><small class="text-muted">5 Copies Available</small></p>
+                                <p class="card-text"><small class="text-muted">0 Copies Available</small></p>
                                 <div style="text-align: left;">
-                                    <a href="#" class="btn btn-primary" role="button">Hold</a>
+                                    <a href="#" class="btn btn-secondary" role="button">Hold</a>
                                     <a href="#" class="btn btn-primary" role="button">Wishlist</a>
                                     <a href="#" class="btn btn-primary" role="button">Info</a>
                                 </div>
@@ -165,7 +177,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card mb-3" style="width: 92%;">
+                <div class="card mb-3" style="width: 100%;">
                     <div class="row no-gutters">
                         <div class="col-md-2">
                             <div class="img-responsive center-block d-block mx-auto">
@@ -220,6 +232,8 @@
     .filters {
         width: 200px; /* Set the width of the sidebar */
         position: absolute;
+        max-height: calc(100vh - 9rem);
+        overflow-y: auto;
         z-index: 1; /* Stay on top */
         top: 100px; /* Stay at the top */
         left: 250px;
@@ -227,20 +241,42 @@
         overflow-x: hidden; /* Disable horizontal scroll */
         padding-top: 20px;
         border-right: 1px groove;
+        transition: 0.5s;
     }
 
-        /* The navigation menu links */
-        .filters a {
-            padding: 6px 8px 6px 16px;
-            text-decoration: none;
-            font-size: 16px;
-            color: black;
-            display: block;
+        .filters .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
         }
-            /* When you mouse over the navigation links, change their color */
-            .filters a:hover {
-                color: #f1f1f1;
-            }
+
+    .openbtn {
+        font-size: 20px;
+        cursor: pointer;
+        background-color: #FFFFFF;
+        color: black;
+        padding-left: 65px;
+        border: none;
+    }
+    /* The navigation menu links */
+    .filters a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 16px;
+        color: black;
+        display: block;
+    }
+        /* When you mouse over the navigation links, change their color */
+        .filters a:hover {
+            color: #f1f1f1;
+        }
+
+    #main {
+        transition: margin-left .5s; /* If you want a transition effect */
+        padding: 20px;
+    }
 
     /* Style page content */
     .main {
@@ -250,5 +286,12 @@
 </style>
 
 @code {
-
+    int width = 0;
+    string sidebarWidth => $"width: {width}px;";
+    string main => $"margin-left: {width}px;";
+    void OpenNav() => width = 250;
+    void CloseNav() => width = 0;
 }
+
+
+

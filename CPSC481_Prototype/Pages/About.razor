@@ -1,0 +1,39 @@
+﻿@page "/About"
+
+<PageTitle>About</PageTitle>
+
+<h1>About the library</h1>
+
+<div>
+    <p>Address: 8665 Nose Hill Dr NW, Calgary, AB T3G 5T3</p>
+    <p>Hours:8:00am - 8:00pm</p>
+</div>
+
+<img class="img-fluid" src="images/MapforAbout.png" />
+
+<Modal @ref="_modalRef">
+    <ModalContent Centered Size="ModalSize.ExtraLarge">
+        <ModalBody>
+            <MforALayout></MforALayout>
+        </ModalBody>
+        <ModalFooter>
+            <Button Color="Color.Secondary" Clicked="@HideModal">Close</Button>
+        </ModalFooter>
+    </ModalContent>
+</Modal>
+
+
+
+@code {
+    private Modal _modalRef;
+
+    private Task ShowModal()
+    {
+        return _modalRef.Show();
+    }
+
+    private Task HideModal()
+    {
+        return _modalRef.Hide();
+    }
+}

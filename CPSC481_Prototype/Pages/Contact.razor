@@ -1,0 +1,40 @@
+﻿@page "/Contact"
+
+<PageTitle>Contact</PageTitle>
+
+<h1>Need Help ?</h1>
+
+<p>Call 111-111-1111 </p>
+
+<p>or</p>
+
+<EditForm Model="@model" OnValidSubmit="@onValidSubmit">
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label for="EmailAdress">Email Address <InputText id="emailAdress" @bind-Value="@model.EmailAddress" class="form-control"></InputText></label>
+
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                <label for="Problems">Problems</label>
+                <InputTextArea id="Problems" @bind-Value="@model.Problems" class="form-control" rows="10"></InputTextArea>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-dark">Send</button>
+    </div>
+</EditForm>
+
+@code{
+    contactModel model = new contactModel();
+
+    private void onValidSubmit()
+    {
+        Console.WriteLine(model);
+    }
+}

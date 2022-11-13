@@ -13,9 +13,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.10" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="wwwroot\Images\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Remove="wwwroot\Images\Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg" />
     <Content Remove="wwwroot\Images\" />
   </ItemGroup>

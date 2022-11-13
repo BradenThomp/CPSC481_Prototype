@@ -1,0 +1,177 @@
+﻿@using Blazor.Extensions;
+@using Blazor.Extensions.Canvas
+@using Blazor.Extensions.Canvas.Canvas2D;
+
+<BECanvas Width="1000" Height="610" @ref=_canvas></BECanvas>
+
+@code {
+    protected BECanvasComponent _canvas;
+
+    private Canvas2DContext _context;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        this._context = await _canvas.CreateCanvas2DAsync();
+        await this._context.SetFontAsync("20px helvetica");
+
+        // Kids Section
+        await _context.BeginPathAsync();
+        await _context.MoveToAsync(600, 610);
+        await _context.LineToAsync(600, 300);
+        await _context.LineToAsync(1000, 300);
+        await _context.StrokeAsync();
+        for (int i = 620; i <= 800; i += 50)
+        {
+            await _context.SetFillStyleAsync("#a4caf1");
+            await this._context.FillRectAsync(i, 490, 30, 150);
+        }
+        for (int i = 320; i <= 450; i += 50)
+        {
+            int index = (i - 320) / 50;
+            switch (index)
+            {
+                case 0:
+                    await _context.SetFillStyleAsync("#ffe5dd");
+                    break;
+                case 1:
+                    await _context.SetFillStyleAsync("#f1d1f4");
+                    break;
+                case 2:
+                    await _context.SetFillStyleAsync("#fefecc");
+                    break;
+                default:
+                    break;
+            }
+            await this._context.FillRectAsync(900, i, 150, 30);
+        }
+
+        // Librarian Desk
+        await _context.BeginPathAsync();
+        await _context.MoveToAsync(800, 300);
+        await _context.LineToAsync(800, 250);
+        await _context.LineToAsync(950, 250);
+        await _context.LineToAsync(950, 300);
+        await _context.StrokeAsync();
+
+        // Bathroom
+        await _context.BeginPathAsync();
+        await _context.MoveToAsync(250, 0);
+        await _context.LineToAsync(250, 150);
+        await _context.LineToAsync(575, 150);
+        await _context.LineToAsync(575, 0);
+        await _context.StrokeAsync();
+        await _context.BeginPathAsync();
+        await _context.MoveToAsync(412, 0);
+        await _context.LineToAsync(412, 150);
+        await _context.StrokeAsync();
+
+        await _context.SetFillStyleAsync("black");
+        await _context.BeginPathAsync();
+        await _context.ArcAsync(325, 50, 12, 0, 2*Math.PI);
+        await _context.FillAsync();
+        await _context.FillRectAsync(321, 58, 8, 30);
+
+        await _context.BeginPathAsync();
+        await _context.ArcAsync(490, 50, 12, 0, 2 * Math.PI);
+        await _context.FillAsync();
+        await _context.MoveToAsync(490, 50);
+        await _context.LineToAsync(500, 88);
+        await _context.LineToAsync(480, 88);
+        await _context.MoveToAsync(490, 50);
+        await _context.FillAsync();
+
+        // Left books
+        for(int i = 20; i <= 600; i+=50) {
+            int index = (i - 20) / 50;
+            switch(index)
+            {
+                case 0:
+                    await _context.SetFillStyleAsync("#ffcbcb");
+                    break;
+                case 1:
+                    await _context.SetFillStyleAsync("#98cb99");
+                    break;
+                case 2:
+                    await _context.SetFillStyleAsync("#fecb99");
+                    break;
+                case 3:
+                    await _context.SetFillStyleAsync("#f7ddfe");
+                    break;
+                case 4:
+                    await _context.SetFillStyleAsync("#f7ddfe");
+                    break;
+                case 5:
+                    await _context.SetFillStyleAsync("#ddf3ff");
+                    break;
+                case 6:
+                    await _context.SetFillStyleAsync("#ffe5dd");
+                    break;
+                case 7:
+                    await _context.SetFillStyleAsync("#ffe5dd");
+                    break;
+                case 8:
+                    await _context.SetFillStyleAsync("#f1d1f4");
+                    break;
+                case 9:
+                    await _context.SetFillStyleAsync("#f1d1f4");
+                    break;
+                case 10:
+                    await _context.SetFillStyleAsync("#bde7d9");
+                    break;
+                case 11:
+                    await _context.SetFillStyleAsync("#fefecc");
+                    break;
+                default:
+                    await _context.SetFillStyleAsync("black");
+                    break;
+            }
+            await this._context.FillRectAsync(0, i, 200, 30);
+        }
+
+        // DVDS/Movies
+        for (int i = 230; i <= 570; i += 50)
+        {
+            if(i < 400) {
+                await _context.SetFillStyleAsync("#EC688F");
+            } 
+            else {
+                await _context.SetFillStyleAsync("#68ECC5");
+            }
+            await _context.FillRectAsync(i, 510, 30, 100);
+        }
+
+        // Center Books
+        await _context.SetFillStyleAsync("#a4caf1");
+        for (int i = 230; i <= 570; i += 50)
+        {
+            await this._context.FillRectAsync(i, 275, 30, 150);
+        }
+
+
+        // Text
+        await _context.SetFillStyleAsync("black");
+        await _context.FillTextAsync("Kids", 720, 400);
+        await _context.FillTextAsync("Quiet Study", 350, 475);
+        await _context.FillTextAsync("Washrooms", 350, 175);
+        await _context.FillTextAsync("Work Area", 725, 90);
+        await _context.FillTextAsync("Librarian Desk", 810, 280);
+
+        // Border
+        await _context.BeginPathAsync();
+        await _context.MoveToAsync(0, 0);
+        await _context.LineToAsync(1000, 0);
+        await _context.LineToAsync(1000, 609);
+        await _context.LineToAsync(0, 609);
+        await _context.LineToAsync(0, 0);
+        await _context.StrokeAsync();
+
+        // Doors
+        await _context.SetFillStyleAsync("white");
+        await this._context.FillRectAsync(980, 100, 40, 50);
+        await this._context.FillRectAsync(625, 290, 50, 40);
+        await this._context.FillRectAsync(275, 140, 50, 40);
+        await this._context.FillRectAsync(500, 140, 50, 40);
+        //await this._context.SetFontAsync("48px serif");
+        //await this._context.StrokeTextAsync("Hello Blazor!!!", 10, 100);
+    }
+}

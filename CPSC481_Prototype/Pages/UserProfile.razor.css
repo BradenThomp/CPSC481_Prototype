@@ -1,0 +1,8 @@
+﻿.container .btn-holder {
+    justify-content: flex-end;
+    display: flex;
+}
+
+.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    height: 100%;
+}

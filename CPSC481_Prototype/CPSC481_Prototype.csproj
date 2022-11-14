@@ -12,6 +12,13 @@
     <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.10" PrivateAssets="all" />
+    <PackageReference Include="Blazored.Modal" Version="7.1.0" />
+    <PackageReference Include="Portal" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Blazorise" />
+    <None Remove="Blazored.Modal" />
+    <None Remove="Portal" />
+  </ItemGroup>
 </Project>

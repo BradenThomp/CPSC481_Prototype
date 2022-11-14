@@ -27,8 +27,4 @@
     <None Remove="Blazored.Modal" />
     <None Remove="Portal" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\ExplorePages\" />
-  </ItemGroup>
 </Project>

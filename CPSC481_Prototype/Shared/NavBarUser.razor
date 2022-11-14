@@ -1,0 +1,125 @@
+﻿@inject IJSRuntime JS;
+
+
+
+
+<nav class="navbar navbar-inverse navbar-static-top navbar-lower" style="background-color: #a4c3b2;">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="#">
+            <img src="images/librarylogo.png" alt="Logo" style="width:200px;">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+
+        <div class="row my-navbar p-0 m-0 bg-transparent">
+
+            <div class="col m-2 d-flex justify-content-end">
+                <div class="input-group search-input">
+                    <input type="text" class="form-control" placeholder="Search keywords" aria-label="Search keywords" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary"> <span class="oi oi-magnifying-glass" aria-hidden="true" /></button>
+                    </div>
+                </div>
+                <button class="btn btn-secondary ms-3 text-nowrap mr-1" href="/UserProfile">My Account</button>
+                
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle ms-3 mr-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        My Items
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">On Hold</a>
+                        <a class="dropdown-item" href="#">Wishlist</a>
+                        <a class="dropdown-item" href="#">Checked out</a>
+                    </div>
+                </div>
+                    
+            </div>
+
+
+
+
+        </div>
+
+        <div class="container-fluid">
+            <div class="row navbar nav-fill" style="background-color: #6b9080;">
+                <div class="col m-2 d-flex justify-content-center">
+                    <a class="nav-item link-dark" href="#">Explore Books <span class="sr-only">(current)</span></a>
+                    <a class="nav-item link-dark " href="#">Explore Music</a>
+                    <a class="nav-item link-dark " href="#">Explore Movies</a>
+                    <a class="nav-item link-dark " href="#">About Us</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</nav>
+
+
+
+@*
+        @if (showModal)
+        {
+            <div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Sign in to your library account</h4>
+                            <button type="button" class="close" @onclick="@ModalCancel">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Library ID:</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Password:</span>
+                                </div>
+                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark ms-3 text-nowrap" @onclick="@ModalCancel">Forget password</button>
+                            <button type="button" class="btn btn-secondary" style=" background-color: #6b9080" @onclick=@ModalOk>Login</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        }
+
+*@
+        @code {
+
+
+
+            bool showModal = false;
+
+            void ModalShow() => showModal = true;
+            void ModalCancel() => showModal = false;
+            void ModalOk()
+            {
+                Console.WriteLine("Modal ok");
+                showModal = false;
+            }
+
+
+        }

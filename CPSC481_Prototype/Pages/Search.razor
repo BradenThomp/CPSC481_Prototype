@@ -5,7 +5,13 @@
 <!-- Side navigation -->
 
 <div class="row">
-    <div class="col-10">
+    <div class="col-2">
+        @if (width == 0)
+        {
+            <button class="openbtn" @onclick="OpenNav">&#9776; Filters</button>
+        }
+    </div>
+    <div class="col-8">
         <div class="px-4">
             <h2>3 Results For Harry Potter</h2>
         </div>
@@ -105,14 +111,6 @@
 <!-- Page content -->
 <div style="@main">
     &nbsp;
-    @if (width == 0)
-    {
-        <button class="openbtn" @onclick="OpenNav">&#9776; Filters</button>
-    }
-    else
-    {
-
-    }
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -241,11 +239,11 @@
     /*Side bar settings*/
     .filters {
         width: 200px; /* Set the width of the sidebar */
-        position: absolute;
+        position: fixed;
         max-height: calc(100vh - 9rem);
         overflow-y: auto;
         z-index: 1; /* Stay on top */
-        top: 250px; /* Stay at the top */
+        top: 200px; /* Stay at the top */
         left: 0px;
         background-color: transparent;
         overflow-x: hidden; /* Disable horizontal scroll */

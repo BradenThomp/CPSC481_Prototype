@@ -1,5 +1,7 @@
 ﻿@page "/Home"
 @layout MainLayoutHomePage
+@inject NavigationManager UriHelper
+
 
 <head>
     <link rel="stylesheet" href="..\wwwroot\css\app.css">
@@ -15,9 +17,9 @@
 <br />
 <br />
 <div class="input-group search-input">
-    <input type="text" class="form-control" placeholder="Search keywords. Ex. Harry Potter, Cooking, science fiction..." aria-label="Search..." aria-describedby="basic-addon2">
+    <input type="text" class="form-control" placeholder="Search keywords. Ex. Harry Potter, Cooking, science fiction..." @bind-value="searchTerm" aria-label="Search..." aria-describedby="basic-addon2">
     <div class="input-group-append">
-        <button class="btn btn-outline-dark">Search</button>
+        <button class="btn btn-outline-dark"@onclick="@searchItem">Search</button>
     </div>
 </div>
 
@@ -86,4 +88,10 @@
 
 @code{
     private string selectedSlide = "2";
+    private string searchTerm;
+    private async Task searchItem()
+    {
+        Console.WriteLine(searchTerm);
+        UriHelper.NavigateTo($"searchresults/{searchTerm}");
+    }
 }

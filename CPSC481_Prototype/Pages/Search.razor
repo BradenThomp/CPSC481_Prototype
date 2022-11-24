@@ -1,4 +1,4 @@
-﻿@page "/searchresults"
+﻿@page "/searchresults/{showSearch}"
 @inherits LayoutComponentBase
 
 <PageTitle>Search Results Page</PageTitle>
@@ -13,7 +13,7 @@
     </div>
     <div class="col-8">
         <div class="px-4">
-            <h2>3 Results For Harry Potter</h2>
+            <h2>X Results for @showSearch</h2>
         </div>
     </div>
     <div class="col-2">
@@ -303,6 +303,8 @@
     string main => $"margin-left: {width}px;";
     void OpenNav() => width = 250;
     void CloseNav() => width = 0;
+    [Parameter]
+    public string showSearch { get; set; }
 }
 
 

@@ -1,4 +1,6 @@
-﻿namespace CPSC481_Prototype.Models
+﻿using System.Text.Json;
+
+namespace CPSC481_Prototype.Models
 {
     public class LibraryItem
     {
@@ -27,5 +29,11 @@
         public double DeweyDecimal { get; init; }
 
         public List<LibraryItem> SimilarItems { get; init; }
+
+        public string GetJson()
+        {
+            var json = JsonSerializer.Serialize(this);
+            return json;
+        }
     }
 }

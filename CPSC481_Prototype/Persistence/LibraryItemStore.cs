@@ -17,6 +17,11 @@ namespace CPSC481_Prototype.Persistence
             return _store[id];
         }
 
+        public List<LibraryItem> Search(string searchTerm)
+        {
+            return _store.Values.ToList();
+        }
+
         public List<LibraryItem> GetSimilarItems(LibraryItem srcItem)
         {
             List<LibraryItem> result = new List<LibraryItem>();

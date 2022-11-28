@@ -14,7 +14,7 @@
     </div>
     <div class="col-8">
         <div class="px-4">
-            <h2>X Results for @showSearch</h2>
+            <h2>@results.Count Results for "@showSearch"</h2>
         </div>
     </div>
     <div class="col-2">
@@ -110,118 +110,159 @@
 
 
 <!-- Page content -->
-<div style="@main">
-    &nbsp;
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="card mb-3 card-style" style="width: 101%;">
-                    <div class="row no-gutters">
-                        <div class="col-md-2">
-                            <div class="img-responsive center-block d-block mx-auto">
-                                <img src="images/Harry_Potter_and_the_Philosopher's_Stone_Book_Cover.jpg" class="card-img" alt="...">
-                            </div>
-                        </div>
-                        <div class="col-md-10">
-                            <div class="card-body">
-                                <h2 class="display-5">Harry Potter and the Philosopher's Stone</h2>
-                                <h3 class="h3">J. K. Rowling</h3>
-                                <h6 class="h6">233 Pages, Hardcover</h6>
-                                <h6 class="h6"> Bloomsbury - June 1997</h6>
-                                &nbsp;
-                                <p>
-                                    <a class="btn btn-outline-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                        + Expand
-                                    </a>
-                                </p>
-                                <div class="collapse" id="collapseExample">
-                                    <div class="card card-body card-style">
-                                        The first novel in the Harry Potter series and Rowling's debut novel, it follows Harry Potter, a young wizard who discovers his magical heritage on his eleventh birthday, when he receives a letter of acceptance to Hogwarts School of Witchcraft and Wizardry. Harry makes close friends and a few enemies during his first year at the school and with the help of his friends, he faces an attempted comeback by the dark wizard Lord Voldemort, who killed Harry's parents, but failed to kill Harry when he was just 15 months old.
+@if(results.Count > 0)
+{
+    <div style="@main">
+        &nbsp;
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    @foreach (var item in results)
+                    {
+                        <div class="card mb-3 card-style" style="width: 101%;">
+                            <div class="row no-gutters">
+                                <div class="col-md-2">
+                                    <div class="img-responsive center-block d-block mx-auto">
+                                        <img src="@item.ImageSource" class="card-img" alt="...">
                                     </div>
                                 </div>
-                                <p class="card-text"><small class="text-muted">2 Copies Available</small></p>
-                                <div style="text-align: left;">
-                                    <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Hold</a>
-                                    <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>
-                                    <a href="iteminfo" class="btn btn-secondary" style="background-color: #6b9080" role="button">Info</a>
+                                <div class="col-md-10">
+                                    <div class="card-body">
+                                        <h2 class="display-5">@item.Title</h2>
+                                        <h3 class="h3">@item.Author</h3>
+                                        <h6 class="h6">@item.Length, @item.Format</h6>
+                                        <h6 class="h6"> @item.Publisher - @item.PublicationDate</h6>
+                                        &nbsp;
+                                        <p>
+                                            <a class="btn btn-outline-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                + Expand
+                                            </a>
+                                        </p>
+                                        <div class="collapse" id="collapseExample">
+                                            <div class="card card-body card-style">
+                                                @item.Summary
+                                            </div>
+                                        </div>
+                                        <p class="card-text"><small class="text-muted">@item.CopiesAvailable Copies Available</small></p>
+                                        <div style="text-align: left;">
+                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Hold</a>
+                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>
+                                            <a href="iteminfo" class="btn btn-secondary" style="background-color: #6b9080" role="button">Info</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    }
+                    @*<div class="card mb-3 card-style" style="width: 101%;">
+            <div class="row no-gutters">
+                <div class="col-md-2">
+                    <div class="img-responsive center-block d-block mx-auto">
+                        <img src="images/Harry_Potter_and_the_Philosopher's_Stone_Book_Cover.jpg" class="card-img" alt="...">
                     </div>
                 </div>
-                <div class="card mb-3 card-style" style="width: 101%;">
-                    <div class="row no-gutters">
-                        <div class="col-md-2">
-                            <div class="img-responsive center-block d-block mx-auto">
-                                <img src="images/Harry_Potter_and_the_Chamber_of_Secrets.jpg" class="card-img" alt="...">
+                <div class="col-md-10">
+                    <div class="card-body">
+                        <h2 class="display-5">Harry Potter and the Philosopher's Stone</h2>
+                        <h3 class="h3">J. K. Rowling</h3>
+                        <h6 class="h6">233 Pages, Hardcover</h6>
+                        <h6 class="h6"> Bloomsbury - June 1997</h6>
+                        &nbsp;
+                        <p>
+                            <a class="btn btn-outline-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                + Expand
+                            </a>
+                        </p>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body card-style">
+                                The first novel in the Harry Potter series and Rowling's debut novel, it follows Harry Potter, a young wizard who discovers his magical heritage on his eleventh birthday, when he receives a letter of acceptance to Hogwarts School of Witchcraft and Wizardry. Harry makes close friends and a few enemies during his first year at the school and with the help of his friends, he faces an attempted comeback by the dark wizard Lord Voldemort, who killed Harry's parents, but failed to kill Harry when he was just 15 months old.
                             </div>
                         </div>
-                        <div class="col-md-10">
-                            <div class="card-body">
-                                <h2 class="display-5">Harry Potter and the Chamber of Secrets</h2>
-                                <h3 class="h3">J. K. Rowling</h3>
-                                <h6 class="h6">251 Pages, Hardcover</h6>
-                                <h6 class="h6"> Bloomsbury - July 1998</h6>
-                                &nbsp;
-                                <p>
-                                    <a class="btn btn btn-outline-dark" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                        + Expand
-                                    </a>
-                                </p>
-                                <div class="collapse" id="collapseExample2">
-                                    <div class="card card-body card-style">
-                                        The plot follows Harry's second year at Hogwarts School of Witchcraft and Wizardry, during which a series of messages on the walls of the school's corridors warn that the "Chamber of Secrets" has been opened and that the "heir of Slytherin" would kill all pupils who do not come from all-magical families. These threats are found after attacks that leave residents of the school petrified. Throughout the year, Harry and his friends Ron and Hermione investigate the attacks.
-                                    </div>
-                                </div>
-                                <p class="card-text"><small class="text-muted">0 Copies Available</small></p>
-                                <div style="text-align: left;">
-                                    <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Hold</a>
-                                    <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>
-                                    <a href="iteminfo" class="btn btn-secondary" style="background-color: #6b9080" role="button">Info</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mb-3 card-style" style="width: 101%;">
-                    <div class="row no-gutters">
-                        <div class="col-md-2">
-                            <div class="img-responsive center-block d-block mx-auto">
-                                <img src="images/Harry_Potter_and_the_Prisoner_of_Azkaban.jpg" class="card-img" alt="...">
-                            </div>
-                        </div>
-                        <div class="col-md-10">
-                            <div class="card-body">
-                                <h2 class="display-5">Harry Potter and the Prisoner of Azkaban</h2>
-                                <h3 class="h3">J. K. Rowling</h3>
-                                <h6 class="h6">317 Pages, Hardcover</h6>
-                                <h6 class="h6"> Bloomsbury - July 1999</h6>
-                                &nbsp;
-                                <p>
-                                    <a class="btn btn-outline-dark" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                        + Expand
-                                    </a>
-                                </p>
-                                <div class="collapse" id="collapseExample3">
-                                    <div class="card card-body card-style">
-                                        The third novel in the Harry Potter series, the book follows Harry Potter, a young wizard, in his third year at Hogwarts School of Witchcraft and Wizardry. Along with friends Ronald Weasley and Hermione Granger, Harry investigates Sirius Black, an escaped prisoner from Azkaban, the wizard prison, believed to be one of Lord Voldemort's old allies.
-                                    </div>
-                                </div>
-                                <p class="card-text"><small class="text-muted">1 Copies Available</small></p>
-                                <div style="text-align: left;">
-                                    <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Hold</a>
-                                    <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>
-                                    <a href="iteminfo" class="btn btn-secondary" style="background-color: #6b9080" role="button">Info</a>
-                                </div>
-                            </div>
+                        <p class="card-text"><small class="text-muted">2 Copies Available</small></p>
+                        <div style="text-align: left;">
+                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Hold</a>
+                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>
+                            <a href="iteminfo" class="btn btn-secondary" style="background-color: #6b9080" role="button">Info</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="card mb-3 card-style" style="width: 101%;">
+            <div class="row no-gutters">
+                <div class="col-md-2">
+                    <div class="img-responsive center-block d-block mx-auto">
+                        <img src="images/Harry_Potter_and_the_Chamber_of_Secrets.jpg" class="card-img" alt="...">
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="card-body">
+                        <h2 class="display-5">Harry Potter and the Chamber of Secrets</h2>
+                        <h3 class="h3">J. K. Rowling</h3>
+                        <h6 class="h6">251 Pages, Hardcover</h6>
+                        <h6 class="h6"> Bloomsbury - July 1998</h6>
+                        &nbsp;
+                        <p>
+                            <a class="btn btn btn-outline-dark" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                + Expand
+                            </a>
+                        </p>
+                        <div class="collapse" id="collapseExample2">
+                            <div class="card card-body card-style">
+                                The plot follows Harry's second year at Hogwarts School of Witchcraft and Wizardry, during which a series of messages on the walls of the school's corridors warn that the "Chamber of Secrets" has been opened and that the "heir of Slytherin" would kill all pupils who do not come from all-magical families. These threats are found after attacks that leave residents of the school petrified. Throughout the year, Harry and his friends Ron and Hermione investigate the attacks.
+                            </div>
+                        </div>
+                        <p class="card-text"><small class="text-muted">0 Copies Available</small></p>
+                        <div style="text-align: left;">
+                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Hold</a>
+                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>
+                            <a href="iteminfo" class="btn btn-secondary" style="background-color: #6b9080" role="button">Info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-3 card-style" style="width: 101%;">
+            <div class="row no-gutters">
+                <div class="col-md-2">
+                    <div class="img-responsive center-block d-block mx-auto">
+                        <img src="images/Harry_Potter_and_the_Prisoner_of_Azkaban.jpg" class="card-img" alt="...">
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="card-body">
+                        <h2 class="display-5">Harry Potter and the Prisoner of Azkaban</h2>
+                        <h3 class="h3">J. K. Rowling</h3>
+                        <h6 class="h6">317 Pages, Hardcover</h6>
+                        <h6 class="h6"> Bloomsbury - July 1999</h6>
+                        &nbsp;
+                        <p>
+                            <a class="btn btn-outline-dark" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                + Expand
+                            </a>
+                        </p>
+                        <div class="collapse" id="collapseExample3">
+                            <div class="card card-body card-style">
+                                The third novel in the Harry Potter series, the book follows Harry Potter, a young wizard, in his third year at Hogwarts School of Witchcraft and Wizardry. Along with friends Ronald Weasley and Hermione Granger, Harry investigates Sirius Black, an escaped prisoner from Azkaban, the wizard prison, believed to be one of Lord Voldemort's old allies.
+                            </div>
+                        </div>
+                        <p class="card-text"><small class="text-muted">1 Copies Available</small></p>
+                        <div style="text-align: left;">
+                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Hold</a>
+                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>
+                            <a href="iteminfo" class="btn btn-secondary" style="background-color: #6b9080" role="button">Info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+                </div>
+            </div>
+        </div>
     </div>
+}
 
-</div>
+    
 <style>
     .searchHeader {
         padding-right: 50px;
@@ -309,11 +350,13 @@
     public string showSearch { get; set; }
     public LibraryItem Item { get; set; }
     private List<LibraryItem> results;
+    int count = 0;
 
     protected override void OnParametersSet()
     {
-      results = LibraryItemStore.Search(showSearch);
+        results = LibraryItemStore.Search(showSearch);
     }
+
 }
 
 

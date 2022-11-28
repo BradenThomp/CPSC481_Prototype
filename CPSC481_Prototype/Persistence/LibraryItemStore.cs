@@ -20,7 +20,7 @@ namespace CPSC481_Prototype.Persistence
             return _store[id];
         }
 
-        public List<LibraryItem> Search(string searchTerm)
+        public List<LibraryItem> Search (string searchTerm)
         {
             List<LibraryItem> results = new List<LibraryItem>();
             foreach (var i in _store)
@@ -31,7 +31,6 @@ namespace CPSC481_Prototype.Persistence
                 }
             }
             return results;
-
         }
 
         public List<LibraryItem> GetSimilarItems(LibraryItem srcItem)

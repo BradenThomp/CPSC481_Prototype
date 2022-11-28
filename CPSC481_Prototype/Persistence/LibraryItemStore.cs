@@ -1,4 +1,7 @@
-﻿using CPSC481_Prototype.Models;
+﻿using System.Linq;
+using System.Text.Json;
+using CPSC481_Prototype.Models;
+using static CPSC481_Prototype.Pages.FetchData;
 
 namespace CPSC481_Prototype.Persistence
 {
@@ -19,7 +22,16 @@ namespace CPSC481_Prototype.Persistence
 
         public List<LibraryItem> Search(string searchTerm)
         {
-            return _store.Values.ToList();
+            List<LibraryItem> results = new List<LibraryItem>();
+            foreach (var i in _store)
+            {
+                if (i.Value.GetJson().Contains(searchTerm))
+                {
+                    results.Add(i.Value);
+                }
+            }
+            return results;
+
         }
 
         public List<LibraryItem> GetSimilarItems(LibraryItem srcItem)

@@ -25,7 +25,7 @@ namespace CPSC481_Prototype.Persistence
             List<LibraryItem> results = new List<LibraryItem>();
             foreach (var i in _store)
             {
-                if (i.Value.GetJson().Contains(searchTerm))
+                if (i.Value.GetJson().Contains(searchTerm, System.StringComparison.CurrentCultureIgnoreCase))
                 {
                     results.Add(i.Value);
                 }

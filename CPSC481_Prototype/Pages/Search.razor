@@ -355,12 +355,8 @@
 
     protected override void OnParametersSet()
     {
-        results = LibraryItemStore.Search(showSearch);
-    }
 
-    private void GoToItemInfo(string id)
-    {
-        UriHelper.NavigateTo($"/ItemInfo/{id}");
+        results = LibraryItemStore.Search(showSearch);
     }
 }
 

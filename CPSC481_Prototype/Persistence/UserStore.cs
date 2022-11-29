@@ -1,47 +1,22 @@
-﻿/*using CPSC481_Prototype.Models;
+﻿using CPSC481_Prototype.Models;
 
 namespace CPSC481_Prototype.Persistence
 {
-    public class LibraryItemStore
+    public class UserStore
     {
-        private Dictionary<int, LibraryItem> _store;
+        private static Dictionary<int, User> _store;
 
-        public LibraryItemStore()
+        public UserStore()
         {
-            LibraryItemStoreDataSource src = new LibraryItemStoreDataSource();
+            UserStoreDataSource src = new UserStoreDataSource();
             _store = src.GetData();
         }
 
-        public LibraryItem Get(int id)
+        public static User Get(int id)
         {
             return _store[id];
         }
 
-        public List<LibraryItem> Search(string searchTerm)
-        {
-            return _store.Values.ToList();
-        }
-
-        public List<LibraryItem> GetSimilarItems(LibraryItem srcItem)
-        {
-            List<LibraryItem> result = new List<LibraryItem>();
-            foreach(var item in _store.Values)
-            {
-                foreach(var genre in item.Genres)
-                {
-                    if(srcItem.Genres.Contains(genre) && srcItem.Id != item.Id)
-                    {
-                        result.Add(item);
-                        break;
-                    }
-                }
-                if(result.Count >= 10)
-                {
-                    break;
-                }
-            }
-            return result;
-        }
+        
     }
 }
-*/

@@ -8,27 +8,21 @@ namespace CPSC481_Prototype.Models
 
         public string ImageSource { get; init; }
 
-        public string Title { get; init; }
+        public string Name { get; init; }
 
-        public string Author { get; init; }
+        public string LibraryId { get; init; }
 
-        public string Length { get; init; }
+        public string Email { get; init; }
 
-        public string Format { get; init; }
+        public string PhoneNum { get; init; }
 
-        public string Publisher { get; init; }
+        public string Address { get; init; }
 
-        public string PublicationDate { get; init; }
+        public List<LibraryItem> Wishlist { get; init; }
 
-        public string Summary { get; init; } 
+        public List<LibraryItem> OnHold { get; init; }
 
-        public List<string> Genres { get; init; }
-
-        public int CopiesAvailable { get; init; }
-
-        public double DeweyDecimal { get; init; }
-
-        public List<LibraryItem> SimilarItems { get; init; }
+        public List<LibraryItem> CheckedOut { get; init; }
 
         public string GetJson()
         {

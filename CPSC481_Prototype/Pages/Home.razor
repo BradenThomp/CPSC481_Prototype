@@ -61,12 +61,24 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img class="d-block w-100 center-block" src=@item1 alt="First slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>@description1</h5>
+                    <p>@author1</p>
+                </div>
             </div>
             <div class="carousel-item">
                 <img class="d-block w-100 center-block" src=@item2 alt="Second slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>@description2</h5>
+                    <p>@author2</p>
+                </div>
             </div>
             <div class="carousel-item">
                 <img class="d-block w-100" src=@item3 alt="Third slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>@description3</h5>
+                    <p>@author3</p>
+                </div>
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -101,6 +113,15 @@
     private string item1 = "images/Goodnightmoon.jpg";
     private string item2 = "images/Holes.jpg";
     private string item3 = "images/TheTwits.jpg";
+    private string description1 = "Goodnight Moon";
+    private string description2 = "Holes";
+    private string description3 = "The Twits";
+    private string author1 = "Margaret Wise Brown";
+    private string author2 = "Louis Sachar";
+    private string author3 = "Roald Dahl";
+
+
+
 
     private string click1 = "";
     private string click2 = "";
@@ -118,6 +139,13 @@
         item2 = "images/Holes.jpg";
         item3 = "images/TheTwits.jpg";
         featuredItems = "Featured Books";
+        description1 = "Goodnight Moon";
+        description2 = "Holes";
+        description3 = "The Twits";
+        author1 = "Margaret Wise Brown";
+        author2 = "Louis Sachar";
+        author3 = "Roald Dahl";
+
 
     }
 
@@ -128,6 +156,13 @@
         item2 = "images/AzkbnMovie.jpg";
         item3 = "images/taken.jpg";
         featuredItems = "Featured Movies";
+        description1 = "Jurassic World";
+        description2 = "Harry Potter and the Prisoner Of Azkaban";
+        description3 = "Taken";
+        author1 = "";
+        author2 = "";
+        author3 = "";
+
 
 
     }
@@ -139,6 +174,13 @@
         item2 = "images/lz2.jpg";
         item3 = "images/war.jpg";
         featuredItems = "Featured Music";
+        description1 = "Fishing for Fishies";
+        description2 = "Led Zeppelin II";
+        description3 = "War";
+        author1 = "Studio album by King Gizzard & the Lizard Wizard";
+        author2 = "Led Zeppelin";
+        author3 = "U2";
+
 
     }
 

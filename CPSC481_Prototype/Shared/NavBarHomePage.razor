@@ -1,5 +1,6 @@
 ﻿@inject IJSRuntime JS;
 
+
 <head>
     <link rel="stylesheet" type="text/css" href="Buttons.css" media=”screen” />
 </head>
@@ -43,7 +44,6 @@
 </nav>
 
 
-
 @if (showModal)
 {
     <div class="modal fade show" id="myModal" style="display:block" aria-modal="true" role="dialog">
@@ -74,8 +74,10 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
+
                     <a type="button" class="btn button-25 ms-3 text-nowrap" @onclick="@ModalCancel">Forget password</a>
                     <button type="button" class="btn button-24" @onclick=@ModalOk>Login</button>
+
                 </div>
 
             </div>

@@ -28,8 +28,8 @@ namespace CPSC481_Prototype.Persistence
                 LibraryId = "123456",
                 Email = "harry@hogwarts.com",
                 PhoneNum = "123-123-1234",
-                Address = "abc st NE",
-                Wishlist = new List<LibraryItem>() { },
+                Address = "4 Privet Drive, Little Whinging, Surrey",
+                Wishlist = new List<LibraryItem>(){ },
                 OnHold= new List<LibraryItem>() {  },
                 CheckedOut = new List<LibraryItem>() {  }
             });;
@@ -42,6 +42,7 @@ namespace CPSC481_Prototype.Persistence
                 LibraryId = "223456",
                 Email = "harmione@hogwarts.com",
                 PhoneNum = "223-123-1234",
+                Address = "abc st NE, ABC",
                 Wishlist = new List<LibraryItem>() {  },
                 OnHold = new List<LibraryItem>() {  },
                 CheckedOut = new List<LibraryItem>() {  }

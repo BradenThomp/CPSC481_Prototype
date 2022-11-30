@@ -315,7 +315,35 @@ namespace CPSC481_Prototype.Persistence
                 CopiesAvailable = 15,
                 DeweyDecimal = 0,
             });
-
+            _store.Add(21, new LibraryItem
+            {
+                Id = 21,
+                ImageSource = "images/taken.jpg",
+                Title = "Taken",
+                Author = "Pierre Morel",
+                Length = "1h33m",
+                Format = "DVD",
+                Publisher = "Canal",
+                PublicationDate = "January 2009",
+                Summary = "Bryan Mills (Liam Neeson), a former government operative, is trying to reconnect with his daughter, Kim (Maggie Grace). Then his worst fears become real when sex slavers abduct Kim and her friend shortly after they arrive in Paris for vacation. With just four days until Kim will be auctioned off, Bryan must call on every skill he learned in black ops to rescue her.",
+                Genres = new List<string>() { "Thriller", "Fantasy", "Fiction" },
+                CopiesAvailable = 5,
+                DeweyDecimal = 0,
+            });
+            _store.Add(22, new LibraryItem
+            {
+                Id = 22,
+                ImageSource = "images/war.jpg",
+                Title = "War",
+                Author = "U2",
+                Length = "42m",
+                Format = "Vinyl",
+                Publisher = "U2",
+                PublicationDate = "War is a commentary on a world that seemed to be at war in every corner. Bono told NME in February 1983, \"War seemed to be the motif for 1982. Everywhere you looked, from the Falklands to the Middle East and South Africa, there was war.",
+                Genres = new List<string>() { "Indie", "Rock" },
+                CopiesAvailable = 9,
+                DeweyDecimal = 0,
+            });
         }
     }
 }

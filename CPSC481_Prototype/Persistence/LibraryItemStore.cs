@@ -7,7 +7,7 @@ namespace CPSC481_Prototype.Persistence
 {
     public class LibraryItemStore
     {
-        private Dictionary<int, LibraryItem> _store;
+        private static Dictionary<int, LibraryItem> _store;
 
         public LibraryItemStore()
         {
@@ -15,7 +15,7 @@ namespace CPSC481_Prototype.Persistence
             _store = src.GetData();
         }
 
-        public LibraryItem Get(int id)
+        public static LibraryItem Get(int id)
         {
             return _store[id];
         }

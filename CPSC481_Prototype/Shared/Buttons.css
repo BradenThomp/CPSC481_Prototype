@@ -1,0 +1,71 @@
+﻿.button-24 {
+    background: #6b9080;
+    border: 1px solid #6b9080;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+}
+
+    .button-24:hover,
+    .button-24:active {
+        background-color: grey;
+        background-position: 0 0;
+        color: white;
+    }
+
+    .button-24:active {
+        opacity: .5;
+    }
+
+
+button-25 {
+    background: #7a9d96;
+    border: 1px solid #7a9d96;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: grey;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 14px;
+    min-height: 30px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+}
+
+.button-25:hover,
+.button-25:active {
+    background-color: grey;
+    background-position: 0 0;
+    color: white;
+}
+
+.button-25:active {
+    opacity: .5;
+}

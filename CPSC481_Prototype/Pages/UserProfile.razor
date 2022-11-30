@@ -1,102 +1,183 @@
-﻿@page "/UserProfile"
+﻿@page "/UserProfile/{id}"
 @layout MainLayoutUser
+@inject UserStore UserStore
 
-<PageTitle>UserProfile</PageTitle>
+<head>
+    <link rel="stylesheet" type="text/css" href="Buttons.css" media=”screen” />
+</head>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-3">
-            <h1 class="text-center"> My Profile </h1>
-            <img class="img-thumbnail rounded-circle" src="images/ProfilePic.jpg" />
-        </div>
-        <div class="col-4">
-            <div class="border p-2 mt-4">
-                <h3 class="h3">Harry Potter</h3>
-                <h6 class="h6">Library ID: 123456</h6>
-                <h6 class="h6">Phone Number: 123-123-1234</h6>
-                <h6 class="h6">Email Address: harry@hogwarts.com</h6>
-                <h6 />
-            </div>
-            <div class="border p-2 mt-4">
-                <h6> Manage my items:</h6>
 
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-secondary" style=" background-color: #6b9080">Wishlist</button>
-                    <button type="button" class="btn btn-secondary" style=" background-color: #6b9080">On Hold</button>
-                    <button type="button" class="btn btn-secondary" style=" background-color: #6b9080">Borrow History</button>
+
+<section style="background-color: #eee;">
+    <div class="container py-5">
+
+        <h3 class="m-3" align="center">My Profile Overview</h3>
+
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <img class="rounded-circle img-fluid" style="width: 150px;" src=@User.ImageSource>
+                        <h5 class="my-3"> @User.Name </h5>
+                       
+                    </div>
                 </div>
-
+                <div class="card mb-4 mb-lg-0">
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush rounded-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fas fa-globe fa-lg text-warning"></i>
+                                <p class="mb-0">https://mdbootstrap.com</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                                <p class="mb-0">mdbootstrap</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                                <p class="mb-0">mdbootstrap</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                                <p class="mb-0">mdbootstrap</p>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                                <p class="mb-0">mdbootstrap</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="col-4">
-            <div class="border p-2 mt-4">
-                <h5 class="text-center">Currently Checked Out</h5>
-                <div class="300-px-height">
-                    <div class="carousel">
-                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class="img-fluid d-block w-30 center-block" src="images/Goodnightmoon.jpg" alt="First slide">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="img-fluid d-block w-30 center-block" src="images/Holes.jpg" alt="Second slide">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="img-fluid d-block w-30 center-block" src="images/TheTwits.jpg" alt="Third slide">
-                                </div>
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Full Name</p>
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="false"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@User.Name</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Email</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@User.Email</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Phone</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@User.PhoneNum</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Address</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@User.Address</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <hr />
-                <button class="btn btn-secondary btn-center" style="background-color: #6b9080">See Checked-out Items</button>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-4 mb-md-0">
+                            <div class="card-body">
+                                <p class="mb-4">
+                                    <span class="text-primary font-italic me-1">assigment</span> Project Status
+                                </p>
+                                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
+                                <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
+                                <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
+                                <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
+                                <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
+                                <div class="progress rounded mb-2" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-4 mb-md-0">
+                            <div class="card-body">
+                                <p class="mb-4">
+                                    <span class="text-primary font-italic me-1">assigment</span> Project Status
+                                </p>
+                                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
+                                <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
+                                <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
+                                <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
+                                <div class="progress rounded" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
+                                <div class="progress rounded mb-2" style="height: 5px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</section>
 
-    <hr class="mt-4 mb-4" />
-    <h5 class="text-center">Recently Viewed</h5>
-    <HorizontalScroll></HorizontalScroll>
+@code{
+    [Parameter]
+    public string Id { get; set; }
 
-</div>
+    public User User { get; set; }
 
-
-<Modal @ref="_modalRef">
-    <ModalContent Centered Size="Blazorise.ModalSize.ExtraLarge">
-        <ModalBody>
-            <MapLayout></MapLayout>
-        </ModalBody>
-        <ModalFooter>
-            <Button Color="Color.Secondary" Clicked="@HideModal">Close</Button>
-        </ModalFooter>
-    </ModalContent>
-</Modal>
-
-
-@code {
     private Modal _modalRef;
 
-    private Task ShowModal()
+    protected override void OnParametersSet()
     {
-        return _modalRef.Show();
+        User = UserStore.Get(Int32.Parse(Id));
+        // SimilarItems = LibraryItemStore.GetSimilarItems(Item);
     }
 
-    private Task HideModal()
-    {
-        return _modalRef.Hide();
-    }
+    
 }

@@ -19,6 +19,7 @@
   <ItemGroup>
     <Content Remove="wwwroot\Images\Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg" />
     <Content Remove="wwwroot\Images\" />
+    <Content Remove="Pages\ItemsCheckedOut.razor" />
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\Images\Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg" />
@@ -31,5 +32,13 @@
     <None Remove="Portal" />
     <None Remove="Blazored.Typeahead" />
 
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Pages\ItemsCheckedOut.razor.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </None>
+    <None Update="Pages\ItemsCheckedOut.razor.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </None>
   </ItemGroup>
 </Project>

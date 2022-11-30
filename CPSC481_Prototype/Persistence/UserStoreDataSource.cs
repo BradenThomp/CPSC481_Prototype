@@ -1,5 +1,7 @@
 ﻿using CPSC481_Prototype.Models;
 
+
+
 namespace CPSC481_Prototype.Persistence
 {
     public class UserStoreDataSource
@@ -29,9 +31,9 @@ namespace CPSC481_Prototype.Persistence
                 Email = "harry@hogwarts.com",
                 PhoneNum = "123-123-1234",
                 Address = "4 Privet Drive, Little Whinging, Surrey",
-                Wishlist = new List<LibraryItem>(){ },
-                OnHold= new List<LibraryItem>() {  },
-                CheckedOut = new List<LibraryItem>() {  }
+                Wishlist = new List<LibraryItem>(){ LibraryItemStore.Get(1), LibraryItemStore.Get(4) },
+                OnHold= new List<LibraryItem>() { LibraryItemStore.Get(3), LibraryItemStore.Get(2) },
+                CheckedOut = new List<LibraryItem>() { LibraryItemStore.Get(5), LibraryItemStore.Get(6) }
             });;
 
             _store.Add(2, new User
@@ -43,9 +45,9 @@ namespace CPSC481_Prototype.Persistence
                 Email = "harmione@hogwarts.com",
                 PhoneNum = "223-123-1234",
                 Address = "abc st NE, ABC",
-                Wishlist = new List<LibraryItem>() {  },
-                OnHold = new List<LibraryItem>() {  },
-                CheckedOut = new List<LibraryItem>() {  }
+                Wishlist = new List<LibraryItem>() { LibraryItemStore.Get(10), LibraryItemStore.Get(9) },
+                OnHold = new List<LibraryItem>() { LibraryItemStore.Get(8), LibraryItemStore.Get(7) },
+                CheckedOut = new List<LibraryItem>() { LibraryItemStore.Get(6), LibraryItemStore.Get(5) }
             });
         }
     }

@@ -300,6 +300,22 @@ namespace CPSC481_Prototype.Persistence
                 CopiesAvailable = 1,
                 DeweyDecimal = 0,
             });
+            _store.Add(20, new LibraryItem
+            {
+                Id = 20,
+                ImageSource = "images/jurassic_world.jpg",
+                Title = "Jurassic World",
+                Author = "Colin Treverro",
+                Length = "2h4m",
+                Format = "DVD",
+                Publisher = "Universal",
+                PublicationDate = "2015",
+                Summary = "Located off the coast of Costa Rica, the Jurassic World luxury resort provides a habitat for an array of genetically engineered dinosaurs, including the vicious and intelligent Indominus rex. When the massive creature escapes, it sets off a chain reaction that causes the other dinos to run amok. Now, it's up to a former military man and animal expert (Chris Pratt) to use his special skills to save two young brothers and the rest of the tourists from an all-out, prehistoric assault.",
+                Genres = new List<string>() { "Magic", "Fantasy", "Fiction", "Kids" },
+                CopiesAvailable = 15,
+                DeweyDecimal = 0,
+            });
+
         }
     }
 }

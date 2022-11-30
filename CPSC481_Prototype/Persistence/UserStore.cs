@@ -17,6 +17,18 @@ namespace CPSC481_Prototype.Persistence
             return _store[id];
         }
 
-        
+        public static User GetAcct(string acctId)
+        {
+            foreach (var item in _store.Values)
+            {
+                if (acctId == item.LibraryId)
+                {
+                    return item;
+                }  
+            }
+            return _store[1];
+        }
+
+
     }
 }

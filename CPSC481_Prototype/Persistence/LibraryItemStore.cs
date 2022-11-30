@@ -14,7 +14,7 @@ namespace CPSC481_Prototype.Persistence
 
         public static LibraryItem Get(int id)
         {
-            return _store[id];
+             return _store[id]; 
         }
 
         public List<LibraryItem> Search(string searchTerm)

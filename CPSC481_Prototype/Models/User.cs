@@ -12,6 +12,8 @@ namespace CPSC481_Prototype.Models
 
         public string LibraryId { get; init; }
 
+        public string Password { get; init; }
+
         public string Email { get; init; }
 
         public string PhoneNum { get; init; }

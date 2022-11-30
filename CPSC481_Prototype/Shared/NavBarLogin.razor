@@ -1,4 +1,5 @@
 ﻿@inject IJSRuntime JS;
+@inject UserStore UserStore; 
 
 
 <head>
@@ -69,14 +70,14 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Library ID:</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" @bind-value="acctId">
                     </div>
                     <div class="input-group input-group-sm mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Password:</span>
                         </div>
 
-                        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" @bind-value="passwrd">
 
                     </div>
                 </div>
@@ -84,7 +85,7 @@
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <a type="button" class="btn button-25 ms-3 text-nowrap" @onclick="@ModalCancel">Forget password</a>
-                    <button type="submit" class="btn button-24" @onclick=@ModalOk>Login</button>
+                    <button type="submit" class="btn button-24" @onclick=@Login>Login</button>
                 </div>
 
             </div>
@@ -96,14 +97,17 @@
 
 
 @code {
+    private string acctId;
+    private string passwrd;
 
     bool showModal = false;
 
     void ModalShow() => showModal = true;
     void ModalCancel() => showModal = false;
-    void ModalOk()
+    void Login()
     {
-        Console.WriteLine("Modal ok");
+        
+        Console.WriteLine(acctId);
         showModal = false;
     }
 

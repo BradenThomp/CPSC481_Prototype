@@ -16,23 +16,16 @@ namespace CPSC481_Prototype.Persistence
 
 
         // For wishlist, onhold and checkedout
-        LibraryItem libraryItem1;
-        LibraryItem libraryItem2;
-        LibraryItem libraryItem3;
-        LibraryItem libraryItem4;
-        LibraryItem libraryItem5;
-        LibraryItem libraryItem6;
-        LibraryItem libraryItem7;
-        LibraryItem libraryItem8;
+        LibraryItem libraryItem1 = LibraryItemStore.Get(1);
+        LibraryItem libraryItem2 = LibraryItemStore.Get(2);
+        LibraryItem libraryItem3 = LibraryItemStore.Get(3);
+        LibraryItem libraryItem4 = LibraryItemStore.Get(4);
+        LibraryItem libraryItem5 = LibraryItemStore.Get(5);
+        LibraryItem libraryItem6 = LibraryItemStore.Get(6);
+        LibraryItem libraryItem7 = LibraryItemStore.Get(7);
+        LibraryItem libraryItem8 = LibraryItemStore.Get(8);
 
-        public LibraryItem LibraryItem1 { get => libraryItem1; set => libraryItem1 = LibraryItemStore.Get(1); }
-        public LibraryItem LibraryItem2 { get => libraryItem2; set => libraryItem2 = LibraryItemStore.Get(2); }
-        public LibraryItem LibraryItem3 { get => libraryItem3; set => libraryItem3 = LibraryItemStore.Get(3); }
-        public LibraryItem LibraryItem4 { get => libraryItem4; set => libraryItem4 = LibraryItemStore.Get(4); }
-        public LibraryItem LibraryItem5 { get => libraryItem5; set => libraryItem5 = LibraryItemStore.Get(5); }
-        public LibraryItem LibraryItem6 { get => libraryItem6; set => libraryItem6 = LibraryItemStore.Get(6); }
-        public LibraryItem LibraryItem7 { get => libraryItem7; set => libraryItem7 = LibraryItemStore.Get(7); }
-        public LibraryItem LibraryItem8 { get => libraryItem8; set => libraryItem8 = LibraryItemStore.Get(8); }
+       
 
         private void Populate()
         {
@@ -48,9 +41,9 @@ namespace CPSC481_Prototype.Persistence
                 Email = "harry@hogwarts.com",
                 PhoneNum = "123-123-1234",
                 Address = "4 Privet Drive, Little Whinging, Surrey",
-                Wishlist = new List<LibraryItem>(){ LibraryItem1, LibraryItem2 },
-                OnHold= new List<LibraryItem>() { LibraryItem3, LibraryItem4 },
-                CheckedOut = new List<LibraryItem>() { LibraryItem5, LibraryItem6 }
+                Wishlist = new List<LibraryItem>(){ libraryItem1, libraryItem2 },
+                OnHold= new List<LibraryItem>() { libraryItem3, libraryItem4 },
+                CheckedOut = new List<LibraryItem>() { libraryItem5, libraryItem6 }
             });;
 
             _store.Add(2, new User
@@ -63,9 +56,9 @@ namespace CPSC481_Prototype.Persistence
                 Email = "harmione@hogwarts.com",
                 PhoneNum = "223-123-1234",
                 Address = "abc st NE, ABC",
-                Wishlist = new List<LibraryItem>() { LibraryItem7, LibraryItem8 },
-                OnHold = new List<LibraryItem>() { LibraryItem6, LibraryItem5 },
-                CheckedOut = new List<LibraryItem>() { LibraryItem4, LibraryItem3 }
+                Wishlist = new List<LibraryItem>() { libraryItem7, libraryItem8 },
+                OnHold = new List<LibraryItem>() { libraryItem6, libraryItem5 },
+                CheckedOut = new List<LibraryItem>() { libraryItem4, libraryItem3 }
             });
         }
     }

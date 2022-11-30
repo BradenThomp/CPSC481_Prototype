@@ -42,5 +42,23 @@ namespace CPSC481_Prototype.Persistence
             }
             return result;
         }
+
+        public static List<LibraryItem> GetAllItems()
+        {
+            List<LibraryItem> result = new List<LibraryItem>();
+            foreach (var item in _store.Values)
+            {
+                
+                        result.Add(item);
+                        break;
+                    
+                
+                if (result.Count >= 10)
+                {
+                    break;
+                }
+            }
+            return result;
+        }
     }
 }

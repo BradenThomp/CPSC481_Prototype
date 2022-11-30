@@ -2,9 +2,9 @@
     <div class="row flex-row flex-nowrap scrolling-wrapper">
         @foreach (var item in Items)
         {
-           <div class="col-2 m-4">
+           <div class="col-2 m-4" style="min-height: 100px; max-height:300px; width: auto;">
                 <a href="iteminfo/@item.Id">
-                    <img class="img-fluid" src=@item.ImageSource />
+                    <img  class="img-fluid" style="min-height: 100px; max-height:300px; width: auto;" src=@item.ImageSource />
                 </a>
             </div> 
         }

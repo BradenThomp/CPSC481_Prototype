@@ -1,6 +1,7 @@
 ﻿@page "/UserProfile/{id}"
 @layout MainLayoutUser
 @inject UserStore UserStore
+@inject LibraryItemStore LibraryItemStore
 
 <head>
     <link rel="stylesheet" type="text/css" href="Buttons.css" media=”screen” />
@@ -16,42 +17,16 @@
 
         <div class="row">
             <div class="col-lg-4">
-                <div class="card mb-4">
+                <div class="card mb-4" style="height: 250px;">
                     <div class="card-body text-center">
                         <img class="rounded-circle img-fluid" style="width: 150px;" src=@User.ImageSource>
                         <h5 class="my-3"> @User.Name </h5>
-                       
-                    </div>
-                </div>
-                <div class="card mb-4 mb-lg-0">
-                    <div class="card-body p-0">
-                        <ul class="list-group list-group-flush rounded-3">
-                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                <i class="fas fa-globe fa-lg text-warning"></i>
-                                <p class="mb-0">https://mdbootstrap.com</p>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                                <p class="mb-0">mdbootstrap</p>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                                <p class="mb-0">mdbootstrap</p>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                                <p class="mb-0">mdbootstrap</p>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                                <p class="mb-0">mdbootstrap</p>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-8">
-                <div class="card mb-4">
+                <div class="card mb-4" style="height: 250px;">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
@@ -90,79 +65,54 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card mb-4 mb-md-0">
-                            <div class="card-body">
-                                <p class="mb-4">
-                                    <span class="text-primary font-italic me-1">assigment</span> Project Status
-                                </p>
-                                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                                <div class="progress rounded" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
-                                         aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                                <div class="progress rounded" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
-                                         aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                                <div class="progress rounded" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
-                                         aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                                <div class="progress rounded" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
-                                         aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                                <div class="progress rounded mb-2" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
-                                         aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card mb-4 mb-md-0">
-                            <div class="card-body">
-                                <p class="mb-4">
-                                    <span class="text-primary font-italic me-1">assigment</span> Project Status
-                                </p>
-                                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                                <div class="progress rounded" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
-                                         aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                                <div class="progress rounded" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
-                                         aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                                <div class="progress rounded" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
-                                         aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                                <div class="progress rounded" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
-                                         aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                                <div class="progress rounded mb-2" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
-                                         aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 mb-lg-0">
+
+                    <div class="card-body p-0">
+                        <h4 class="m-3" align="center"> My Wishlist Items</h4>
+                        <HorizontalScroll Items="@Wishlist"></HorizontalScroll>
+                        <div style="width:100%; text-align:center">
+                            <a type="button" class="btn button-26 m-3 " href="/Wishlist"> Manage Wishlist </a>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-4">
+                <div class="card mb-4 mb-lg-0">
+
+                    <div class="card-body p-0">
+                        <h4 class="m-3" align="center"> My On Hold Items</h4>
+                        <HorizontalScroll Items="@OnHold"></HorizontalScroll>
+                        <div style="width:100%; text-align:center">
+                            <a type="button" class="btn button-26 m-3 " href="/OnHold"> Manage On Hold</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card mb-4 mb-lg-0">
+
+                    <div class="card-body p-0">
+                        <h4 class="m-3" align="center"> My Checked out Items</h4>
+                        <HorizontalScroll Items="@CheckedOut"></HorizontalScroll>
+                        <div style="width:100%; text-align:center">
+                            <a type="button" class="btn button-26 m-3 " href="/CheckedOut"> Manage Checked Out </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+           
         </div>
-    </div>
+        </div>
 </section>
 
 @code{
@@ -171,13 +121,64 @@
 
     public User User { get; set; }
 
+    public List<LibraryItem> Wishlist { get; set; }
+
+    public List<LibraryItem> OnHold { get; set; }
+
+    public List<LibraryItem> CheckedOut { get; set; }
+
     private Modal _modalRef;
 
     protected override void OnParametersSet()
     {
         User = UserStore.Get(Int32.Parse(Id));
-        // SimilarItems = LibraryItemStore.GetSimilarItems(Item);
+
+        Wishlist = UserStore.GetWishlist(User);
+
+        OnHold = UserStore.GetOnHold(User);
+
+        CheckedOut = UserStore.GetCheckedOut(User);
     }
 
-    
+
 }
+
+<style>
+    .button-26 {
+        background: #00303f;
+        border: 1px solid #00303f;
+        border-radius: 6px;
+        box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+        box-sizing: border-box;
+        color: white;
+        cursor: pointer;
+        display: inline-block;
+        font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+        font-size: 16px;
+        font-weight: 800;
+        line-height: 16px;
+        min-height: 40px;
+        outline: 0;
+        padding: 12px 14px;
+        text-align: center;
+        text-rendering: geometricprecision;
+        text-transform: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: middle;
+    }
+
+        .button-26:hover,
+        .button-26:active {
+            background-color: initial;
+            background-position: 0 0;
+            color: #00303f;
+        }
+
+        .button-26:active {
+            opacity: .5;
+        }
+
+    
+</style>

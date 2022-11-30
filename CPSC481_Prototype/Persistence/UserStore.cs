@@ -1,4 +1,5 @@
-﻿using CPSC481_Prototype.Models;
+﻿using System.Collections.Generic;
+using CPSC481_Prototype.Models;
 
 namespace CPSC481_Prototype.Persistence
 {
@@ -28,6 +29,26 @@ namespace CPSC481_Prototype.Persistence
             }
             return _store[1];
         }
+
+        public List<LibraryItem> GetWishlist(User user)
+        {
+            return user.Wishlist;
+            
+        }
+
+        public List<LibraryItem> GetOnHold(User user)
+        {
+            return user.OnHold;
+
+        }
+
+        public List<LibraryItem> GetCheckedOut(User user)
+        {
+            return user.CheckedOut;
+
+        }
+
+
 
 
     }

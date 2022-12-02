@@ -5,13 +5,81 @@
 <BECanvas Width="1000" Height="610" @ref=_canvas></BECanvas>
 
 @code {
+    [Parameter]
+    public LibraryItem Item { get; set; }
+
     protected BECanvasComponent _canvas;
 
     private Canvas2DContext _context;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        List<ItemRenderLocation> renderLocations = new List<ItemRenderLocation>()
+        {
+            new ItemRenderLocation
+            {
+                Dewey = 0,
+                X = 180,
+                y = 30
+            },
+            new ItemRenderLocation
+            {
+                Dewey = 100,
+                X = 180,
+                y = 80
+            },
+            new ItemRenderLocation
+            {
+                Dewey = 200,
+                X = 180,
+                y = 130
+            },
+            new ItemRenderLocation
+            {
+                Dewey = 300,
+                X = 180,
+                y = 180
+            },
+            new ItemRenderLocation
+            {
+                Dewey = 400,
+                X = 180,
+                y = 280
+            },
+            new ItemRenderLocation
+            {
+                Dewey = 500,
+                X = 180,
+                y = 330
+            },
+             new ItemRenderLocation
+            {
+                Dewey = 600,
+                X = 180,
+                y = 430
+            },
+            new ItemRenderLocation
+            {
+                Dewey = 700,
+                X = 180,
+                y = 530
+            },
+            new ItemRenderLocation
+            {
+                Dewey = 800,
+                X = 460,
+                y = 410
+            },
+            new ItemRenderLocation
+            {
+                Dewey = 900,
+                X = 180,
+                y = 580
+            },
+        };
+
         this._context = await _canvas.CreateCanvas2DAsync();
+        await _context.ClearRectAsync(0, 0, _canvas.Width, _canvas.Height);
         await this._context.SetFontAsync("20px helvetica");
 
         // Kids Section
@@ -147,25 +215,6 @@
             await this._context.FillRectAsync(i, 275, 30, 150);
         }
 
-        // Item location
-        await _context.SetFillStyleAsync("black");
-        await _context.BeginPathAsync();
-        await _context.ArcAsync(410, 300, 12, 0, 2 * Math.PI);
-        await _context.StrokeAsync();
-        await _context.SetFillStyleAsync("white");
-        await _context.BeginPathAsync();
-
-        await _context.BeginPathAsync();
-        await _context.MoveToAsync(422, 300);
-        await _context.LineToAsync(485, 275);
-        await _context.StrokeAsync();
-
-        await this._context.FillRectAsync(470, 250, 100, 50);
-        await _context.SetFillStyleAsync("black");
-        await this._context.StrokeRectAsync(470, 250, 100, 50);
-        await _context.FillTextAsync("Dune", 485, 270);
-        await _context.FillTextAsync("813.54", 485, 290);
-
         // Text
         await _context.SetFillStyleAsync("black");
         await _context.FillTextAsync("Kids", 720, 400);
@@ -191,5 +240,73 @@
         await this._context.FillRectAsync(500, 140, 50, 40);
         //await this._context.SetFontAsync("48px serif");
         //await this._context.StrokeTextAsync("Hello Blazor!!!", 10, 100);
+
+        // Item location
+        ItemRenderLocation loc = new ItemRenderLocation();
+        if (Item.DeweyDecimal >= 0)
+        {
+            loc = renderLocations.First(l => Item.DeweyDecimal >= l.Dewey && Item.DeweyDecimal < l.Dewey + 100);
+        }
+        if (Item.IsKids)
+        {
+            if(Item.DeweyDecimal >= 800 && Item.DeweyDecimal < 900)
+            {
+                loc = new ItemRenderLocation
+                    {
+                        X = 640,
+                        y = 500
+                    };
+            }
+        }
+        if (Item.ItemType == ItemType.Movie)
+        {
+            loc = new ItemRenderLocation
+                {
+                    X = 240,
+                    y = 510
+                };
+        }
+        if (Item.ItemType == ItemType.Music)
+        {
+            loc = new ItemRenderLocation
+                {
+                    X = 440,
+                    y = 510
+                };
+        }
+
+
+        await _context.SetFillStyleAsync("black");
+        await _context.BeginPathAsync();
+        await _context.ArcAsync(loc.X, loc.y, 12, 0, 2 * Math.PI);
+        await _context.StrokeAsync();
+        await _context.SetFillStyleAsync("white");
+        await _context.BeginPathAsync();
+
+        await _context.BeginPathAsync();
+        await _context.MoveToAsync(loc.X + 12, loc.y);
+        await _context.LineToAsync(loc.X + 75, loc.y - 25);
+        await _context.StrokeAsync();
+
+        await this._context.FillRectAsync(loc.X + 60, loc.y - 50, Math.Max(100, Item.Title.Length * 12), 50);
+        await _context.SetFillStyleAsync("black");
+        await this._context.StrokeRectAsync(loc.X + 60, loc.y - 50, Math.Max(100, Item.Title.Length * 12), 50);
+        await _context.FillTextAsync(Item.Title, loc.X + 75, loc.y - 30);
+        if (Item.DeweyDecimal >= 0)
+        {
+            await _context.FillTextAsync(Item.DeweyDecimal.ToString(), loc.X + 75, loc.y - 10);
+        }
+        else
+        {
+            await _context.FillTextAsync(Item.ItemType == ItemType.Movie ? "Movies" : "Music", loc.X + 75, loc.y - 10);
+        }
+    }
+
+    class ItemRenderLocation
+    {
+        public int Dewey { get; set; }
+        public int X { get; set; }
+        public int y { get; set; }
     }
 }
+

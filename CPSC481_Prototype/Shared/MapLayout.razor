@@ -6,13 +6,14 @@
     </div>
     <div class="row">
         <div class="col">
-            <Map></Map>
+            <Map Item="Item"></Map>
         </div>
         <div class="col">
-            <MapLegend></MapLegend>
+            <MapLegend Item="Item"></MapLegend>
         </div>
     </div>
 </div>
 @code {
-
+    [Parameter]
+    public LibraryItem Item { get; set; }
 }

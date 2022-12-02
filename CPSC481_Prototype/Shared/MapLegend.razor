@@ -1,22 +1,113 @@
 ﻿<h3>Legend</h3>
 <ul class="list-group list-group-flush">
-    <li class="list-group-item" style="background-color:#ffcbcb">000 - General Works</li>
-    <li class="list-group-item" style="background-color:#98cb99">100 - Philosopy</li>
-    <li class="list-group-item" style="background-color:#fecb99">200 - Religion</li>
-    <li class="list-group-item" style="background-color:#f7ddfe">300 - Social Sciences</li>
-    <li class="list-group-item" style="background-color:#ddf3ff">400 - Language</li>
-    <li class="list-group-item" style="background-color:#ffe5dd">500 - Science</li>
-    <li class="list-group-item" style="background-color:#f1d1f4">600 - Technology</li>
-    <li class="list-group-item" style="background-color:#bde7d9">700 - The Arts</li>
-    <li class="list-group-item fw-bolder border-2 border-dark" style="background-color:#a4caf1">800 - Literature</li>
-    <li class="list-group-item" style="background-color:#fefecc">900 - History, Geography</li>
+    @foreach(var category in _categories)
+    {
+        if (Item.DeweyDecimal >= category.Dewey && Item.DeweyDecimal < category.Dewey + 100)
+        {
+            <li class="list-group-item fw-bolder border-2 border-dark" style="background-color:@category.Color">@category.Dewey - @category.Name</li>
+        } 
+        else
+        {
+            <li class="list-group-item" style="background-color:@category.Color">@category.Dewey - @category.Name</li>
+        }
+    }
 </ul>
 <hr />
 <ul class="list-group list-group-flush">
-    <li class="list-group-item" style="background-color:#EC688F">Movies</li>
-    <li class="list-group-item" style="background-color:#68ECC5">Music</li>
+    @if (Item.ItemType == ItemType.Movie)
+    {
+        <li class="list-group-item fw-bolder border-2 border-dark" style="background-color:#EC688F">Movies</li>
+    } 
+    else
+    {
+        <li class="list-group-item" style="background-color:#EC688F">Movies</li>
+    }
+    @if (Item.ItemType == ItemType.Music)
+    {
+        <li class="list-group-item fw-bolder border-2 border-dark" style="background-color:#68ECC5">Music</li>
+    }
+    else
+    {
+        <li class="list-group-item" style="background-color:#68ECC5">Music</li>
+    }
 </ul>
 
 @code {
+    [Parameter]
+    public LibraryItem Item { get; set; }
 
+    private List<Category> _categories { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        _categories = new List<Category>();
+        _categories.Add(new Category
+            {
+                Dewey = 0,
+                Color = "#ffcbcb",
+                Name = "General Works"
+            });
+        _categories.Add(new Category
+            {
+                Dewey = 100,
+                Color = "#98cb99",
+                Name = "Philosopy"
+            });
+        _categories.Add(new Category
+            {
+                Dewey = 200,
+                Color = "#fecb99",
+                Name = "Religion"
+            });
+        _categories.Add(new Category
+            {
+                Dewey = 300,
+                Color = "#f7ddfe",
+                Name = "Social Sciences"
+            });
+        _categories.Add(new Category
+            {
+                Dewey = 400,
+                Color = "#ddf3ff",
+                Name = "Language"
+            });
+        _categories.Add(new Category
+            {
+                Dewey = 500,
+                Color = "#ffe5dd",
+                Name = "Science"
+            });
+        _categories.Add(new Category
+            {
+                Dewey = 600,
+                Color = "#f1d1f4",
+                Name = "Technology"
+            });
+        _categories.Add(new Category
+            {
+                Dewey = 700,
+                Color = "#bde7d9",
+                Name = "The Arts"
+            });
+        _categories.Add(new Category
+            {
+                Dewey = 800,
+                Color = "#a4caf1",
+                Name = "Literature"
+            });
+        _categories.Add(new Category
+            {
+                Dewey = 900,
+                Color = "#fefecc",
+                Name = "History, Geography"
+            });
+    }
+
+
+    class Category
+    {
+        public int Dewey { get; set; }
+        public string Color { get; set; }
+        public string Name { get; set; }
+    }
 }

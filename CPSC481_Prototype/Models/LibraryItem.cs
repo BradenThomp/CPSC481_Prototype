@@ -30,6 +30,10 @@ namespace CPSC481_Prototype.Models
 
         public List<LibraryItem> SimilarItems { get; init; }
 
+        public bool IsKids { get; init; }
+
+        public ItemType ItemType { get; init; }
+
         public string GetJson()
         {
             var json = JsonSerializer.Serialize(this);

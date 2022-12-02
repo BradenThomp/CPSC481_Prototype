@@ -29,6 +29,8 @@ namespace CPSC481_Prototype.Persistence
                 Genres = new List<string>() { "Science Fiction", "Fiction", "Fantasy", "Space Opera" },
                 CopiesAvailable = 1,
                 DeweyDecimal = 813.54,
+                IsKids = false,
+                ItemType = ItemType.Book
             });
             _store.Add(2, new LibraryItem
             {
@@ -44,6 +46,8 @@ namespace CPSC481_Prototype.Persistence
                 Genres = new List<string>() { "Classics", "Fiction", "Science Fiction", "Dystopia" },
                 CopiesAvailable = 0,
                 DeweyDecimal = 823.912,
+                IsKids = false,
+                ItemType = ItemType.Book
             });
             _store.Add(3, new LibraryItem
             {
@@ -59,6 +63,8 @@ namespace CPSC481_Prototype.Persistence
                 Genres = new List<string>() { "Classics", "Fiction", "Science Fiction", "Space" },
                 CopiesAvailable = 2,
                 DeweyDecimal = 823.194,
+                IsKids = false,
+                ItemType = ItemType.Book
             });
             _store.Add(4, new LibraryItem
             {
@@ -74,6 +80,8 @@ namespace CPSC481_Prototype.Persistence
                 Genres = new List<string>() { "Classics", "Fiction", "Science Fiction", "Dystopia" },
                 CopiesAvailable = 2,
                 DeweyDecimal = 813.54,
+                IsKids = false,
+                ItemType = ItemType.Book
             });
             _store.Add(5, new LibraryItem
             {
@@ -89,6 +97,8 @@ namespace CPSC481_Prototype.Persistence
                 Genres = new List<string>() { "Classics", "Fiction", "Science Fiction", "Dystopia" },
                 CopiesAvailable = 1,
                 DeweyDecimal = 823.912,
+                IsKids = false,
+                ItemType = ItemType.Book
             });
             _store.Add(6, new LibraryItem
             {
@@ -104,6 +114,8 @@ namespace CPSC481_Prototype.Persistence
                 Genres = new List<string>() { "War", "Military Fiction", "Space Opera" },
                 CopiesAvailable = 1,
                 DeweyDecimal = 813.54,
+                IsKids = false,
+                ItemType = ItemType.Book
             });
             _store.Add(7, new LibraryItem
             {
@@ -119,6 +131,8 @@ namespace CPSC481_Prototype.Persistence
                 Genres = new List<string>() { "Classics", "Fantasy", "Science Fiction", "Space Opera" },
                 CopiesAvailable = 1,
                 DeweyDecimal = 813.53,
+                IsKids = false,
+                ItemType = ItemType.Book
             });
             _store.Add(8, new LibraryItem
             {
@@ -134,6 +148,8 @@ namespace CPSC481_Prototype.Persistence
                 Genres = new List<string>() { "Fantasy", "Science Fiction", "Aliens" },
                 CopiesAvailable = 3,
                 DeweyDecimal = 813.60,
+                IsKids = false,
+                ItemType = ItemType.Book
             });
             _store.Add(9, new LibraryItem
             {
@@ -149,6 +165,8 @@ namespace CPSC481_Prototype.Persistence
                 Genres = new List<string>() { "Childrens", "Picture Books", "Kids" },
                 CopiesAvailable = 3,
                 DeweyDecimal = 811.54,
+                IsKids = true,
+                ItemType = ItemType.Book
             });
             _store.Add(10, new LibraryItem
             {
@@ -164,6 +182,8 @@ namespace CPSC481_Prototype.Persistence
                 Genres = new List<string>() { "Magic", "Fantasy", "Fiction", "Kids" },
                 CopiesAvailable = 1,
                 DeweyDecimal = 823.91,
+                IsKids = true,
+                ItemType = ItemType.Book
             });
             _store.Add(11, new LibraryItem
             {
@@ -179,6 +199,8 @@ namespace CPSC481_Prototype.Persistence
                 Genres = new List<string>() { "Magic", "Fantasy", "Fiction", "Kids" },
                 CopiesAvailable = 1,
                 DeweyDecimal = 823.91,
+                IsKids = true,
+                ItemType = ItemType.Book
             });
             _store.Add(12, new LibraryItem
             {
@@ -194,6 +216,8 @@ namespace CPSC481_Prototype.Persistence
                 Genres = new List<string>() { "Magic", "Fantasy", "Fiction", "Kids" },
                 CopiesAvailable = 1,
                 DeweyDecimal = 823.91,
+                IsKids = true,
+                ItemType = ItemType.Book
             });
             _store.Add(13, new LibraryItem
             {
@@ -209,6 +233,8 @@ namespace CPSC481_Prototype.Persistence
                 Genres = new List<string>() { "Shia Labeouf", "Young Adult", "Childrens", "Fiction", "Kids" },
                 CopiesAvailable = 1,
                 DeweyDecimal = 813.54,
+                IsKids = true,
+                ItemType = ItemType.Book
             });
             _store.Add(14, new LibraryItem
             {
@@ -224,6 +250,8 @@ namespace CPSC481_Prototype.Persistence
                 Genres = new List<string>() { "Science Fiction", "Fiction", "Fantasy", "Space Opera" },
                 CopiesAvailable = 1,
                 DeweyDecimal = 823.54,
+                IsKids = false,
+                ItemType = ItemType.Book
             });
             _store.Add(15, new LibraryItem
             {
@@ -239,6 +267,8 @@ namespace CPSC481_Prototype.Persistence
                 Genres = new List<string>() { "Childrens", "Kids" },
                 CopiesAvailable = 1,
                 DeweyDecimal = 811.54,
+                IsKids = true,
+                ItemType = ItemType.Book
             });
             _store.Add(16, new LibraryItem
             {
@@ -254,6 +284,8 @@ namespace CPSC481_Prototype.Persistence
                 Genres = new List<string>() { "Childrens", "Kids" },
                 CopiesAvailable = 1,
                 DeweyDecimal = 811.54,
+                IsKids = true,
+                ItemType = ItemType.Book
             });
             _store.Add(17, new LibraryItem
             {
@@ -268,7 +300,9 @@ namespace CPSC481_Prototype.Persistence
                 Summary = "Fishing for Fishies is the fourteenth studio album by Australian psychedelic rock band King Gizzard & the Lizard Wizard. It was released on 26 April 2019 by Flightless and ATO Records.[4] The announcement of the album was accompanied by the release of the title track and its video.[5] ",
                 Genres = new List<string>() { "Boogie Rock", "Blues Rock" },
                 CopiesAvailable = 1,
-                DeweyDecimal = 0,
+                DeweyDecimal = -1,
+                IsKids = false,
+                ItemType = ItemType.Music
             });
             _store.Add(18, new LibraryItem
             {
@@ -283,7 +317,9 @@ namespace CPSC481_Prototype.Persistence
                 Summary = "Led Zeppelin II is the second studio album by the English rock band Led Zeppelin, released on 22 October 1969 in the United States and on 31 October 1969 in the United Kingdom by Atlantic Records. Recording sessions for the album took place at several locations in both the United Kingdom and North America from January to August 1969. The album's production was credited to the band's lead guitarist and songwriter Jimmy Page, and it was also Led Zeppelin's first album on which Eddie Kramer served as engineer.",
                 Genres = new List<string>() { "Hard Rock", "Heavy Metal", "Blues Rock" },
                 CopiesAvailable = 1,
-                DeweyDecimal = 0,
+                DeweyDecimal = -1,
+                IsKids = false,
+                ItemType = ItemType.Music
             });
             _store.Add(19, new LibraryItem
             {
@@ -298,7 +334,9 @@ namespace CPSC481_Prototype.Persistence
                 Summary = "Harry Potter's (Daniel Radcliffe) third year at Hogwarts starts off badly when he learns deranged killer Sirius Black (Gary Oldman) has escaped from Azkaban prison and is bent on murdering the teenage wizard. While Hermione's (Emma Watson) cat torments Ron's (Rupert Grint) sickly rat, causing a rift among the trio, a swarm of nasty Dementors is sent to protect the school from Black. A mysterious new teacher helps Harry learn to defend himself, but what is his secret tie to Sirius Black?",
                 Genres = new List<string>() { "Magic", "Fantasy", "Fiction", "Kids" },
                 CopiesAvailable = 1,
-                DeweyDecimal = 0,
+                DeweyDecimal = -1,
+                IsKids = false,
+                ItemType = ItemType.Movie
             });
         }
     }

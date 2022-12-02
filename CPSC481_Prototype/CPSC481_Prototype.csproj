@@ -13,8 +13,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.10" PrivateAssets="all" />
 
     <PackageReference Include="Portal" Version="1.2.0" />
-    <PackageReference Include="Blazored.Typeahead" Version="4.7.0" />
-    <PackageReference Include="Blazored.Modal" Version="7.1.0" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\Images\Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg" />

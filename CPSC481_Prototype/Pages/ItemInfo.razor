@@ -74,6 +74,7 @@
 
     protected override void OnParametersSet()
     {
+        LibraryItemStore = new LibraryItemStore();
         Item = LibraryItemStore.Get(Int32.Parse(Id));
         SimilarItems = LibraryItemStore.GetSimilarItems(Item);
     }

@@ -10,27 +10,34 @@ namespace CPSC481_Prototype.Persistence
         public UserStoreDataSource()
         {
             Populate();
+            LibraryItemStore libraryItems = new LibraryItemStore();
+            libraryItem1 = libraryItems.Get(1);
+            libraryItem2 = libraryItems.Get(2);
+            libraryItem3 = libraryItems.Get(3);
+            libraryItem4 = libraryItems.Get(4);
+            libraryItem5 = libraryItems.Get(5);
+            libraryItem6 = libraryItems.Get(6);
+            libraryItem7 = libraryItems.Get(7);
+            libraryItem8 = libraryItems.Get(8);
         }
 
         public Dictionary<int, User> GetData() => _store;
 
 
         // For wishlist, onhold and checkedout
-        LibraryItem libraryItem1 = LibraryItemStore.Get(1);
-        LibraryItem libraryItem2 = LibraryItemStore.Get(2);
-        LibraryItem libraryItem3 = LibraryItemStore.Get(3);
-        LibraryItem libraryItem4 = LibraryItemStore.Get(4);
-        LibraryItem libraryItem5 = LibraryItemStore.Get(5);
-        LibraryItem libraryItem6 = LibraryItemStore.Get(6);
-        LibraryItem libraryItem7 = LibraryItemStore.Get(7);
-        LibraryItem libraryItem8 = LibraryItemStore.Get(8);
+        LibraryItem libraryItem1;
+        LibraryItem libraryItem2;
+        LibraryItem libraryItem3;
+        LibraryItem libraryItem4;
+        LibraryItem libraryItem5;
+        LibraryItem libraryItem6;
+        LibraryItem libraryItem7;
+        LibraryItem libraryItem8;
 
        
 
         private void Populate()
         {
-            
-            
             _store.Add(1, new User
             {
                 Id = 1,

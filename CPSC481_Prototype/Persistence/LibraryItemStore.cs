@@ -1,13 +1,10 @@
-﻿using System.Linq;
-using System.Text.Json;
-using CPSC481_Prototype.Models;
-using static CPSC481_Prototype.Pages.FetchData;
+﻿using CPSC481_Prototype.Models;
 
 namespace CPSC481_Prototype.Persistence
 {
     public class LibraryItemStore
     {
-        private static Dictionary<int, LibraryItem> _store;
+        private Dictionary<int, LibraryItem> _store;
 
         public LibraryItemStore()
         {
@@ -15,9 +12,9 @@ namespace CPSC481_Prototype.Persistence
             _store = src.GetData();
         }
 
-        public static LibraryItem Get(int id)
+        public LibraryItem Get(int id)
         {
-             return _store[id]; 
+            return _store[id]; 
         }
 
         public List<LibraryItem> Search (string searchTerm)
@@ -47,24 +44,6 @@ namespace CPSC481_Prototype.Persistence
                     }
                 }
                 if(result.Count >= 10)
-                {
-                    break;
-                }
-            }
-            return result;
-        }
-
-        public static List<LibraryItem> GetAllItems()
-        {
-            List<LibraryItem> result = new List<LibraryItem>();
-            foreach (var item in _store.Values)
-            {
-                
-                        result.Add(item);
-                        break;
-                    
-                
-                if (result.Count >= 10)
                 {
                     break;
                 }

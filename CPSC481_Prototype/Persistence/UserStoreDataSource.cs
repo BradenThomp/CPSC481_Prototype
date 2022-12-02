@@ -9,7 +9,6 @@ namespace CPSC481_Prototype.Persistence
 
         public UserStoreDataSource()
         {
-            Populate();
             LibraryItemStore libraryItems = new LibraryItemStore();
             libraryItem1 = libraryItems.Get(1);
             libraryItem2 = libraryItems.Get(2);
@@ -19,6 +18,8 @@ namespace CPSC481_Prototype.Persistence
             libraryItem6 = libraryItems.Get(6);
             libraryItem7 = libraryItems.Get(7);
             libraryItem8 = libraryItems.Get(8);
+            Populate();
+            
         }
 
         public Dictionary<int, User> GetData() => _store;

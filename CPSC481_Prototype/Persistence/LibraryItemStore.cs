@@ -30,25 +30,37 @@ namespace CPSC481_Prototype.Persistence
             return results;
         }
 
-        public List<LibraryItem> GetSimilarItems(LibraryItem srcItem)
+        public IEnumerable<LibraryItem> GetSimilarItems(LibraryItem srcItem)
         {
-            List<LibraryItem> result = new List<LibraryItem>();
+            List<SimilarItem> similarItems = new List<SimilarItem>();
             foreach(var item in _store.Values)
             {
-                foreach(var genre in item.Genres)
+                SimilarItem current = new SimilarItem
+                {
+                    Item = item,
+                    SimilarityScore = 0,
+                };
+
+                foreach (var genre in item.Genres)
                 {
                     if(srcItem.Genres.Contains(genre) && srcItem.Id != item.Id)
                     {
-                        result.Add(item);
-                        break;
+                        current.SimilarityScore++;
                     }
                 }
-                if(result.Count >= 10)
+                if(current.SimilarityScore > 0)
                 {
-                    break;
+                    similarItems.Add(current);
                 }
             }
-            return result;
+            return similarItems.OrderByDescending(i => i.SimilarityScore).Take(10).Select(i => i.Item);
+        }
+
+        internal class SimilarItem
+        {
+            public LibraryItem Item { get; set; }
+
+            public int SimilarityScore { get; set; } = 0;
         }
     }
 }

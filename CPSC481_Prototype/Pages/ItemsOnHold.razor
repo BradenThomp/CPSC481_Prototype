@@ -55,7 +55,7 @@
                                     </div>
                                     <p class="card-text"><small class="text-muted">@item.CopiesAvailable Copies Available</small></p>
                                     <div style="text-align: left;">
-                                        <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Remove From Hold</a>
+                                        <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => removeItem(item))" @onclick:preventDefault>Remove From Hold</a>
                                         <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>
                                         <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Info</a>
                                     </div>
@@ -97,6 +97,11 @@
         User = UserStore.Get(Int32.Parse(id));
 
         onhold = UserStore.GetOnHold(User);
+    }
+
+    void removeItem(LibraryItem item)
+    {
+        bool a = UserStore.removeFromHold(item, User);
     }
 
 }

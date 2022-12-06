@@ -2,15 +2,24 @@
 @using Blazor.Extensions.Canvas
 @using Blazor.Extensions.Canvas.Canvas2D;
 
-<BECanvas Width="1000" Height="610" @ref=_canvas></BECanvas>
+<BECanvas Width="@Width" Height="@Height" @ref=_canvas></BECanvas>
 
 @code {
     [Parameter]
+    public double Scale { get; set; }
+
+    [Parameter]
     public LibraryItem Item { get; set; }
+
+    public int Width => (int)(1000 * Scale);
+    public int Height => (int)(610 * Scale);
 
     protected BECanvasComponent _canvas;
 
     private Canvas2DContext _context;
+
+    private int _defaultWidth = 1000;
+    private int _defaultHeight = 610;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -80,7 +89,14 @@
 
         this._context = await _canvas.CreateCanvas2DAsync();
         await _context.ClearRectAsync(0, 0, _canvas.Width, _canvas.Height);
+        await _context.RestoreAsync();
+        await _context.SaveAsync();
         await this._context.SetFontAsync("20px helvetica");
+
+        await _context.ScaleAsync(Scale, Scale);
+
+        await _context.SetFillStyleAsync("#ffffff");
+        await _context.FillRectAsync(0, 0, 1000, 610);
 
         // Kids Section
         await _context.BeginPathAsync();

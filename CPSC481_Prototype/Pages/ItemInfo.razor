@@ -44,7 +44,7 @@
                 {
                     <h6 class="h6">Location: @(Item.ItemType == ItemType.Music ? "Music" : "Movies")</h6>
                 }
-                <img class="img-fluid" src="images/Map.PNG"/>
+                <Map Scale="0.4" Item="Item"></Map>
                 <a href="" class="h6" @onclick="@ShowModal" @onclick:preventDefault>Click to Expand Map</a>
                 <hr />
                 <button class="btn btn-secondary" style="background-color: #6b9080">Wishlist</button>

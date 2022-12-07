@@ -55,8 +55,15 @@
                                     </div>
                                     <p class="card-text"><small class="text-muted">@item.CopiesAvailable Copies Available</small></p>
                                     <div style="text-align: left;">
-                                        <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Remove From Hold</a>
-                                        <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>
+                                        <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromHold(item))" @onclick:preventDefault>Remove From Hold</a>
+                                        @if (wishlistStatus(item))
+                                        {
+                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => removeFromWishlist(item))" @onclick:preventDefault>Remove From Wishlist</a>
+                                        }
+                                        @if (!wishlistStatus(item))
+                                        {
+                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => addToWishlist(item))" @onclick:preventDefault>Add To Wishlist</a>
+                                        }
                                         <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Info</a>
                                     </div>
                                 </div>
@@ -98,5 +105,37 @@
 
         onhold = UserStore.GetOnHold(User);
     }
+
+    void removeItemFromHold(LibraryItem item)
+    {
+        bool a = UserStore.removeFromHold(item, User);
+    }
+
+    void addToWishlist(LibraryItem item)
+    {
+        UserStore.addToWishlist(item, User);
+
+    }
+
+    void removeFromWishlist (LibraryItem item)
+    {
+        UserStore.removeFromWishlist(item, User);
+
+    }
+
+    public bool wishlistStatus(LibraryItem item)
+    {
+        if (UserStore.isInWishlist(item, User))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+
 
 }

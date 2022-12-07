@@ -48,6 +48,74 @@ namespace CPSC481_Prototype.Persistence
 
         }
 
+        public Boolean removeFromWishlist (LibraryItem item, User user)
+        {
+            int index = 0;
+            foreach (var wish in user.Wishlist.ToList())
+            {
+                if (wish.Id == item.Id)
+                {
+                    user.Wishlist.RemoveAt(index);
+                    return true;
+                }
+                index = index + 1;
+            }
+            return false;
+
+        }
+
+        public Boolean removeFromHold(LibraryItem item, User user)
+        {
+            int index = 0;
+            foreach (var hold in user.OnHold.ToList())
+            {
+                if (hold.Id == item.Id)
+                {
+                    user.OnHold.RemoveAt(index);
+                    return true;
+                }
+                index = index + 1;
+            }
+            return false;
+
+        }
+
+        public void addToWishlist (LibraryItem item, User user)
+        {
+            user.Wishlist.Add(item);
+        }
+
+        public void addToHold (LibraryItem item, User user)
+        {
+            user.OnHold.Add(item);
+        }
+
+        public bool isOnHold (LibraryItem item, User user)
+        {
+            foreach (var hold in user.OnHold.ToList())
+            {
+                if (hold.Id == item.Id)
+                {
+                    return true;
+                }
+            }
+            return false;
+
+        }
+
+        public bool isInWishlist (LibraryItem item, User user)
+        {
+            foreach (var wish in user.Wishlist.ToList())
+            {
+                if (wish.Id == item.Id)
+                {
+                    return true;
+                }
+            }
+            return false;
+
+        }
+
 
 
 

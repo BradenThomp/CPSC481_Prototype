@@ -25,7 +25,7 @@
 
         <div class="col-12">
             @foreach (LibraryItem item in wishlist)
-            {
+                {
                 <div class="card mb-3 card-style" style="width: 101%;">
                     <div class="row no-gutters">
                         <div class="col-md-2">
@@ -51,15 +51,20 @@
                                 </div>
                                 <p class="card-text"><small class="text-muted">@item.CopiesAvailable Copies Available</small></p>
                                 <div style="text-align: left;">
-                                    <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Hold</a>
-                                    <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Remove From Wishlist</a>
+                                    @if (HoldStatus(item))
+                                    {
+                                        <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromHold(item))" @onclick:preventDefault>Remove From Hold</a>
+                                    } @if (!HoldStatus(item)) {
+                                        <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => holdItem(item))" @onclick:preventDefault>Hold</a>
+                                    }
+                                    <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromWishlist(item))" @onclick:preventDefault>Remove From Wishlist</a>
                                     <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Info</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            }
+                }
         </div>
     </div>
 </div>
@@ -77,19 +82,50 @@
         padding-left: 10px;
     }
 </style>
-@code{
-    [Parameter]
-    public string id { get; set; }
+    @code{
+        [Parameter]
+        public string id { get; set; }
 
-    public User User { get; set; }
+        public User User { get; set; }
 
-    public List<LibraryItem> wishlist { get; set; }
+        public List<LibraryItem> wishlist { get; set; }
 
-    protected override void OnParametersSet()
-    {
-        User = UserStore.Get(Int32.Parse(id));
+        protected override void OnParametersSet()
+        {
+            User = UserStore.Get(Int32.Parse(id));
 
-        wishlist = UserStore.GetWishlist(User);
+            wishlist = UserStore.GetWishlist(User);
+        }
+
+        void removeItemFromWishlist(LibraryItem item)
+        {
+            bool a = UserStore.removeFromWishlist(item, User);
+
+        }
+
+        void holdItem(LibraryItem item)
+        {
+            UserStore.addToHold(item, User);
+
+        }
+
+        void removeItemFromHold(LibraryItem item)
+        {
+            UserStore.removeFromHold(item, User);
+
+        }
+
+        public bool HoldStatus (LibraryItem item)
+        {
+            if (UserStore.isOnHold(item, User))
+            {
+                return true;
+
+            } else
+            {
+                return false;
+            }
+
+        }
+
     }
-
-}

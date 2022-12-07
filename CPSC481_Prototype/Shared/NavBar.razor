@@ -1,4 +1,5 @@
-﻿@inject IJSRuntime JS;
+﻿@implements IDisposable;
+@inject IJSRuntime JS;
 @inject LoginService LoginService;
 @inject NavigationManager NavigationManager;
 
@@ -33,12 +34,15 @@
                         <a class="dropdown-item" href="/music">Music</a>
                     </div>
                 </div>
-                <form class="d-flex">
-                    <div class="input-group" style="width: 100%">
-                        <input type="text" class="form-control" style="width: 400px; border: 1px solid #6b9080;" placeholder="Search Item by Keyword">
-                        <button type="button" class="btn button-24"><i class="bi-search"></i></button>
-                    </div>
-                </form>
+                @if (currentRelativeUri != "/" && currentRelativeUri != "/#" && currentRelativeUri != "" && currentRelativeUri != "#")
+                {
+                    <form class="d-flex">
+                        <div class="input-group" style="width: 100%">
+                            <input type="text" class="form-control" style="width: 400px; border: 1px solid #6b9080;" placeholder="Search Item by Keyword">
+                            <button type="button" class="btn button-24"><i class="bi-search"></i></button>
+                        </div>
+                    </form>
+                }
             </div>
         </div>
 
@@ -123,6 +127,23 @@
 
     bool showModal = false;
 
+    string currentRelativeUri { get; set; }
+
+    protected override void OnInitialized()
+    {
+        currentRelativeUri = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        Console.WriteLine(currentRelativeUri);
+        NavigationManager.LocationChanged += LocationChanged;
+        base.OnInitialized();
+    }
+
+    void LocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        Console.WriteLine(currentRelativeUri);
+        currentRelativeUri = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        StateHasChanged();
+    }
+
     void ModalShow()
     {
         id = "";
@@ -130,6 +151,7 @@
         showModal = true;
     }
     void ModalCancel() => showModal = false;
+
     void Login()
     {
         if(LoginService.Login(id, password))
@@ -144,7 +166,10 @@
         NavigationManager.NavigateTo("/");
     }
 
-
+    void IDisposable.Dispose()
+    {
+        NavigationManager.LocationChanged -= LocationChanged;
+    }
 }
 
 <style>

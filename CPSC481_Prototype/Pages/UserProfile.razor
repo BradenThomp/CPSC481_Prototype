@@ -1,7 +1,8 @@
-﻿@page "/UserProfile/{id}"
-@layout MainLayoutUser
+﻿@page "/UserProfile"
+@layout MainLayout
 @inject UserStore UserStore
 @inject LibraryItemStore LibraryItemStore
+@inject LoginService LoginService;
 
 <head>
     <link rel="stylesheet" type="text/css" href="Buttons.css" media=”screen” />
@@ -116,8 +117,6 @@
 </section>
 
 @code{
-    [Parameter]
-    public string Id { get; set; }
 
     public User User { get; set; }
 
@@ -131,7 +130,7 @@
 
     protected override void OnParametersSet()
     {
-        User = UserStore.Get(Int32.Parse(Id));
+        User = LoginService.CurrentUser;
 
         Wishlist = UserStore.GetWishlist(User);
 

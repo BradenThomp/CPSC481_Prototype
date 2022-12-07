@@ -5,7 +5,7 @@ namespace CPSC481_Prototype.Persistence
 {
     public class UserStoreDataSource
     {
-        private Dictionary<int, User> _store = new Dictionary<int, User>();
+        private Dictionary<string, User> _store = new Dictionary<string, User>();
 
         public UserStoreDataSource()
         {
@@ -22,7 +22,7 @@ namespace CPSC481_Prototype.Persistence
             
         }
 
-        public Dictionary<int, User> GetData() => _store;
+        public Dictionary<string, User> GetData() => _store;
 
 
         // For wishlist, onhold and checkedout
@@ -39,9 +39,8 @@ namespace CPSC481_Prototype.Persistence
 
         private void Populate()
         {
-            _store.Add(1, new User
+            _store.Add("123456", new User
             {
-                Id = 1,
                 ImageSource = "Images/ProfilePic.jpg",
                 Name = "Harry Potter",
                 LibraryId = "123456",
@@ -54,9 +53,8 @@ namespace CPSC481_Prototype.Persistence
                 CheckedOut = new List<LibraryItem>() { libraryItem5, libraryItem6 }
             });;
 
-            _store.Add(2, new User
+            _store.Add("223456", new User
             {
-                Id = 2,
                 ImageSource = "Images/ProfilePic2.jpg",
                 Name = "Hermione Granger",
                 LibraryId = "223456",

@@ -1,5 +1,5 @@
 ﻿@page "/OnHold/{id}"
-@layout MainLayoutUser
+@layout MainLayout
 @inject UserStore UserStore
 @inject LibraryItemStore LibraryItemStore
 
@@ -101,7 +101,7 @@
 
     protected override void OnParametersSet()
     {
-        User = UserStore.Get(Int32.Parse(id));
+        User = UserStore.Get(id);
 
         onhold = UserStore.GetOnHold(User);
     }

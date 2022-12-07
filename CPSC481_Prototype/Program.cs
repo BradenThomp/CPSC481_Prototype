@@ -3,6 +3,7 @@ using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using CPSC481_Prototype;
 using CPSC481_Prototype.Persistence;
+using CPSC481_Prototype.Services;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -15,5 +16,6 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddBlazorise(o => o.Immediate = true).AddBootstrapProviders().AddFontAwesomeIcons();
 builder.Services.AddSingleton<LibraryItemStore>();
 builder.Services.AddSingleton<UserStore>();
+builder.Services.AddSingleton<LoginService>();
 
 await builder.Build().RunAsync();

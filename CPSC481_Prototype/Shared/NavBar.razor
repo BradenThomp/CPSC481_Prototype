@@ -1,4 +1,5 @@
 ﻿@inject IJSRuntime JS;
+@inject LoginService LoginService;
 
 
 <head>
@@ -32,14 +33,41 @@
                         <a class="dropdown-item" href="/music">Music</a>
                     </div>
                 </div>
-            </div>
-            
-            <div class="navbar-nav">
-                <a class="btn button-24 m-2" @onclick="@ModalShow" data-toggle="modal">
-                    Sign-in
-                </a>
+                <form class="d-flex">
+                    <div class="input-group" style="width: 100%">
+                        <input type="text" class="form-control" style="width: 400px; border: 1px solid #6b9080;" placeholder="Search Item by Keyword">
+                        <button type="button" class="btn button-24"><i class="bi-search"></i></button>
+                    </div>
+                </form>
             </div>
         </div>
+
+
+        @if (!LoginService.IsLoggedIn)
+        {
+            <a class="btn button-24 m-2" @onclick="@ModalShow" data-toggle="modal">
+                Login
+            </a>
+        }
+        else
+        {
+            <a class="btn button-24 ms-3" href="/UserProfile"><span class="bi bi-person-fill"></span> </a>
+
+            <a @onclick=@Logout class="btn button-24 ms-3 ml-auto">
+                Logout
+            </a>
+
+            <div class="dropdown">
+                <button class="btn button-24 dropdown-toggle ms-3 mr-1 ml-auto" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    My Items
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="\OnHold">On Hold</a>
+                    <a class="dropdown-item" href="\Wishlist">Wishlist</a>
+                    <a class="dropdown-item" href="#">Checked out</a>
+                </div>
+            </div>
+        }
     </div>
 </nav>
 
@@ -62,13 +90,13 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Library ID:</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        <input @bind-value="id" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                     </div>
                     <div class="input-group input-group-sm mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Password:</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        <input @bind-value="password" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                     </div>
                 </div>
 
@@ -76,7 +104,7 @@
                 <div class="modal-footer">
 
                     <a type="button" class="btn button-25 ms-3 text-nowrap" @onclick="@ModalCancel">Forget password</a>
-                    <button type="button" class="btn button-24" @onclick=@ModalOk>Login</button>
+                    <button type="button" class="btn button-24" @onclick=@Login>Login</button>
 
                 </div>
 
@@ -90,14 +118,24 @@
 
 @code {
 
+    private string id { get; set; }
+    private string password { get; set; }
+
     bool showModal = false;
 
     void ModalShow() => showModal = true;
     void ModalCancel() => showModal = false;
-    void ModalOk()
+    void Login()
     {
-        Console.WriteLine("Modal ok");
-        showModal = false;
+        if(LoginService.Login(id, password))
+        {
+            showModal = false;
+        }
+    }
+
+    void Logout()
+    {
+        LoginService.Logout();
     }
 
 

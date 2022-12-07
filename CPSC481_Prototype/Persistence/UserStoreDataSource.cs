@@ -49,7 +49,7 @@ namespace CPSC481_Prototype.Persistence
                 Email = "harry@hogwarts.com",
                 PhoneNum = "123-123-1234",
                 Address = "4 Privet Drive, Little Whinging, Surrey",
-                Wishlist = new List<LibraryItem>(){ libraryItem1, libraryItem2 },
+                Wishlist = new List<LibraryItem>(){ libraryItem1, libraryItem2, libraryItem3 },
                 OnHold= new List<LibraryItem>() { libraryItem3, libraryItem4 },
                 CheckedOut = new List<LibraryItem>() { libraryItem5, libraryItem6 }
             });;

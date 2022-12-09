@@ -78,7 +78,7 @@
             <a href="" @onclick=@(() => setGenreFilter("Adventure")) @onclick:preventDefault>Adventure (@adventureCount)</a>
         </div>
         <div class="indent">
-            <a href="" @onclick=@(() => setGenreFilter("Children")) @onclick:preventDefault>Children (@childrenCount)</a>
+            <a href="" @onclick=@(() => setGenreFilter("Kids")) @onclick:preventDefault>Children (@childrenCount)</a>
         </div>
         <div class="indent">
             <a href="" @onclick=@(() => setGenreFilter("Teen")) @onclick:preventDefault>Teen (@teenCount)</a>
@@ -331,9 +331,9 @@
         {
             filter = "Adventure";
         }
-        else if (arg == "Children")
+        else if (arg == "Kids")
         {
-            filter = "Children";
+            filter = "Kids";
         }
         else if (arg == "Teen")
         {
@@ -406,7 +406,7 @@
             {
                 return true;
             }
-            else if (filter == "Children" && genre.Contains(filter))
+            else if (filter == "Kids" && genre.Contains(filter))
             {
                 return true;
             }
@@ -489,7 +489,7 @@
                 {
                     adventureCount++;
                 }
-                else if (innerlist.Contains("Children") | innerlist.Contains("Kids"))
+                else if (innerlist.Contains("Kids"))
                 {
                     childrenCount++;
                 }

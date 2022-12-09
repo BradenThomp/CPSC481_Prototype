@@ -3,6 +3,7 @@
 @inject LibraryItemStore LibraryItemStore
 @inject NavigationManager UriHelper
 @inject UserStore UserStore
+@inject LoginService LoginService;
 
 <PageTitle>Search Results Page</PageTitle>
 <!-- Side navigation -->
@@ -132,8 +133,32 @@
                                         </div>
                                         <p class="card-text"><small class="text-muted">@item.CopiesAvailable Copies Available</small></p>
                                         <div style="text-align: left;">
-                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Hold</a>
-                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>
+@*                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Hold</a>
+                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>*@
+                                            @if (User == null)
+                                            {
+                                                <button disabled="true" class="btn btn-secondary" style="background-color: #6b9080">Hold</button> 
+                                            }
+
+                                            else if (HoldStatus(item))
+                                            {
+                                                <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromHold(item))" @onclick:preventDefault>Remove From Hold</a>
+                                            } else if (!HoldStatus(item))
+                                            {
+                                                <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => holdItem(item))" @onclick:preventDefault>Hold</a>
+                                            }
+                                            @if (User ==null)
+                                            {
+                                                <button disabled="true" class="btn btn-secondary" style="background-color: #6b9080">Add to Wishlist</button>
+                                            }
+                                            else if (WishlistStatus(item))
+                                            {
+                                                <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromWishlist(item))" @onclick:preventDefault>Remove From Wishlist</a>
+                                            }
+                                            else if (User == null || ! WishlistStatus(item))
+                                            {
+                                                <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => addToWishlist(item))" @onclick:preventDefault>Add To Wishlist</a>
+                                            }
                                             <a href="iteminfo/@item.Id" class="btn btn-secondary" style="background-color: #6b9080" role="button">Info</a>
                                         </div>
                                     </div>
@@ -236,6 +261,7 @@
     [Parameter]
     public string showSearch { get; set; }
     public LibraryItem Item { get; set; }
+    public User User { get; set; }
     private List<LibraryItem> results;
     int result, musicCount, movieCount, bookCount, fictionCount, nonfictionCount, fantasyCount, actionCount,
         adventureCount, childrenCount, teenCount, scifiCount, romanceCount, mysteryCount, horrorCount, graphicNovelCount = 0;
@@ -339,6 +365,8 @@
         resetCount();
         results = LibraryItemStore.Search(showSearch);
         filterCount(results);
+        User = LoginService.CurrentUser;
+
     }
 
     private bool setVisible(LibraryItem item)
@@ -434,6 +462,51 @@
                 }
             }
         }
+    }
+
+    void removeItemFromWishlist(LibraryItem item)
+    {
+        bool a = UserStore.removeFromWishlist(item, User);
+
+    }
+
+    void holdItem(LibraryItem item)
+    {
+        UserStore.addToHold(item, User);
+    }
+
+    void removeItemFromHold(LibraryItem item)
+    {
+        UserStore.removeFromHold(item, User);
+    }
+
+    public bool HoldStatus(LibraryItem item)
+    {
+        if (UserStore.isOnHold(item, User))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool WishlistStatus(LibraryItem item)
+    {
+        if (UserStore.isInWishlist(item, User))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    void addToWishlist(LibraryItem item)
+    {
+        UserStore.addToWishlist(item, User);
     }
 }
 

@@ -148,18 +148,28 @@
                                         </div>
                                         <p class="card-text"><small class="text-muted">@item.CopiesAvailable Copies Available</small></p>
                                         <div style="text-align: left;">
-                                            @if (User != null && HoldStatus(item))
+                                            @if (User == null)
+                                            {
+                                                <button disabled="true" class="btn btn-secondary" style="background-color: #6b9080">Hold</button>
+                                                
+                                            }
+
+                                            else if (HoldStatus(item))
                                             {
                                                 <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromHold(item))" @onclick:preventDefault>Remove From Hold</a>
-                                            } @if (User == null || !HoldStatus(item))
+                                            } else if (!HoldStatus(item))
                                             {
                                                 <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => holdItem(item))" @onclick:preventDefault>Hold</a>
                                             }
-                                            @if (User != null && WishlistStatus(item))
+                                            @if (User ==null)
+                                            {
+                                                <button disabled="true" class="btn btn-secondary" style="background-color: #6b9080">Add to Wishlist</button>
+                                            }
+                                            else if (WishlistStatus(item))
                                             {
                                                 <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromWishlist(item))" @onclick:preventDefault>Remove From Wishlist</a>
                                             }
-                                            @if (User == null || !WishlistStatus(item))
+                                            else if (User == null || ! WishlistStatus(item))
                                             {
                                                 <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => addToWishlist(item))" @onclick:preventDefault>Add To Wishlist</a>
                                             }

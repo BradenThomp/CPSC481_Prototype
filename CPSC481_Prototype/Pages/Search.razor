@@ -41,24 +41,15 @@
         <h3><a href="" @onclick=@(() => showAll()) @onclick:preventDefault><u>Reset Filters</u></a></h3>
         <br />
         <a>Media Type:</a>
-        @*<div class="indent">
-                <a href="#" >CD (@cdCount)</a>
-            </div>*@
         <div class="indent">
             <a href="" @onclick=@(() => setFormatFilter(ItemType.Movie)) @onclick:preventDefault>Movie (@movieCount)</a>
         </div>
         <div class="indent">
             <a href="" @onclick=@(() => setFormatFilter(ItemType.Book)) @onclick:preventDefault>Book (@bookCount)</a>
         </div>
-        @*<div class="indent">
-                <a href="" @onclick=@(() => setFormatFilter(ItemType.VideoGame)) @onclick:preventDefault>Video Game (@videogameCount)</a>
-            </div>*@
         <div class="indent">
             <a href="" @onclick=@(() => setFormatFilter(ItemType.Music)) @onclick:preventDefault>Music (@musicCount)</a>
         </div>
-        @*<div class="indent">
-                <a href="" @onclick=@(() => setFormatFilter(ItemType.TVShow)) @onclick:preventDefault>TV Show (@tvShowCount)</a>
-            </div>*@
         <hr style="width:50%;text-align:left;margin-left:15px">
         <a>Classification:</a>
         <div class="indent">
@@ -98,21 +89,6 @@
         </div>
         <div class="indent">
             <a href="" @onclick=@(() => setGenreFilter("Graphic Novel")) @onclick:preventDefault>Graphic Novel (@graphicNovelCount)</a>
-        </div>
-
-        <hr style="width:50%;text-align:left;margin-left:15px">
-        <a>New to Library:</a>
-        <div class="indent">
-            <a href="#">Last 30 Days (@new30Count)</a>
-        </div>
-        <div class="indent">
-            <a href="#">Last 90 Days (@new90Count)</a>
-        </div>
-        <div class="indent">
-            <a href="#">Last 180 Days (@new180Count)</a>
-        </div>
-        <div class="indent">
-            <a href="#">Last 360+ Days (@new360plusCount)</a>
         </div>
     </div>
 </div>
@@ -193,7 +169,7 @@
     .filters {
         width: 200px; /* Set the width of the sidebar */
         position: fixed;
-        max-height: calc(100vh - 13rem);
+        max-height: calc(100vh - 9rem);
         overflow-y: auto;
         z-index: 1; /* Stay on top */
         top: 200px; /* Stay at the top */
@@ -261,26 +237,8 @@
     public string showSearch { get; set; }
     public LibraryItem Item { get; set; }
     private List<LibraryItem> results;
-    int result = 0;
-    int musicCount = 0;
-    int movieCount = 0;
-    int bookCount = 0;
-    int fictionCount = 0;
-    int nonfictionCount = 0;
-    int fantasyCount = 0;
-    int actionCount = 0;
-    int adventureCount = 0;
-    int childrenCount = 0;
-    int teenCount = 0;
-    int scifiCount = 0;
-    int romanceCount = 0;
-    int mysteryCount = 0;
-    int horrorCount = 0;
-    int graphicNovelCount = 0;
-    int new30Count = 0;
-    int new90Count = 0;
-    int new180Count = 0;
-    int new360plusCount = 0;
+    int result, musicCount, movieCount, bookCount, fictionCount, nonfictionCount, fantasyCount, actionCount,
+        adventureCount, childrenCount, teenCount, scifiCount, romanceCount, mysteryCount, horrorCount, graphicNovelCount = 0;
 
     void resetCount()
     {

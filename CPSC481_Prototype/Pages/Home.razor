@@ -1,6 +1,7 @@
 ﻿@page "/Home"
 @layout MainLayout
 @inject NavigationManager UriHelper
+@inject LibraryItemStore LibraryItemStore
 
 
 <head>
@@ -24,9 +25,11 @@
 </div>
 
 <br />
-<h1><center>Explore<br /></center></h1>
+@*<h1><center>Explore<br /></center></h1>
 <div class="container">
     <div class="row">
+        <div class="col-sm text-center">
+        </div>
         <div class="col-sm text-center">
             <button type="button" class="btn btn-outline-dark btn-lg"><center>BOOKS</center></button>
         </div>
@@ -36,12 +39,14 @@
         <div class="col-sm text-center">
             <button type="button" class="btn btn-outline-dark btn-lg"><center>MOVIES</center></button>
         </div>
+        <div class="col-sm text-center">
+        </div>
     </div>
-</div>
+</div>*@
 
 <br />
 <br />
-<h1><center>Featured Books</center></h1>
+<h1><center>Explore Staff Favourites</center></h1>
 
 <div class="carousel">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -52,13 +57,142 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100 center-block" src="images/Goodnightmoon.jpg" alt="First slide">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm mb-3">
+                            <div class="card" style="width: 18rem; height: 43rem;">
+                                <img class="card-img-top" src="Images/1984.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title"> 1984 By George Orwell</h5>
+                                    <p class="card-text">"An incredible classic, my teenage sons also loved this book." -Bob</p>
+                                    <a href="/ItemInfo/2" class="btn btn-primary"> Info</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm mb-3">
+                            <div class="card" style="width: 18rem; height: 43rem;">
+                                <img class="card-img-top" src="Images/2001.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title"> 2001 A Space Odyssey by Arthur Clarke</h5>
+                                    <p class="card-text">"A real page turner, within my top 3 books." -Mindy</p>
+                                    <a href="/ItemInfo/3" class="btn btn-primary"> Info</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm mb-3">
+                            <div class="card" style="width: 18rem; height: 43rem;">
+                                <img class="card-img-top" src="Images/Dune.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title"> Dune by Frank Herbert</h5>
+                                    <p class="card-text">"An excellent book worth reading! Good for adolecents too!" -Cameron</p>
+                                    <a href="/ItemInfo/1" class="btn btn-primary"> Info</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm mb-3">
+                            <div class="card" style="width: 18rem; height: 43rem;">
+                                <img class="card-img-top" src="Images/Holes.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title"> Holes by Louis Sachar</h5>
+                                    <p class="card-text">"My daughter's favourite book and a family favourite"- Tina</p>
+                                    <a href="/ItemInfo/13" class="btn btn-primary"> Info</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100 center-block" src="images/Holes.jpg" alt="Second slide">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm mb-3">
+                            <div class="card" style="width: 18rem; height: 43rem;">
+                                <img class="card-img-top" src="Images/BraveNewWorld.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title"> Brave New World by Aldous Hudley</h5>
+                                    <p class="card-text">"An incredible book which will transport you into a different world" -Bobby</p>
+                                    <a href="/ItemInfo/5" class="btn btn-primary"> Info</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm mb-3">
+                            <div class="card" style="width: 18rem; height: 43rem;">
+                                <img class="card-img-top" src="Images/Foundation.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title"> Foundation by Isaac Asimov</h5>
+                                    <p class="card-text">"absolutely could not put this book down until I was done. I was hooked" -Randy</p>
+                                    <a href="/ItemInfo/7" class="btn btn-primary"> Info</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm mb-3">
+                            <div class="card" style="width: 18rem; height: 43rem;">
+                                <img class="card-img-top" src="Images/Hyperion.jpeg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title"> Hyperion by Dan Simmons</h5>
+                                    <p class="card-text">"came for the cover art, stayed for the story" -Dan</p>
+                                    <a href="/ItemInfo/14" class="btn btn-primary"> Info</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm mb-3">
+                            <div class="card" style="width: 18rem; height: 43rem;">
+                                <img class="card-img-top" src="Images/gods.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title"> Waking Gods by Sylvain Neuvel</h5>
+                                    <p class="card-text">"what a book!" -Todd</p>
+                                    <a href="ItemInfo/8" class="btn btn-primary"> Info</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="images/TheTwits.jpg" alt="Third slide">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm mb-3">
+                            <div class="card" style="width: 18rem; height: 43rem;">
+                                <img class="card-img-top" src="Images/TheWitches.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title"> The Witches by Roald Dahl</h5>
+                                    <p class="card-text">"really nice comment about the book" -nobody</p>
+                                    <a href="/ItemInfo/16" class="btn btn-primary"> Info</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm mb-3">
+                            <div class="card" style="width: 18rem; height: 43rem;">
+                                <img class="card-img-top" src="Images/AzkbnMovie.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title"> Harry Potter and the Prisoner of Azkaban</h5>
+                                    <p class="card-text">"really nice comment about the book" -nobody</p>
+                                    <a href="/ItemInfo/12" class="btn btn-primary"> Info</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm mb-3">
+                            <div class="card" style="width: 18rem; height: 43rem;">
+                                <img class="card-img-top" src="Images/Goodnightmoon.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title"> Goodnight Moon</h5>
+                                    <p class="card-text">"really nice comment about the book" -nobody</p>
+                                    <a href="/ItemInfo/9" class="btn btn-primary"> Info</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm mb-3">
+                            <div class="card" style="width: 18rem; height: 43rem;">
+                                <img class="card-img-top" src="Images/TheTwits.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title"> The Twits by Roald Dahl</h5>
+                                    <p class="card-text">"really nice comment about the book" -nobody</p>
+                                    <a href="/ItemInfo.15" class="btn btn-primary"> Info</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -74,10 +208,19 @@
 
 <style>
     .carousel {
-        width: 400px;
+        width: auto;
         height: 400px;
         align-items: center;
         margin: auto;
+    }
+
+    /* the below 2 css styles are created with the help of https://forum.freecodecamp.org/t/bootstrap-carousel-controls-color/331196/3 accessed on December 8th 2022*/
+    .carousel-control-next-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+    }
+
+    .carousel-control-prev-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='black' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
     }
 </style>
 
@@ -86,7 +229,7 @@
 
 
 
-@code{
+@code {
     private string selectedSlide = "2";
     private string searchTerm;
     private async Task searchItem()
@@ -94,4 +237,6 @@
         Console.WriteLine(searchTerm);
         UriHelper.NavigateTo($"searchresults/{searchTerm}");
     }
+
+
 }

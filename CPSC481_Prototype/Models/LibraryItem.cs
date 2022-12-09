@@ -20,7 +20,7 @@ namespace CPSC481_Prototype.Models
 
         public string PublicationDate { get; init; }
 
-        public string Summary { get; init; }
+        public string Summary { get; init; } 
 
         public List<string> Genres { get; init; }
 

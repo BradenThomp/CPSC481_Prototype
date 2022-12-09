@@ -41,15 +41,24 @@
         <h3><a href="" @onclick=@(() => showAll()) @onclick:preventDefault><u>Reset Filters</u></a></h3>
         <br />
         <a>Media Type:</a>
+        @*<div class="indent">
+                <a href="#" >CD (@cdCount)</a>
+            </div>*@
         <div class="indent">
             <a href="" @onclick=@(() => setFormatFilter(ItemType.Movie)) @onclick:preventDefault>Movie (@movieCount)</a>
         </div>
         <div class="indent">
             <a href="" @onclick=@(() => setFormatFilter(ItemType.Book)) @onclick:preventDefault>Book (@bookCount)</a>
         </div>
+        @*<div class="indent">
+                <a href="" @onclick=@(() => setFormatFilter(ItemType.VideoGame)) @onclick:preventDefault>Video Game (@videogameCount)</a>
+            </div>*@
         <div class="indent">
             <a href="" @onclick=@(() => setFormatFilter(ItemType.Music)) @onclick:preventDefault>Music (@musicCount)</a>
         </div>
+        @*<div class="indent">
+                <a href="" @onclick=@(() => setFormatFilter(ItemType.TVShow)) @onclick:preventDefault>TV Show (@tvShowCount)</a>
+            </div>*@
         <hr style="width:50%;text-align:left;margin-left:15px">
         <a>Classification:</a>
         <div class="indent">
@@ -89,6 +98,21 @@
         </div>
         <div class="indent">
             <a href="" @onclick=@(() => setGenreFilter("Graphic Novel")) @onclick:preventDefault>Graphic Novel (@graphicNovelCount)</a>
+        </div>
+
+        <hr style="width:50%;text-align:left;margin-left:15px">
+        <a>New to Library:</a>
+        <div class="indent">
+            <a href="#">Last 30 Days (@new30Count)</a>
+        </div>
+        <div class="indent">
+            <a href="#">Last 90 Days (@new90Count)</a>
+        </div>
+        <div class="indent">
+            <a href="#">Last 180 Days (@new180Count)</a>
+        </div>
+        <div class="indent">
+            <a href="#">Last 360+ Days (@new360plusCount)</a>
         </div>
     </div>
 </div>
@@ -148,6 +172,7 @@
     </div>
 }
 
+
 <style>
     .searchHeader {
         padding-right: 50px;
@@ -168,7 +193,7 @@
     .filters {
         width: 200px; /* Set the width of the sidebar */
         position: fixed;
-        max-height: calc(100vh - 10rem);
+        max-height: calc(100vh - 13rem);
         overflow-y: auto;
         z-index: 1; /* Stay on top */
         top: 200px; /* Stay at the top */
@@ -237,9 +262,12 @@
     public LibraryItem Item { get; set; }
     private List<LibraryItem> results;
     int result = 0;
+    //int cdCount = 0;
     int musicCount = 0;
     int movieCount = 0;
     int bookCount = 0;
+    //int videogameCount = 0;
+    //int tvShowCount = 0;
     int fictionCount = 0;
     int nonfictionCount = 0;
     int fantasyCount = 0;
@@ -252,6 +280,10 @@
     int mysteryCount = 0;
     int horrorCount = 0;
     int graphicNovelCount = 0;
+    int new30Count = 0;
+    int new90Count = 0;
+    int new180Count = 0;
+    int new360plusCount = 0;
 
     private void showAll()
     {
@@ -347,12 +379,59 @@
         if (filter == "Book" && item.ItemType == ItemType.Book)
             return true;
 
+        //if (filter == "Video Game" && item.ItemType == ItemType.VideoGame)
+        //    return true;
+
         if (filter == "Music" && item.ItemType == ItemType.Music)
             return true;
 
         foreach (var genre in item.Genres)
         {
             if (genre.StartsWith(filter))
+            {
+                return true;
+            }
+            else if (genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (genre.Contains(filter))
             {
                 return true;
             }
@@ -376,6 +455,14 @@
             {
                 movieCount++;
             }
+            //else if (item.ItemType == ItemType.TVShow)
+            //{
+            //    tvShowCount++;
+            //}
+            //else if (item.ItemType == ItemType.VideoGame)
+            //{
+            //    videogameCount++;
+            //}
 
             foreach (var innerlist in item.Genres)
             {

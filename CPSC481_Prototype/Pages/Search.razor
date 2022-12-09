@@ -2,6 +2,8 @@
 @inherits LayoutComponentBase
 @inject LibraryItemStore LibraryItemStore
 @inject NavigationManager UriHelper
+@inject LoginService LoginService;
+@inject UserStore UserStore
 
 <PageTitle>Search Results Page</PageTitle>
 <!-- Side navigation -->
@@ -146,8 +148,21 @@
                                         </div>
                                         <p class="card-text"><small class="text-muted">@item.CopiesAvailable Copies Available</small></p>
                                         <div style="text-align: left;">
-                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Hold</a>
-                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>
+                                            @if (User != null && HoldStatus(item))
+                                            {
+                                                <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromHold(item))" @onclick:preventDefault>Remove From Hold</a>
+                                            } @if (User == null || !HoldStatus(item))
+                                            {
+                                                <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => holdItem(item))" @onclick:preventDefault>Hold</a>
+                                            }
+                                            @if (User != null && WishlistStatus(item))
+                                            {
+                                                <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromWishlist(item))" @onclick:preventDefault>Remove From Wishlist</a>
+                                            }
+                                            @if (User == null || !WishlistStatus(item))
+                                            {
+                                                <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => addToWishlist(item))" @onclick:preventDefault>Add To Wishlist</a>
+                                            }
                                             <a href="iteminfo/@item.Id" class="btn btn-secondary" style="background-color: #6b9080" role="button">Info</a>
                                         </div>
                                     </div>
@@ -342,22 +357,74 @@
 </style>
 
 @code {
-    int width = 0;
-    string sidebarWidth => $"width: {width}px;";
-    string main => $"margin-left: {width}px;";
+    [Parameter]
+    public User User { get; set; }
+    private List<LibraryItem> results;
+
+    [ParameterAttribute]
+    public string showSearch { get; set; }
+
+    public int width = 0;
+    public string sidebarWidth => $"width: {width}px;";
+    public string main => $"margin-left: {width}px;";
+    public LibraryItem Item { get; set; }
+    public int count = 0;
+
     void OpenNav() => width = 250;
     void CloseNav() => width = 0;
-    [Parameter]
-    public string showSearch { get; set; }
-    public LibraryItem Item { get; set; }
-    private List<LibraryItem> results;
-    int count = 0;
 
     protected override void OnParametersSet()
     {
-
+        User = LoginService.CurrentUser;
         results = LibraryItemStore.Search(showSearch);
     }
+
+    void removeItemFromWishlist(LibraryItem item)
+    {
+        bool a = UserStore.removeFromWishlist(item, User);
+
+    }
+
+    void holdItem(LibraryItem item)
+    {
+        UserStore.addToHold(item, User);
+    }
+
+    void removeItemFromHold(LibraryItem item)
+    {
+        UserStore.removeFromHold(item, User);
+    }
+
+    public bool HoldStatus(LibraryItem item)
+    {
+        if (UserStore.isOnHold(item, User))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool WishlistStatus(LibraryItem item)
+    {
+        if (UserStore.isInWishlist(item, User))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    void addToWishlist(LibraryItem item)
+    {
+        UserStore.addToWishlist(item, User);
+    }
+
+
 }
 
 

@@ -127,7 +127,7 @@
                 <div class="col-12">
                     @foreach (var item in results)
                     {
-                        if (!isVisible(item))
+                        if (!setVisible(item))
                             continue;
 
                         <div class="card mb-3 card-style" style="width: 101%;">
@@ -262,12 +262,9 @@
     public LibraryItem Item { get; set; }
     private List<LibraryItem> results;
     int result = 0;
-    //int cdCount = 0;
     int musicCount = 0;
     int movieCount = 0;
     int bookCount = 0;
-    //int videogameCount = 0;
-    //int tvShowCount = 0;
     int fictionCount = 0;
     int nonfictionCount = 0;
     int fantasyCount = 0;
@@ -285,6 +282,27 @@
     int new180Count = 0;
     int new360plusCount = 0;
 
+    void resetCount()
+    {
+        result = 0;
+        musicCount = 0;
+        movieCount = 0;
+        bookCount = 0;
+        fictionCount = 0;
+        nonfictionCount = 0;
+        fantasyCount = 0;
+        actionCount = 0;
+        actionCount = 0;
+        adventureCount = 0;
+        childrenCount = 0;
+        teenCount = 0;
+        scifiCount = 0;
+        romanceCount = 0;
+        mysteryCount = 0;
+        horrorCount = 0;
+        graphicNovelCount = 0;
+    }
+
     private void showAll()
     {
         filter = "";
@@ -300,10 +318,6 @@
         {
             filter = "Book";
         }
-        //else if (type == ItemType.VideoGame)
-        //{
-        //    filter = "Video Game";
-        //}
         else if (type == ItemType.Music)
         {
             filter = "Music";
@@ -364,11 +378,12 @@
 
     protected override async void OnParametersSet()
     {
+        resetCount();
         results = LibraryItemStore.Search(showSearch);
         filterCount(results);
     }
 
-    private bool isVisible(LibraryItem item)
+    private bool setVisible(LibraryItem item)
     {
         if (string.IsNullOrEmpty(filter))
             return true;
@@ -379,59 +394,12 @@
         if (filter == "Book" && item.ItemType == ItemType.Book)
             return true;
 
-        //if (filter == "Video Game" && item.ItemType == ItemType.VideoGame)
-        //    return true;
-
         if (filter == "Music" && item.ItemType == ItemType.Music)
             return true;
 
         foreach (var genre in item.Genres)
         {
             if (genre.StartsWith(filter))
-            {
-                return true;
-            }
-            else if (genre.Contains(filter))
-            {
-                return true;
-            }
-            else if (genre.Contains(filter))
-            {
-                return true;
-            }
-            else if (genre.Contains(filter))
-            {
-                return true;
-            }
-            else if (genre.Contains(filter))
-            {
-                return true;
-            }
-            else if (genre.Contains(filter))
-            {
-                return true;
-            }
-            else if (genre.Contains(filter))
-            {
-                return true;
-            }
-            else if (genre.Contains(filter))
-            {
-                return true;
-            }
-            else if (genre.Contains(filter))
-            {
-                return true;
-            }
-            else if (genre.Contains(filter))
-            {
-                return true;
-            }
-            else if (genre.Contains(filter))
-            {
-                return true;
-            }
-            else if (genre.Contains(filter))
             {
                 return true;
             }
@@ -455,14 +423,6 @@
             {
                 movieCount++;
             }
-            //else if (item.ItemType == ItemType.TVShow)
-            //{
-            //    tvShowCount++;
-            //}
-            //else if (item.ItemType == ItemType.VideoGame)
-            //{
-            //    videogameCount++;
-            //}
 
             foreach (var innerlist in item.Genres)
             {

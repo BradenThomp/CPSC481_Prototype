@@ -47,6 +47,7 @@
                     <h6 class="h6">Location: @(Item.ItemType == ItemType.Music ? "Music" : "Movies")</h6>
                 }
                 <Map Scale="0.4" Item="Item"></Map>
+                <br/>
                 <a href="" class="h6" @onclick="@ShowModal" @onclick:preventDefault>Click to Expand Map</a>
                 <hr />
                 @if (User == null)

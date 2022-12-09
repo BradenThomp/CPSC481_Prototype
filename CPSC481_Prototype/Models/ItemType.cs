@@ -5,7 +5,5 @@
         Book,
         Music,
         Movie,
-        TVShow,
-        VideoGame,
     }
 }

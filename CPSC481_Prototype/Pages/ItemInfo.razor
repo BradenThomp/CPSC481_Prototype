@@ -1,5 +1,7 @@
 ﻿@page "/ItemInfo/{id}"
 @inject LibraryItemStore LibraryItemStore
+@inject UserStore UserStore
+@inject LoginService LoginService;
 
 <PageTitle>ItemInfo</PageTitle>
 
@@ -47,8 +49,31 @@
                 <Map Scale="0.4" Item="Item"></Map>
                 <a href="" class="h6" @onclick="@ShowModal" @onclick:preventDefault>Click to Expand Map</a>
                 <hr />
-                <button class="btn btn-secondary" style="background-color: #6b9080">Wishlist</button>
-                <button disabled="@(Item.CopiesAvailable < 1)" class="btn btn-secondary" style="background-color: #6b9080">Hold</button>
+                @if (User == null)
+                {
+                    <button disabled="true" class="btn btn-secondary" style="background-color: #6b9080">Hold</button>
+                }
+
+                else if (HoldStatus(Item))
+                {
+                    <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromHold(Item))" @onclick:preventDefault>Remove From Hold</a>
+                }
+                else if (!HoldStatus(Item))
+                {
+                    <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => holdItem(Item))" @onclick:preventDefault>Hold</a>
+                }
+                @if (User == null)
+                {
+                    <button disabled="true" class="btn btn-secondary" style="background-color: #6b9080">Add to Wishlist</button>
+                }
+                else if (WishlistStatus(Item))
+                {
+                    <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromWishlist(Item))" @onclick:preventDefault>Remove From Wishlist</a>
+                }
+                else if (User == null || !WishlistStatus(Item))
+                {
+                    <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => addToWishlist(Item))" @onclick:preventDefault>Add To Wishlist</a>
+                }
             </div>
         </div>
     </div>
@@ -74,6 +99,7 @@
     public string Id { get; set; }
 
     public LibraryItem Item { get; set; }
+    public User User { get; set; }
 
     public IEnumerable<LibraryItem> SimilarItems { get; set; }
 
@@ -83,6 +109,7 @@
     {
         Item = LibraryItemStore.Get(Int32.Parse(Id));
         SimilarItems = LibraryItemStore.GetSimilarItems(Item);
+        User = LoginService.CurrentUser;
     }
 
     private Task ShowModal() 
@@ -93,5 +120,49 @@
     private Task HideModal() 
     {
         return _modalRef.Hide();
+    }
+    void removeItemFromWishlist(LibraryItem item)
+    {
+        bool a = UserStore.removeFromWishlist(item, User);
+
+    }
+
+    void holdItem(LibraryItem item)
+    {
+        UserStore.addToHold(item, User);
+    }
+
+    void removeItemFromHold(LibraryItem item)
+    {
+        UserStore.removeFromHold(item, User);
+    }
+
+    public bool HoldStatus(LibraryItem item)
+    {
+        if (UserStore.isOnHold(item, User))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool WishlistStatus(LibraryItem item)
+    {
+        if (UserStore.isInWishlist(item, User))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    void addToWishlist(LibraryItem item)
+    {
+        UserStore.addToWishlist(item, User);
     }
 }

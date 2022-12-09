@@ -2,6 +2,7 @@
 @inherits LayoutComponentBase
 @inject LibraryItemStore LibraryItemStore
 @inject NavigationManager UriHelper
+@inject UserStore UserStore
 
 <PageTitle>Search Results Page</PageTitle>
 <!-- Side navigation -->
@@ -361,7 +362,7 @@
         }
     }
 
-    protected override void OnParametersSet()
+    protected override async void OnParametersSet()
     {
         results = LibraryItemStore.Search(showSearch);
         filterCount(results);

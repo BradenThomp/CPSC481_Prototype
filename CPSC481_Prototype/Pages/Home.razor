@@ -18,31 +18,31 @@
 <br />
 <br />
 <div class="input-group search-input">
-    <input type="text" class="form-control" placeholder="Search keywords. Ex. Harry Potter, Cooking, science fiction..." @bind-value="searchTerm" aria-label="Search..." aria-describedby="basic-addon2">
+    <input type="text" class="form-control" @onkeyup="@Enter" placeholder="Search keywords. Ex. Harry Potter, Cooking, science fiction..." @bind-value="searchTerm" aria-label="Search..." aria-describedby="basic-addon2">
     <div class="input-group-append">
-        <button class="btn btn-outline-dark"@onclick="@searchItem">Search</button>
+        <button class="btn btn-outline-dark" type="submit" @onclick="@searchItem">Search</button>
     </div>
 </div>
 
 <br />
 @*<h1><center>Explore<br /></center></h1>
-<div class="container">
-    <div class="row">
-        <div class="col-sm text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm text-center">
+            </div>
+            <div class="col-sm text-center">
+                <button type="button" class="btn btn-outline-dark btn-lg"><center>BOOKS</center></button>
+            </div>
+            <div class="col-sm text-center">
+                <button type="button" class="btn btn-outline-dark btn-lg"><center>MUSIC</center></button>
+            </div>
+            <div class="col-sm text-center">
+                <button type="button" class="btn btn-outline-dark btn-lg"><center>MOVIES</center></button>
+            </div>
+            <div class="col-sm text-center">
+            </div>
         </div>
-        <div class="col-sm text-center">
-            <button type="button" class="btn btn-outline-dark btn-lg"><center>BOOKS</center></button>
-        </div>
-        <div class="col-sm text-center">
-            <button type="button" class="btn btn-outline-dark btn-lg"><center>MUSIC</center></button>
-        </div>
-        <div class="col-sm text-center">
-            <button type="button" class="btn btn-outline-dark btn-lg"><center>MOVIES</center></button>
-        </div>
-        <div class="col-sm text-center">
-        </div>
-    </div>
-</div>*@
+    </div>*@
 
 <br />
 <br />
@@ -234,9 +234,14 @@
     private string searchTerm;
     private async Task searchItem()
     {
-        Console.WriteLine(searchTerm);
         UriHelper.NavigateTo($"searchresults/{searchTerm}");
     }
 
-
+    protected async Task Enter(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            UriHelper.NavigateTo($"searchresults/{searchTerm}");
+        }
+    }
 }

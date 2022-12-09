@@ -2,6 +2,7 @@
 @inject IJSRuntime JS;
 @inject LoginService LoginService;
 @inject NavigationManager NavigationManager;
+@inject NavigationManager UriHelper
 
 <head>
     <link rel="stylesheet" type="text/css" href="Buttons.css" media=”screen” />
@@ -38,8 +39,8 @@
                 {
                     <form class="d-flex">
                         <div class="input-group" style="width: 100%">
-                            <input type="text" class="form-control" style="width: 400px; border: 1px solid #6b9080;" placeholder="Search Item by Keyword">
-                            <button type="button" class="btn button-24"><i class="bi-search"></i></button>
+                            <input type="text" class="form-control" @onkeyup="@Enter" style="width: 400px; border: 1px solid #6b9080;" placeholder="Search Item by Keyword" @bind-value="searchTerm">
+                            <button type="button" class="btn button-24"><i class="bi-search" @onclick="@searchItem"></i></button>
                         </div>
                     </form>
                 }
@@ -154,7 +155,7 @@
 
     void Login()
     {
-        if(LoginService.Login(id, password))
+        if (LoginService.Login(id, password))
         {
             showModal = false;
         }
@@ -245,3 +246,19 @@
         opacity: .5;
     }
 </style>
+
+@code {
+    private string searchTerm;
+    private async Task searchItem()
+    {
+        UriHelper.NavigateTo($"searchresults/{searchTerm}");
+    }
+
+    protected async Task Enter(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            UriHelper.NavigateTo($"searchresults/{searchTerm}");
+        }
+    }
+}

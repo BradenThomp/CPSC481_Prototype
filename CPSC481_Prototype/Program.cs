@@ -1,3 +1,4 @@
+using Blazored.Toast;
 using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
@@ -17,5 +18,6 @@ builder.Services.AddBlazorise(o => o.Immediate = true).AddBootstrapProviders().A
 builder.Services.AddSingleton<LibraryItemStore>();
 builder.Services.AddSingleton<UserStore>();
 builder.Services.AddSingleton<LoginService>();
+builder.Services.AddBlazoredToast();
 
 await builder.Build().RunAsync();

@@ -367,21 +367,42 @@
 </style>
 
 @code {
-    [Parameter]
-    public User User { get; set; }
-    private List<LibraryItem> results;
-
-    [ParameterAttribute]
-    public string showSearch { get; set; }
-
-    public int width = 0;
-    public string sidebarWidth => $"width: {width}px;";
-    public string main => $"margin-left: {width}px;";
-    public LibraryItem Item { get; set; }
-    public int count = 0;
-
+    string filter;
+    int width = 0;
+    string sidebarWidth => $"width: {width}px;";
+    string main => $"margin-left: {width}px;";
     void OpenNav() => width = 250;
     void CloseNav() => width = 0;
+    [Parameter]
+    public string showSearch { get; set; }
+    public LibraryItem Item { get; set; }
+    private List<LibraryItem> results;
+    int result = 0;
+    //int cdCount = 0;
+    int musicCount = 0;
+    int movieCount = 0;
+    int bookCount = 0;
+    int videogameCount = 0;
+    int tvShowCount = 0;
+    int fictionCount = 0;
+    int nonfictionCount = 0;
+    int fantasyCount = 0;
+    int actionCount = 0;
+    int adventureCount = 0;
+    int childrenCount = 0;
+    int teenCount = 0;
+    int scifiCount = 0;
+    int romanceCount = 0;
+    int mysteryCount = 0;
+    int horrorCount = 0;
+    int graphicNovelCount = 0;
+    int new30Count = 0;
+    int new90Count = 0;
+    int new180Count = 0;
+    int new360plusCount = 0;
+
+    [Parameter]
+    public User User { get; set; }
 
     protected override void OnParametersSet()
     {

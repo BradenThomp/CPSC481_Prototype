@@ -35,84 +35,90 @@
 <div class="row">
     <div style="@sidebarWidth" class="filters">
         <a class="closebtn" @onclick="CloseNav">&times;</a>
-        <a href="#">Media Type:</a>
+        <br />
+        <br />
+        <h3><a href="" @onclick=@(() => showAll()) @onclick:preventDefault><u>Reset Filters</u></a></h3>
+        <br />
+        <a>Media Type:</a>
+        @*<div class="indent">
+                <a href="#" >CD (@cdCount)</a>
+            </div>*@
         <div class="indent">
-            <a href="#">CD's (0)</a>
+            <a href="" @onclick=@(() => setFormatFilter(ItemType.Movie)) @onclick:preventDefault>Movie (@movieCount)</a>
         </div>
         <div class="indent">
-            <a href="#">Movies (1)</a>
+            <a href="" @onclick=@(() => setFormatFilter(ItemType.Book)) @onclick:preventDefault>Book (@bookCount)</a>
         </div>
         <div class="indent">
-            <a href="#">Books (2)</a>
+            <a href="" @onclick=@(() => setFormatFilter(ItemType.VideoGame)) @onclick:preventDefault>Video Game (@videogameCount)</a>
         </div>
         <div class="indent">
-            <a href="#">Video Games (0)</a>
+            <a href="" @onclick=@(() => setFormatFilter(ItemType.Music)) @onclick:preventDefault>Music (@musicCount)</a>
         </div>
         <div class="indent">
-            <a href="#">Music (0)</a>
-        </div>
-        <div class="indent">
-            <a href="#">TV Shows (0)</a>
-        </div>
-        <hr style="width:50%;text-align:left;margin-left:15px">
-        <a href="#">Classification:</a>
-        <div class="indent">
-            <a href="#">Fiction (3)</a>
-        </div>
-        <div class="indent">
-            <a href="#">Non Fiction (0)</a>
+            <a href="" @onclick=@(() => setFormatFilter(ItemType.TVShow)) @onclick:preventDefault>TV Show (@tvShowCount)</a>
         </div>
         <hr style="width:50%;text-align:left;margin-left:15px">
-        <a href="#">Genre:</a>
+        <a>Classification:</a>
         <div class="indent">
-            <a href="#">Fantasy (3)</a>
+            <a href="" @onclick=@(() => setGenreFilter("Fiction")) @onclick:preventDefault>Fiction (@fictionCount)</a>
         </div>
         <div class="indent">
-            <a href="#">Action/Adventure (3)</a>
+            <a href="" @onclick=@(() => setGenreFilter("Non-fiction")) @onclick:preventDefault>Non-fiction (@nonfictionCount)</a>
+        </div>
+        <hr style="width:50%;text-align:left;margin-left:15px">
+        <a>Genre:</a>
+        <div class="indent">
+            <a href="" @onclick=@(() => setGenreFilter("Fantasy")) @onclick:preventDefault>Fantasy (@fantasyCount)</a>
         </div>
         <div class="indent">
-            <a href="#">Children (3)</a>
+            <a href="" @onclick=@(() => setGenreFilter("Action")) @onclick:preventDefault>Action (@actionCount)</a>
         </div>
         <div class="indent">
-            <a href="#">Teen (3)</a>
+            <a href="" @onclick=@(() => setGenreFilter("Adventure")) @onclick:preventDefault>Adventure (@adventureCount)</a>
         </div>
         <div class="indent">
-            <a href="#">Sci-Fi (0)</a>
+            <a href="" @onclick=@(() => setGenreFilter("Children")) @onclick:preventDefault>Children (@childrenCount)</a>
         </div>
         <div class="indent">
-            <a href="#">Romance (0)</a>
+            <a href="" @onclick=@(() => setGenreFilter("Teen")) @onclick:preventDefault>Teen (@teenCount)</a>
         </div>
         <div class="indent">
-            <a href="#">Mystery (0)</a>
+            <a href="" @onclick=@(() => setGenreFilter("Science Fiction")) @onclick:preventDefault>Sci-Fi (@scifiCount)</a>
         </div>
         <div class="indent">
-            <a href="#">Horror (0)</a>
+            <a href="" @onclick=@(() => setGenreFilter("Romance")) @onclick:preventDefault>Romance (@romanceCount)</a>
         </div>
         <div class="indent">
-            <a href="#">Graphic Novel (0)</a>
+            <a href="" @onclick=@(() => setGenreFilter("Mystery")) @onclick:preventDefault>Mystery (@mysteryCount)</a>
+        </div>
+        <div class="indent">
+            <a href="" @onclick=@(() => setGenreFilter("Horror")) @onclick:preventDefault>Horror (@horrorCount)</a>
+        </div>
+        <div class="indent">
+            <a href="" @onclick=@(() => setGenreFilter("Graphic Novel")) @onclick:preventDefault>Graphic Novel (@graphicNovelCount)</a>
         </div>
 
         <hr style="width:50%;text-align:left;margin-left:15px">
-        <a href="#">New to Library:</a>
+        <a>New to Library:</a>
         <div class="indent">
-            <a href="#">Last 30 Days (0)</a>
+            <a href="#">Last 30 Days (@new30Count)</a>
         </div>
         <div class="indent">
-            <a href="#">Last 90 Days (0)</a>
+            <a href="#">Last 90 Days (@new90Count)</a>
         </div>
         <div class="indent">
-            <a href="#">Last 180 Days (1)</a>
+            <a href="#">Last 180 Days (@new180Count)</a>
         </div>
         <div class="indent">
-            <a href="#">Last 360+ Days (2)</a>
+            <a href="#">Last 360+ Days (@new360plusCount)</a>
         </div>
     </div>
 </div>
-
-
 <!-- Page content -->
 @if (results.Count > 0)
 {
+    int i = 0;
     <div style="@main">
         &nbsp;
         <div class="container">
@@ -120,6 +126,9 @@
                 <div class="col-12">
                     @foreach (var item in results)
                     {
+                        if (!isVisible(item))
+                            continue;
+
                         <div class="card mb-3 card-style" style="width: 101%;">
                             <div class="row no-gutters">
                                 <div class="col-md-2">
@@ -135,11 +144,11 @@
                                         <h6 class="h6"> @item.Publisher - @item.PublicationDate</h6>
                                         &nbsp;
                                         <p>
-                                            <a class="btn btn-outline-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                            <a class="btn btn-outline-dark" data-toggle="collapse" href="#collapseExample_@i" role="button" aria-expanded="false" aria-controls="#collapseExample">
                                                 + Expand
                                             </a>
                                         </p>
-                                        <div class="collapse" id="collapseExample">
+                                        <div class="collapse" id="collapseExample_@i">
                                             <div class="card card-body card-style">
                                                 @item.Summary
                                             </div>
@@ -154,109 +163,8 @@
                                 </div>
                             </div>
                         </div>
+                        i++;
                     }
-                    @*<div class="card mb-3 card-style" style="width: 101%;">
-                            <div class="row no-gutters">
-                                <div class="col-md-2">
-                                    <div class="img-responsive center-block d-block mx-auto">
-                                        <img src="images/Harry_Potter_and_the_Philosopher's_Stone_Book_Cover.jpg" class="card-img" alt="...">
-                                    </div>
-                                </div>
-                                <div class="col-md-10">
-                                    <div class="card-body">
-                                        <h2 class="display-5">Harry Potter and the Philosopher's Stone</h2>
-                                        <h3 class="h3">J. K. Rowling</h3>
-                                        <h6 class="h6">233 Pages, Hardcover</h6>
-                                        <h6 class="h6"> Bloomsbury - June 1997</h6>
-                                        &nbsp;
-                                        <p>
-                                            <a class="btn btn-outline-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                + Expand
-                                            </a>
-                                        </p>
-                                        <div class="collapse" id="collapseExample">
-                                            <div class="card card-body card-style">
-                                                The first novel in the Harry Potter series and Rowling's debut novel, it follows Harry Potter, a young wizard who discovers his magical heritage on his eleventh birthday, when he receives a letter of acceptance to Hogwarts School of Witchcraft and Wizardry. Harry makes close friends and a few enemies during his first year at the school and with the help of his friends, he faces an attempted comeback by the dark wizard Lord Voldemort, who killed Harry's parents, but failed to kill Harry when he was just 15 months old.
-                                            </div>
-                                        </div>
-                                        <p class="card-text"><small class="text-muted">2 Copies Available</small></p>
-                                        <div style="text-align: left;">
-                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Hold</a>
-                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>
-                                            <a href="iteminfo" class="btn btn-secondary" style="background-color: #6b9080" role="button">Info</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-3 card-style" style="width: 101%;">
-                            <div class="row no-gutters">
-                                <div class="col-md-2">
-                                    <div class="img-responsive center-block d-block mx-auto">
-                                        <img src="images/Harry_Potter_and_the_Chamber_of_Secrets.jpg" class="card-img" alt="...">
-                                    </div>
-                                </div>
-                                <div class="col-md-10">
-                                    <div class="card-body">
-                                        <h2 class="display-5">Harry Potter and the Chamber of Secrets</h2>
-                                        <h3 class="h3">J. K. Rowling</h3>
-                                        <h6 class="h6">251 Pages, Hardcover</h6>
-                                        <h6 class="h6"> Bloomsbury - July 1998</h6>
-                                        &nbsp;
-                                        <p>
-                                            <a class="btn btn btn-outline-dark" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                + Expand
-                                            </a>
-                                        </p>
-                                        <div class="collapse" id="collapseExample2">
-                                            <div class="card card-body card-style">
-                                                The plot follows Harry's second year at Hogwarts School of Witchcraft and Wizardry, during which a series of messages on the walls of the school's corridors warn that the "Chamber of Secrets" has been opened and that the "heir of Slytherin" would kill all pupils who do not come from all-magical families. These threats are found after attacks that leave residents of the school petrified. Throughout the year, Harry and his friends Ron and Hermione investigate the attacks.
-                                            </div>
-                                        </div>
-                                        <p class="card-text"><small class="text-muted">0 Copies Available</small></p>
-                                        <div style="text-align: left;">
-                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Hold</a>
-                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>
-                                            <a href="iteminfo" class="btn btn-secondary" style="background-color: #6b9080" role="button">Info</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-3 card-style" style="width: 101%;">
-                            <div class="row no-gutters">
-                                <div class="col-md-2">
-                                    <div class="img-responsive center-block d-block mx-auto">
-                                        <img src="images/Harry_Potter_and_the_Prisoner_of_Azkaban.jpg" class="card-img" alt="...">
-                                    </div>
-                                </div>
-                                <div class="col-md-10">
-                                    <div class="card-body">
-                                        <h2 class="display-5">Harry Potter and the Prisoner of Azkaban</h2>
-                                        <h3 class="h3">J. K. Rowling</h3>
-                                        <h6 class="h6">317 Pages, Hardcover</h6>
-                                        <h6 class="h6"> Bloomsbury - July 1999</h6>
-                                        &nbsp;
-                                        <p>
-                                            <a class="btn btn-outline-dark" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                + Expand
-                                            </a>
-                                        </p>
-                                        <div class="collapse" id="collapseExample3">
-                                            <div class="card card-body card-style">
-                                                The third novel in the Harry Potter series, the book follows Harry Potter, a young wizard, in his third year at Hogwarts School of Witchcraft and Wizardry. Along with friends Ronald Weasley and Hermione Granger, Harry investigates Sirius Black, an escaped prisoner from Azkaban, the wizard prison, believed to be one of Lord Voldemort's old allies.
-                                            </div>
-                                        </div>
-                                        <p class="card-text"><small class="text-muted">1 Copies Available</small></p>
-                                        <div style="text-align: left;">
-                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Hold</a>
-                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>
-                                            <a href="iteminfo" class="btn btn-secondary" style="background-color: #6b9080" role="button">Info</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>*@
                 </div>
             </div>
         </div>
@@ -273,7 +181,7 @@
         width: 200px;
         height: 300px;
         object-fit: fill;
-        padding-top: 10px;
+        padding-top: 15px;
         padding-left: 10px;
     }
     /*Sidebar Text indentation*/
@@ -284,7 +192,7 @@
     .filters {
         width: 200px; /* Set the width of the sidebar */
         position: fixed;
-        max-height: calc(100vh - 9rem);
+        max-height: calc(100vh - 13rem);
         overflow-y: auto;
         z-index: 1; /* Stay on top */
         top: 200px; /* Stay at the top */
@@ -342,6 +250,7 @@
 </style>
 
 @code {
+    string filter;
     int width = 0;
     string sidebarWidth => $"width: {width}px;";
     string main => $"margin-left: {width}px;";
@@ -351,12 +260,261 @@
     public string showSearch { get; set; }
     public LibraryItem Item { get; set; }
     private List<LibraryItem> results;
-    int count = 0;
+    int result = 0;
+    //int cdCount = 0;
+    int musicCount = 0;
+    int movieCount = 0;
+    int bookCount = 0;
+    int videogameCount = 0;
+    int tvShowCount = 0;
+    int fictionCount = 0;
+    int nonfictionCount = 0;
+    int fantasyCount = 0;
+    int actionCount = 0;
+    int adventureCount = 0;
+    int childrenCount = 0;
+    int teenCount = 0;
+    int scifiCount = 0;
+    int romanceCount = 0;
+    int mysteryCount = 0;
+    int horrorCount = 0;
+    int graphicNovelCount = 0;
+    int new30Count = 0;
+    int new90Count = 0;
+    int new180Count = 0;
+    int new360plusCount = 0;
+
+    private void showAll()
+    {
+        filter = "";
+    }
+
+    private void setFormatFilter(ItemType type)
+    {
+        if (type == ItemType.Movie)
+        {
+            filter = "Movie";
+        }
+        else if (type == ItemType.Book)
+        {
+            filter = "Book";
+        }
+        else if (type == ItemType.VideoGame)
+        {
+            filter = "Video Game";
+        }
+        else if (type == ItemType.Music)
+        {
+            filter = "Music";
+        }
+    }
+
+    private void setGenreFilter(string arg)
+    {
+        if (arg == "Fiction")
+        {
+            filter = "Fiction";
+        }
+        else if (arg == "Non-fiction")
+        {
+            filter = "Non-fiction";
+        }
+        else if (arg == "Fantasy")
+        {
+            filter = "Fantasy";
+        }
+        else if (arg == "Action")
+        {
+            filter = "Action";
+        }
+        else if (arg == "Adventure")
+        {
+            filter = "Adventure";
+        }
+        else if (arg == "Children")
+        {
+            filter = "Children";
+        }
+        else if (arg == "Teen")
+        {
+            filter = "Teen";
+        }
+        else if (arg == "Science Fiction")
+        {
+            filter = "Science Fiction";
+        }
+        else if (arg == "Romance")
+        {
+            filter = "Romance";
+        }
+        else if (arg == "Mystery")
+        {
+            filter = "Mystery";
+        }
+        else if (arg == "Horror")
+        {
+            filter = "Horror";
+        }
+        else if (arg == "Graphic Novel")
+        {
+            filter = "Graphic Novel";
+        }
+    }
 
     protected override void OnParametersSet()
     {
-
         results = LibraryItemStore.Search(showSearch);
+        filterCount(results);
+    }
+
+    private bool isVisible(LibraryItem item)
+    {
+        if (string.IsNullOrEmpty(filter))
+            return true;
+
+        if (filter == "Movie" && item.ItemType == ItemType.Movie)
+            return true;
+
+        if (filter == "Book" && item.ItemType == ItemType.Book)
+            return true;
+
+        if (filter == "Video Game" && item.ItemType == ItemType.VideoGame)
+            return true;
+
+        if (filter == "Music" && item.ItemType == ItemType.Music)
+            return true;
+
+        foreach (var genre in item.Genres)
+        {
+            if (filter == "Fiction" && genre.StartsWith(filter))
+            {
+                return true;
+            }
+            else if (filter == "Non-fiction" && genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (filter == "Fantasy" && genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (filter == "Action" && genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (filter == "Adventure" && genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (filter == "Children" && genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (filter == "Teen" && genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (filter == "Science Fiction" && genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (filter == "Romance" && genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (filter == "Mystery" && genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (filter == "Horror" && genre.Contains(filter))
+            {
+                return true;
+            }
+            else if (filter == "Graphic Novel" && genre.Contains(filter))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void filterCount(List<LibraryItem> results)
+    {
+        foreach (var item in results)
+        {
+            if (item.ItemType == ItemType.Book)
+            {
+                bookCount++;
+            }
+            else if (item.ItemType == ItemType.Music)
+            {
+                musicCount++;
+            }
+            else if (item.ItemType == ItemType.Movie)
+            {
+                movieCount++;
+            }
+            else if (item.ItemType == ItemType.TVShow)
+            {
+                tvShowCount++;
+            }
+            else if (item.ItemType == ItemType.VideoGame)
+            {
+                videogameCount++;
+            }
+
+            foreach (var innerlist in item.Genres)
+            {
+                if (innerlist.StartsWith("Fiction"))
+                {
+                    fictionCount++;
+                }
+                else if (innerlist.Contains("Science Fiction"))
+                {
+                    scifiCount++;
+                }
+                else if (innerlist.Contains("Non Fiction"))
+                {
+                    nonfictionCount++;
+                }
+                else if (innerlist.Contains("Fantasy"))
+                {
+                    fantasyCount++;
+                }
+                else if (innerlist.Contains("Action"))
+                {
+                    actionCount++;
+                }
+                else if (innerlist.Contains("Adventure"))
+                {
+                    adventureCount++;
+                }
+                else if (innerlist.Contains("Children") | innerlist.Contains("Kids"))
+                {
+                    childrenCount++;
+                }
+                else if (innerlist.Contains("Teen"))
+                {
+                    teenCount++;
+                }
+                else if (innerlist.Contains("Romance"))
+                {
+                    romanceCount++;
+                }
+                else if (innerlist.Contains("Mystery"))
+                {
+                    mysteryCount++;
+                }
+                else if (innerlist.Contains("Horror"))
+                {
+                    horrorCount++;
+                }
+                else if (innerlist.Contains("Graphic Novel"))
+                {
+                    graphicNovelCount++;
+                }
+            }
+        }
     }
 }
 

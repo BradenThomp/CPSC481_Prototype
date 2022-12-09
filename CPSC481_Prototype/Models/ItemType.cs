@@ -4,6 +4,8 @@
     {
         Book,
         Music,
-        Movie
+        Movie,
+        TVShow,
+        VideoGame,
     }
 }

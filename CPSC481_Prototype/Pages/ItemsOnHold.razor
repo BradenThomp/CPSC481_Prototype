@@ -3,6 +3,7 @@
 @inject UserStore UserStore
 @inject LibraryItemStore LibraryItemStore
 @inject LoginService LoginService;
+@inject IToastService toastService
 
 
 
@@ -91,7 +92,6 @@
     }
 </style>
 
-
 @code{
     [Parameter]
     public string id { get; set; }
@@ -99,6 +99,7 @@
     public User User { get; set; }
 
     public List<LibraryItem> onhold { get; set; }
+
 
     protected override void OnParametersSet()
     {
@@ -110,17 +111,20 @@
     void removeItemFromHold(LibraryItem item)
     {
         bool a = UserStore.removeFromHold(item, User);
+        toastService.ShowWarning("Removed from on Hold");
     }
 
     void addToWishlist(LibraryItem item)
     {
         UserStore.addToWishlist(item, User);
+        toastService.ShowSuccess("Added to the WishList");
 
     }
 
     void removeFromWishlist (LibraryItem item)
     {
         UserStore.removeFromWishlist(item, User);
+        toastService.ShowWarning("Removed from the Wishlist");
 
     }
 
@@ -136,6 +140,5 @@
         }
 
     }
-
 
 }

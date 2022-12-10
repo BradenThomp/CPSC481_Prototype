@@ -3,6 +3,7 @@
 @inject UserStore UserStore
 @inject LibraryItemStore LibraryItemStore
 @inject LoginService LoginService;
+@inject IToastService toastService
 
 <head>
     <link rel="stylesheet" href="..\wwwroot\css\app.css">
@@ -101,18 +102,21 @@
         void removeItemFromWishlist(LibraryItem item)
         {
             bool a = UserStore.removeFromWishlist(item, User);
+            toastService.ShowWarning("Removed from the Wishlist");
 
         }
 
         void holdItem(LibraryItem item)
         {
             UserStore.addToHold(item, User);
+            toastService.ShowSuccess("On Hold");
 
         }
 
         void removeItemFromHold(LibraryItem item)
         {
             UserStore.removeFromHold(item, User);
+            toastService.ShowWarning("Removed from on Hold");
 
         }
 

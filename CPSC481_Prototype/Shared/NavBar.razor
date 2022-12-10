@@ -3,6 +3,7 @@
 @inject LoginService LoginService;
 @inject NavigationManager NavigationManager;
 @inject NavigationManager UriHelper
+@inject IToastService toastService
 
 <head>
     <link rel="stylesheet" type="text/css" href="Buttons.css" media=”screen” />
@@ -174,13 +175,17 @@
         if (LoginService.Login(id, password))
         {
             showModal = false;
+            toastService.ShowSuccess("Welcome");
         }
+        else
+            toastService.ShowError("Wrong Password or Library ID");
     }
 
     void Logout()
     {
         LoginService.Logout();
         NavigationManager.NavigateTo("/");
+        toastService.ShowSuccess("Logged Out");
     }
 
     void IDisposable.Dispose()

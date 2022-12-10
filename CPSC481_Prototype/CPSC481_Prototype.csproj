@@ -5,6 +5,10 @@
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Shared\ConfirmBase.cs" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Blazor.Extensions.Canvas" Version="1.1.1" />
     <PackageReference Include="Blazored.Toast" Version="3.2.2" />
@@ -14,6 +18,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.10" PrivateAssets="all" />
 
     <PackageReference Include="Portal" Version="1.2.0" />
+
+    <PackageReference Include="System.ComponentModel" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\Images\Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg" />
@@ -31,6 +37,10 @@
     <None Remove="Portal" />
     <None Remove="Blazored.Typeahead" />
 
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Models\ConfirmBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Pages\ItemsCheckedOut.razor.css">

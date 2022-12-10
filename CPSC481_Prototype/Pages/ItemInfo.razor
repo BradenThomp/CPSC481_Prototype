@@ -58,7 +58,7 @@
 
                 else if (HoldStatus(Item))
                 {
-                    <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromHold(Item))" @onclick:preventDefault>Remove From Hold</a>
+                    <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => Delete_Click())" @onclick:preventDefault>Remove From Hold</a>
                 }
                 else if (!HoldStatus(Item))
                 {
@@ -70,7 +70,7 @@
                 }
                 else if (WishlistStatus(Item))
                 {
-                    <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromWishlist(Item))" @onclick:preventDefault>Remove From Wishlist</a>
+                    <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => Delete_Click1())" @onclick:preventDefault>Remove From Wishlist</a>
                 }
                 else if (User == null || !WishlistStatus(Item))
                 {
@@ -94,6 +94,14 @@
         </ModalFooter>
     </ModalContent>
 </Modal>
+
+<Confirm @ref="DeleteConfirmation" ConfirmationChanged="ConfirmDelete_Click"
+         ConfirmationMessage=@($"Are you sure you want to remove it from On Hold ? ")>
+</Confirm>
+
+<Confirm @ref="DeleteConfirmation1" ConfirmationChanged="ConfirmDelete_Click1"
+         ConfirmationMessage=@($"Are you sure you want to remove it from Wishlist ? ")>
+</Confirm>
 
 
 @code {
@@ -135,10 +143,27 @@
         toastService.ShowSuccess("On Hold");
     }
 
+
+    protected async Task ConfirmDelete_Click(bool deleteConfirmed)
+    {
+        if (deleteConfirmed)
+        {
+            removeItemFromHold(Item);
+        }
+    }
+    protected async Task ConfirmDelete_Click1(bool deleteConfirmed)
+    {
+        if (deleteConfirmed)
+        {
+            removeItemFromWishlist(Item);
+        }
+    }
+
     void removeItemFromHold(LibraryItem item)
     {
         UserStore.removeFromHold(item, User);
     }
+   
 
     public bool HoldStatus(LibraryItem item)
     {
@@ -169,4 +194,17 @@
         UserStore.addToWishlist(item, User);
         toastService.ShowSuccess("Added to the WishList");
     }
+
+    protected PragimTech.Components.ConfirmBase DeleteConfirmation { get; set; }
+    protected PragimTech.Components.ConfirmBase DeleteConfirmation1 { get; set; }
+
+    protected void Delete_Click()
+    {
+        DeleteConfirmation.Show();
+    }
+    protected void Delete_Click1()
+    {
+        DeleteConfirmation1.Show();
+    }
+    
 }

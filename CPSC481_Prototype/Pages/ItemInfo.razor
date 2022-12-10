@@ -2,6 +2,7 @@
 @inject LibraryItemStore LibraryItemStore
 @inject UserStore UserStore
 @inject LoginService LoginService;
+@inject IToastService toastService
 
 <PageTitle>ItemInfo</PageTitle>
 
@@ -131,6 +132,7 @@
     void holdItem(LibraryItem item)
     {
         UserStore.addToHold(item, User);
+        toastService.ShowSuccess("On Hold");
     }
 
     void removeItemFromHold(LibraryItem item)
@@ -165,5 +167,6 @@
     void addToWishlist(LibraryItem item)
     {
         UserStore.addToWishlist(item, User);
+        toastService.ShowSuccess("Added to the WishList");
     }
 }

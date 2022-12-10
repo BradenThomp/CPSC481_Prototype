@@ -20,7 +20,7 @@
 <div class="input-group search-input">
     <input type="text" class="form-control" @onkeyup="@Enter" placeholder="Search keywords. Ex. Harry Potter, Cooking, science fiction..." @bind-value="searchTerm" aria-label="Search..." aria-describedby="basic-addon2">
     <div class="input-group-append">
-        <button class="btn btn-outline-dark" type="submit" @onclick="@searchItem">Search</button>
+        <button class="btn btn-outline-dark" type="submit" @onclick="@searchItem" style="z-index:0;">Search</button>
     </div>
 </div>
 

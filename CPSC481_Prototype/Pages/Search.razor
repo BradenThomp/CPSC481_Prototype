@@ -100,16 +100,6 @@
         <hr style="width:50%;text-align:left;margin-left:15px">
         <a>Genre:</a>
         <div class="indent">
-            @if (filter == "Fantasy")
-            {
-                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Fantasy")) @onclick:preventDefault>Fantasy (@fantasyCount)</a>
-            }
-            else
-            {
-                <a href="" @onclick=@(() => setGenreFilter("Fantasy")) @onclick:preventDefault>Fantasy (@fantasyCount)</a>
-            }
-        </div>
-        <div class="indent">
             @if (filter == "Action")
             {
                 <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Action")) @onclick:preventDefault>Action (@actionCount)</a>
@@ -130,53 +120,23 @@
             }
         </div>
         <div class="indent">
-            @if (filter == "Kids")
+            @if (filter == "Fantasy")
             {
-                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Kids")) @onclick:preventDefault>Children (@childrenCount)</a>
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Fantasy")) @onclick:preventDefault>Fantasy (@fantasyCount)</a>
             }
             else
             {
-                <a href="" @onclick=@(() => setGenreFilter("Kids")) @onclick:preventDefault>Children (@childrenCount)</a>
+                <a href="" @onclick=@(() => setGenreFilter("Fantasy")) @onclick:preventDefault>Fantasy (@fantasyCount)</a>
             }
         </div>
         <div class="indent">
-            @if (filter == "Teen")
+            @if (filter == "Graphic Novel")
             {
-                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Teen")) @onclick:preventDefault>Teen (@teenCount)</a>
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Graphic Novel")) @onclick:preventDefault>Graphic Novel (@graphicNovelCount)</a>
             }
             else
             {
-                <a href="" @onclick=@(() => setGenreFilter("Teen")) @onclick:preventDefault>Teen (@teenCount)</a>
-            }
-        </div>
-        <div class="indent">
-            @if (filter == "Science Fiction")
-            {
-                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Science Fiction")) @onclick:preventDefault>Sci-Fi (@scifiCount)</a>
-            }
-            else
-            {
-                <a href="" @onclick=@(() => setGenreFilter("Science Fiction")) @onclick:preventDefault>Sci-Fi (@scifiCount)</a>
-            }
-        </div>
-        <div class="indent">
-            @if (filter == "Romance")
-            {
-                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Romance")) @onclick:preventDefault>Romance (@romanceCount)</a>
-            }
-            else
-            {
-                <a href="" @onclick=@(() => setGenreFilter("Romance")) @onclick:preventDefault>Romance (@romanceCount)</a>
-            }
-        </div>
-        <div class="indent">
-            @if (filter == "Mystery")
-            {
-                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Mystery")) @onclick:preventDefault>Mystery (@mysteryCount)</a>
-            }
-            else
-            {
-                <a href="" @onclick=@(() => setGenreFilter("Mystery")) @onclick:preventDefault>Mystery (@mysteryCount)</a>
+                <a href="" @onclick=@(() => setGenreFilter("Graphic Novel")) @onclick:preventDefault>Graphic Novel (@graphicNovelCount)</a>
             }
         </div>
         <div class="indent">
@@ -190,13 +150,73 @@
             }
         </div>
         <div class="indent">
-            @if (filter == "Graphic Novel")
+            @if (filter == "Kids")
             {
-                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Graphic Novel")) @onclick:preventDefault>Graphic Novel (@graphicNovelCount)</a>
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Kids")) @onclick:preventDefault>Children (@childrenCount)</a>
             }
             else
             {
-                <a href="" @onclick=@(() => setGenreFilter("Graphic Novel")) @onclick:preventDefault>Graphic Novel (@graphicNovelCount)</a>
+                <a href="" @onclick=@(() => setGenreFilter("Kids")) @onclick:preventDefault>Children (@childrenCount)</a>
+            }
+        </div>
+        <div class="indent">
+            @if (filter == "Mystery")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Mystery")) @onclick:preventDefault>Mystery (@mysteryCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Mystery")) @onclick:preventDefault>Mystery (@mysteryCount)</a>
+            }
+        </div>
+        <div class="indent">
+            @if (filter == "Politics")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Politics")) @onclick:preventDefault>Politics (@politicsCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Politics")) @onclick:preventDefault>Politics (@politicsCount)</a>
+            }
+        </div>
+        <div class="indent">
+            @if (filter == "Religion")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Religion")) @onclick:preventDefault>Religion (@religionCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Religion")) @onclick:preventDefault>Religion (@religionCount)</a>
+            }
+        </div>
+        <div class="indent">
+            @if (filter == "Romance")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Romance")) @onclick:preventDefault>Romance (@romanceCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Romance")) @onclick:preventDefault>Romance (@romanceCount)</a>
+            }
+        </div>
+        <div class="indent">
+            @if (filter == "Science Fiction")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Science Fiction")) @onclick:preventDefault>Sci-Fi (@scifiCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Science Fiction")) @onclick:preventDefault>Sci-Fi (@scifiCount)</a>
+            }
+        </div>
+        <div class="indent">
+            @if (filter == "Teen")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Teen")) @onclick:preventDefault>Teen (@teenCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Teen")) @onclick:preventDefault>Teen (@teenCount)</a>
             }
         </div>
     </div>
@@ -303,7 +323,7 @@
     .filters {
         width: 200px; /* Set the width of the sidebar */
         position: fixed;
-        max-height: calc(100vh - 13rem);
+        max-height: calc(100vh - 15rem);
         overflow-y: auto;
         z-index: 1; /* Stay on top */
         top: 200px; /* Stay at the top */
@@ -373,7 +393,7 @@
     public User User { get; set; }
     private List<LibraryItem> results;
     int result, musicCount, movieCount, bookCount, fictionCount, nonfictionCount, fantasyCount, actionCount,
-        adventureCount, childrenCount, teenCount, scifiCount, romanceCount, mysteryCount, horrorCount, graphicNovelCount = 0;
+        adventureCount, childrenCount, teenCount, scifiCount, romanceCount, mysteryCount, horrorCount, graphicNovelCount, politicsCount, religionCount = 0;
 
     void resetCount()
     {
@@ -394,6 +414,8 @@
         mysteryCount = 0;
         horrorCount = 0;
         graphicNovelCount = 0;
+        politicsCount = 0;
+        religionCount = 0;
     }
 
     private void showAll()
@@ -466,6 +488,14 @@
         else if (arg == "Graphic Novel")
         {
             filter = "Graphic Novel";
+        }
+        else if (arg == "Politics")
+        {
+            filter = "Politics";
+        }
+        else if (arg == "Religion")
+        {
+            filter = "Religion";
         }
     }
 
@@ -548,7 +578,7 @@
                 {
                     scifiCount++;
                 }
-                else if (innerlist.Contains("Non Fiction"))
+                else if (innerlist.Contains("Non-fiction"))
                 {
                     nonfictionCount++;
                 }
@@ -587,6 +617,14 @@
                 else if (innerlist.Contains("Graphic Novel"))
                 {
                     graphicNovelCount++;
+                }
+                else if (innerlist.Contains("Politics"))
+                {
+                    politicsCount++;
+                }
+                else if (innerlist.Contains("Religion"))
+                {
+                    religionCount++;
                 }
             }
         }

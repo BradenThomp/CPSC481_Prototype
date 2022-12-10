@@ -35,27 +35,37 @@
                         <a class="dropdown-item" href="/music">Music</a>
                     </div>
                 </div>
-                @if (currentRelativeUri != "/" && currentRelativeUri != "/#" && currentRelativeUri != "" && currentRelativeUri != "#")
-                {
-                    <div class="d-flex">
-                        <div class="input-group" style="width: 100%">
-                            <input type="text" class="form-control" @onkeyup="@Enter" style="width: 300px; border: 1px solid #6b9080;" placeholder="Search keywords ex. Harry Potter, Cooking, ..." @bind-value="searchTerm">
-                            <button type="button" class="btn button-24"><i class="bi-search" @onclick="@searchItem"></i></button>
-                        </div>
-                    </div>
-                }
+
             </div>
         </div>
 
 
         @if (!LoginService.IsLoggedIn)
         {
+            @if (currentRelativeUri != "/" && currentRelativeUri != "/#" && currentRelativeUri != "" && currentRelativeUri != "#")
+            {
+                <div class="d-flex">
+                    <div class="input-group" style="width: 100%">
+                        <input type="text" class="form-control" @onkeyup="@Enter" style="width: 500px; border: 1px solid #6b9080;" placeholder="Search: ex.Harry Potter, cooking, science fiction ..." @bind-value="searchTerm">
+                        <button type="button" class="btn button-24"><i class="bi-search" @onclick="@searchItem"></i></button>
+                    </div>
+                </div>
+            }
             <a class="btn button-24 m-2" @onclick="@ModalShow" data-toggle="modal">
                 Login
             </a>
         }
         else
         {
+            @if (currentRelativeUri != "/" && currentRelativeUri != "/#" && currentRelativeUri != "" && currentRelativeUri != "#")
+            {
+                <div class="d-flex">
+                    <div class="input-group" style="width: 100%">
+                        <input type="text" class="form-control" @onkeyup="@Enter" style="width: 300px; border: 1px solid #6b9080;" placeholder="Search ex.Harry Potter, Cooking, ..." @bind-value="searchTerm">
+                        <button type="button" class="btn button-24"><i class="bi-search" @onclick="@searchItem"></i></button>
+                    </div>
+                </div>
+            }
             <a class="btn button-24 ms-3" href="/UserProfile"><span class="bi bi-person-fill"></span> </a>
 
             <a @onclick=@Logout class="btn button-24 ms-3 ml-auto">

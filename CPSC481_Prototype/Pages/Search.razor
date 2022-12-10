@@ -23,12 +23,14 @@
     <div class="col-2">
         <div class="dropdown">
             <label class="btn-label">Sort By:</label>
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Relevance
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort By:
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Newest</a>
-                <a class="dropdown-item" href="#">Oldest</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <button class="dropdown-item" @onclick=@(() => sortBy("tAsc")) type="button">Title(Ascending)</button>
+                <button class="dropdown-item" @onclick=@(() => sortBy("tDsc")) type="button">Title(Descending)</button>
+                <button class="dropdown-item" @onclick=@(() => sortBy("aAsc")) type="button">Author(Ascending)</button>
+                <button class="dropdown-item" @onclick=@(() => sortBy("aDsc")) type="button">Author(Descending)</button>
             </div>
         </div>
     </div>
@@ -43,53 +45,158 @@
         <br />
         <a>Media Type:</a>
         <div class="indent">
-            <a href="" @onclick=@(() => setFormatFilter(ItemType.Movie)) @onclick:preventDefault>Movie (@movieCount)</a>
+            @if (filter == "Movie")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setFormatFilter(ItemType.Movie)) @onclick:preventDefault>Movie (@movieCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setFormatFilter(ItemType.Movie)) @onclick:preventDefault>Movie (@movieCount)</a>
+            }
         </div>
         <div class="indent">
-            <a href="" @onclick=@(() => setFormatFilter(ItemType.Book)) @onclick:preventDefault>Book (@bookCount)</a>
+            @if (filter == "Book")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setFormatFilter(ItemType.Book)) @onclick:preventDefault>Book (@bookCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setFormatFilter(ItemType.Book)) @onclick:preventDefault>Book (@bookCount)</a>
+            }
         </div>
         <div class="indent">
-            <a href="" @onclick=@(() => setFormatFilter(ItemType.Music)) @onclick:preventDefault>Music (@musicCount)</a>
+            @if (filter == "Music")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setFormatFilter(ItemType.Music)) @onclick:preventDefault>Music (@musicCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setFormatFilter(ItemType.Music)) @onclick:preventDefault>Music (@musicCount)</a>
+            }
         </div>
         <hr style="width:50%;text-align:left;margin-left:15px">
         <a>Classification:</a>
         <div class="indent">
-            <a href="" @onclick=@(() => setGenreFilter("Fiction")) @onclick:preventDefault>Fiction (@fictionCount)</a>
+            @if (filter == "Fiction")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Fiction")) @onclick:preventDefault>Fiction (@fictionCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Fiction")) @onclick:preventDefault>Fiction (@fictionCount)</a>
+            }
         </div>
         <div class="indent">
-            <a href="" @onclick=@(() => setGenreFilter("Non-fiction")) @onclick:preventDefault>Non-fiction (@nonfictionCount)</a>
+            @if (filter == "Non-fiction")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Non-fiction")) @onclick:preventDefault>Non-fiction (@nonfictionCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Non-fiction")) @onclick:preventDefault>Non-fiction (@nonfictionCount)</a>
+            }
         </div>
         <hr style="width:50%;text-align:left;margin-left:15px">
         <a>Genre:</a>
         <div class="indent">
-            <a href="" @onclick=@(() => setGenreFilter("Fantasy")) @onclick:preventDefault>Fantasy (@fantasyCount)</a>
+            @if (filter == "Fantasy")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Fantasy")) @onclick:preventDefault>Fantasy (@fantasyCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Fantasy")) @onclick:preventDefault>Fantasy (@fantasyCount)</a>
+            }
         </div>
         <div class="indent">
-            <a href="" @onclick=@(() => setGenreFilter("Action")) @onclick:preventDefault>Action (@actionCount)</a>
+            @if (filter == "Action")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Action")) @onclick:preventDefault>Action (@actionCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Action")) @onclick:preventDefault>Action (@actionCount)</a>
+            }
         </div>
         <div class="indent">
-            <a href="" @onclick=@(() => setGenreFilter("Adventure")) @onclick:preventDefault>Adventure (@adventureCount)</a>
+            @if (filter == "Adventure")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Adventure")) @onclick:preventDefault>Adventure (@adventureCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Adventure")) @onclick:preventDefault>Adventure (@adventureCount)</a>
+            }
         </div>
         <div class="indent">
-            <a href="" @onclick=@(() => setGenreFilter("Kids")) @onclick:preventDefault>Children (@childrenCount)</a>
+            @if (filter == "Kids")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Kids")) @onclick:preventDefault>Children (@childrenCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Kids")) @onclick:preventDefault>Children (@childrenCount)</a>
+            }
         </div>
         <div class="indent">
-            <a href="" @onclick=@(() => setGenreFilter("Teen")) @onclick:preventDefault>Teen (@teenCount)</a>
+            @if (filter == "Teen")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Teen")) @onclick:preventDefault>Teen (@teenCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Teen")) @onclick:preventDefault>Teen (@teenCount)</a>
+            }
         </div>
         <div class="indent">
-            <a href="" @onclick=@(() => setGenreFilter("Science Fiction")) @onclick:preventDefault>Sci-Fi (@scifiCount)</a>
+            @if (filter == "Science Fiction")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Science Fiction")) @onclick:preventDefault>Sci-Fi (@scifiCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Science Fiction")) @onclick:preventDefault>Sci-Fi (@scifiCount)</a>
+            }
         </div>
         <div class="indent">
-            <a href="" @onclick=@(() => setGenreFilter("Romance")) @onclick:preventDefault>Romance (@romanceCount)</a>
+            @if (filter == "Romance")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Romance")) @onclick:preventDefault>Romance (@romanceCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Romance")) @onclick:preventDefault>Romance (@romanceCount)</a>
+            }
         </div>
         <div class="indent">
-            <a href="" @onclick=@(() => setGenreFilter("Mystery")) @onclick:preventDefault>Mystery (@mysteryCount)</a>
+            @if (filter == "Mystery")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Mystery")) @onclick:preventDefault>Mystery (@mysteryCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Mystery")) @onclick:preventDefault>Mystery (@mysteryCount)</a>
+            }
         </div>
         <div class="indent">
-            <a href="" @onclick=@(() => setGenreFilter("Horror")) @onclick:preventDefault>Horror (@horrorCount)</a>
+            @if (filter == "Horror")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Horror")) @onclick:preventDefault>Horror (@horrorCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Horror")) @onclick:preventDefault>Horror (@horrorCount)</a>
+            }
         </div>
         <div class="indent">
-            <a href="" @onclick=@(() => setGenreFilter("Graphic Novel")) @onclick:preventDefault>Graphic Novel (@graphicNovelCount)</a>
+            @if (filter == "Graphic Novel")
+            {
+                <a href="" style="font-weight: bold;" @onclick=@(() => setGenreFilter("Graphic Novel")) @onclick:preventDefault>Graphic Novel (@graphicNovelCount)</a>
+            }
+            else
+            {
+                <a href="" @onclick=@(() => setGenreFilter("Graphic Novel")) @onclick:preventDefault>Graphic Novel (@graphicNovelCount)</a>
+            }
         </div>
     </div>
 </div>
@@ -133,21 +240,22 @@
                                         </div>
                                         <p class="card-text"><small class="text-muted">@item.CopiesAvailable Copies Available</small></p>
                                         <div style="text-align: left;">
-@*                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Hold</a>
-                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>*@
+                                            @*                                            <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Hold</a>
+                                                <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>*@
                                             @if (User == null)
                                             {
-                                                <button disabled="true" class="btn btn-secondary" style="background-color: #6b9080">Hold</button> 
+                                                <button disabled="true" class="btn btn-secondary" style="background-color: #6b9080">Hold</button>
                                             }
 
                                             else if (HoldStatus(item))
                                             {
                                                 <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromHold(item))" @onclick:preventDefault>Remove From Hold</a>
-                                            } else if (!HoldStatus(item))
+                                            }
+                                            else if (!HoldStatus(item))
                                             {
                                                 <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => holdItem(item))" @onclick:preventDefault>Hold</a>
                                             }
-                                            @if (User ==null)
+                                            @if (User == null)
                                             {
                                                 <button disabled="true" class="btn btn-secondary" style="background-color: #6b9080">Add to Wishlist</button>
                                             }
@@ -155,7 +263,7 @@
                                             {
                                                 <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromWishlist(item))" @onclick:preventDefault>Remove From Wishlist</a>
                                             }
-                                            else if (User == null || ! WishlistStatus(item))
+                                            else if (User == null || !WishlistStatus(item))
                                             {
                                                 <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => addToWishlist(item))" @onclick:preventDefault>Add To Wishlist</a>
                                             }
@@ -194,7 +302,7 @@
     .filters {
         width: 200px; /* Set the width of the sidebar */
         position: fixed;
-        max-height: calc(100vh - 9rem);
+        max-height: calc(100vh - 13rem);
         overflow-y: auto;
         z-index: 1; /* Stay on top */
         top: 200px; /* Stay at the top */
@@ -360,13 +468,32 @@
         }
     }
 
+    private void sortBy(string arg)
+    {
+        if (arg == "tAsc")
+        {
+            results = results.OrderBy(x => x.Title).ToList();
+        }
+        else if (arg == "tDsc")
+        {
+            results = results.OrderByDescending(x => x.Title).ToList();
+        }
+        else if (arg == "aAsc")
+        {
+            results = results.OrderBy(x => x.Author).ToList();
+        }
+        else if (arg == "aDsc")
+        {
+            results = results.OrderByDescending(x => x.Author).ToList();
+        }
+    }
+
     protected override async void OnParametersSet()
     {
         resetCount();
         results = LibraryItemStore.Search(showSearch);
         filterCount(results);
         User = LoginService.CurrentUser;
-
     }
 
     private bool setVisible(LibraryItem item)

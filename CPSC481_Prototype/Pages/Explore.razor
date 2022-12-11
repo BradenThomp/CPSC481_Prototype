@@ -1,4 +1,4 @@
-﻿@page "/searchresults/{showSearch}"
+﻿@page "/explore/{itemtype}"
 @inherits LayoutComponentBase
 @inject LibraryItemStore LibraryItemStore
 @inject NavigationManager UriHelper
@@ -18,7 +18,7 @@
     </div>
     <div class="col-8">
         <div class="px-4">
-            <h2>@results.Count Results for "@showSearch"</h2>
+            <h2>@results.Count @itemtype found</h2>
         </div>
     </div>
     <div class="col-2">
@@ -388,7 +388,7 @@
     void OpenNav() => width = 250;
     void CloseNav() => width = 0;
     [Parameter]
-    public string showSearch { get; set; }
+    public string itemtype { get; set; }
     public LibraryItem Item { get; set; }
     public User User { get; set; }
     private List<LibraryItem> results;
@@ -522,7 +522,18 @@
     protected override async void OnParametersSet()
     {
         resetCount();
-        results = LibraryItemStore.Search(showSearch);
+        if(itemtype.ToLower() == "books")
+        {
+            results = LibraryItemStore.GetByItemType(ItemType.Book);
+        }
+        if (itemtype.ToLower() == "movies")
+        {
+            results = LibraryItemStore.GetByItemType(ItemType.Movie);
+        }
+        if (itemtype.ToLower() == "music")
+        {
+            results = LibraryItemStore.GetByItemType(ItemType.Music);
+        }
         filterCount(results);
         User = LoginService.CurrentUser;
     }

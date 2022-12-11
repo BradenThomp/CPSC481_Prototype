@@ -5,6 +5,7 @@
 @inject UserStore UserStore
 @inject LoginService LoginService;
 @inject IToastService toastService
+@inject IJSRuntime JsRuntime;
 
 <PageTitle>Search Results Page</PageTitle>
 <!-- Side navigation -->
@@ -18,7 +19,7 @@
     </div>
     <div class="col-8">
         <div class="px-4">
-            <h2>@results.Count Results for "@showSearch"</h2>
+            <h2>@results.Count Results for "@showsearch"</h2>
         </div>
     </div>
     <div class="col-2">
@@ -229,8 +230,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    @foreach (var item in results)
+                    @for (int index = CurrentPage * 10; index < renderTo; index++)
                     {
+                        var item = results[index];
                         if (!setVisible(item))
                             continue;
 
@@ -298,6 +300,33 @@
                 </div>
             </div>
         </div>
+            <div class="container">
+            <div class="row">
+                    <div class="col-4">
+                    @if (CurrentPage > 0)
+                    {
+                                <button class="btn btn-secondary" style="background-color: #6b9080" @onclick="previousPage">Previous</button>
+                    }
+                    else
+                    {
+                                <button disabled="true" class="btn btn-secondary" style="background-color: #6b9080" @onclick="previousPage">Previous</button>
+                    }
+                    </div>
+                    <div class="col-4 d-flex justify-content-center">
+                        <p>Page @(CurrentPage + 1) of @MaxPage</p>
+                    </div>
+                    <div class="col-4 d-flex justify-content-end">
+                    @if (renderTo < results.Count())
+                    {
+                                <button class="btn btn-secondary" style="background-color: #6b9080" @onclick="nextPage">Next</button>
+                    }
+                    else
+                    {
+                                <button disabled="true" class="btn btn-secondary" style="background-color: #6b9080" @onclick="nextPage">Next</button>
+                    }
+                    </div>
+                </div>
+            </div>
     </div>
 }
 
@@ -387,10 +416,15 @@
     void OpenNav() => width = 250;
     void CloseNav() => width = 0;
     [Parameter]
-    public string showSearch { get; set; }
+    public string showsearch { get; set; }
     public LibraryItem Item { get; set; }
     public User User { get; set; }
     private List<LibraryItem> results;
+    private int CurrentPage;
+    private int MaxPage;
+
+    private int renderTo => (CurrentPage + 1) * 10 < results.Count ? (CurrentPage + 1) * 10 : results.Count;
+
     int result, musicCount, movieCount, bookCount, fictionCount, nonfictionCount, fantasyCount, actionCount,
         adventureCount, childrenCount, teenCount, scifiCount, romanceCount, mysteryCount, horrorCount, graphicNovelCount, politicsCount, religionCount = 0;
 
@@ -417,6 +451,18 @@
         religionCount = 0;
     }
 
+    private async void nextPage()
+    {
+        CurrentPage++;
+        await JsRuntime.InvokeVoidAsync("OnScrollEvent");
+    }
+
+    private async void previousPage()
+    {
+        CurrentPage--;
+        await JsRuntime.InvokeVoidAsync("OnScrollEvent");
+    }
+
     private void showAll()
     {
         filter = "";
@@ -436,6 +482,19 @@
         {
             filter = "Music";
         }
+        results = LibraryItemStore.Search(showsearch);
+        List<LibraryItem> internalResults = new List<LibraryItem>();
+        foreach (var item in results)
+        {
+            if (setVisible(item))
+            {
+                internalResults.Add(item);
+            }
+        }
+        results = internalResults;
+        CurrentPage = 0;
+        double ceil = Math.Ceiling(results.Count() / 10.0);
+        MaxPage = Convert.ToInt32(ceil);
     }
 
     private void setGenreFilter(string arg)
@@ -496,10 +555,24 @@
         {
             filter = "Religion";
         }
+        results = LibraryItemStore.Search(showsearch);
+        List<LibraryItem> internalResults = new List<LibraryItem>();
+        foreach (var item in results)
+        {
+            if (setVisible(item))
+            {
+                internalResults.Add(item);
+            }
+        }
+        results = internalResults;
+        CurrentPage = 0;
+        double ceil = Math.Ceiling(results.Count() / 10.0);
+        MaxPage = Convert.ToInt32(ceil);
     }
 
     private void sortBy(string arg)
     {
+        CurrentPage = 0;
         if (arg == "tAsc")
         {
             results = results.OrderBy(x => x.Title).ToList();
@@ -520,8 +593,11 @@
 
     protected override async void OnParametersSet()
     {
+        CurrentPage = 0;
         resetCount();
-        results = LibraryItemStore.Search(showSearch);
+        results = LibraryItemStore.Search(showsearch);
+        double ceil = Math.Ceiling(results.Count() / 10.0);
+        MaxPage = Convert.ToInt32(ceil);
         filterCount(results);
         User = LoginService.CurrentUser;
     }

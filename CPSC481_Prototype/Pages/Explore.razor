@@ -265,30 +265,30 @@
                                                 <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button">Wishlist</a>*@
                                             @if (User == null)
                                             {
-                                                <button disabled="true" class="btn btn-secondary" style="background-color: #6b9080">Hold</button>
+                                                <button @onclick="@(()=> toastService.ShowError("Please login first"))" class="btn button-26" >Hold</button>
                                             }
 
                                             else if (HoldStatus(item))
                                             {
-                                                <a href="#" class="btn btn-secondary m-2" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromHold(item))" @onclick:preventDefault>Remove From Hold</a>
+                                                <a href="#" class="btn button-26 ms-2"  role="button" @onclick="(() => removeItemFromHold(item))" @onclick:preventDefault>Remove From Hold</a>
                                             }
                                             else if (!HoldStatus(item))
                                             {
-                                                <a href="#" class="btn btn-secondary" style="background-color: #6b9080" role="button" @onclick="(() => holdItem(item))" @onclick:preventDefault>Hold</a>
+                                                <a href="#" class="btn button-26 ms-2"  role="button" @onclick="(() => holdItem(item))" @onclick:preventDefault>Hold</a>
                                             }
                                             @if (User == null)
                                             {
-                                                <button disabled="true" class="btn btn-secondary m-2" style="background-color: #6b9080">Add to Wishlist</button>
+                                                <button @onclick="@(()=> toastService.ShowError("Please login first"))" class="btn button-26 ms-2" >Add to Wishlist</button>
                                             }
                                             else if (WishlistStatus(item))
                                             {
-                                                <a href="#" class="btn btn-secondary m-2" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromWishlist(item))" @onclick:preventDefault>Remove From Wishlist</a>
+                                                <a href="#" class="btn button-26 ms-2"  role="button" @onclick="(() => removeItemFromWishlist(item))" @onclick:preventDefault>Remove From Wishlist</a>
                                             }
                                             else if (User == null || !WishlistStatus(item))
                                             {
-                                                <a href="#" class="btn btn-secondary m-2" style="background-color: #6b9080" role="button" @onclick="(() => addToWishlist(item))" @onclick:preventDefault>Add To Wishlist</a>
+                                                <a href="#" class="btn button-26 ms-2"  role="button" @onclick="(() => addToWishlist(item))" @onclick:preventDefault>Add To Wishlist</a>
                                             }
-                                            <a href="iteminfo/@item.Id" class="btn btn-secondary" style="background-color: #6b9080" role="button">Info</a>
+                                            <a href="iteminfo/@item.Id" class="btn button-26 ms-2"  role="button">Info</a>
                                         </div>
                                     </div>
                                 </div>
@@ -361,7 +361,7 @@
     }
         /* When you mouse over the navigation links, change their color */
         .filters a:hover {
-            color: #f1f1f1;
+            color: darkgreen;
         }
 
     #main {
@@ -522,7 +522,7 @@
     protected override async void OnParametersSet()
     {
         resetCount();
-        if(itemtype.ToLower() == "books")
+        if (itemtype.ToLower() == "books")
         {
             results = LibraryItemStore.GetByItemType(ItemType.Book);
         }
@@ -692,4 +692,43 @@
 }
 
 
+
+<style>
+    
+    .button-26 {
+        background: #00303f;
+        border: 1px solid #00303f;
+        border-radius: 6px;
+        box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+        box-sizing: border-box;
+        color: white;
+        cursor: pointer;
+        display: inline-block;
+        font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 16px;
+        min-height: 40px;
+        outline: 0;
+        padding: 12px 14px;
+        text-align: center;
+        text-rendering: geometricprecision;
+        text-transform: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: middle;
+    }
+
+    .button-26:hover,
+    .button-26:active {
+        background-color: initial;
+        background-position: 0 0;
+        color: #00303f;
+    }
+
+    .button-26:active {
+        opacity: .5;
+    }
+</style>
 

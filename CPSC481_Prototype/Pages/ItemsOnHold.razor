@@ -111,7 +111,7 @@
     void removeItemFromHold(LibraryItem item)
     {
         bool a = UserStore.removeFromHold(item, User);
-        toastService.ShowWarning("Removed from on Hold");
+        toastService.ShowSuccess("Removed from on Hold");
     }
 
     void addToWishlist(LibraryItem item)
@@ -124,7 +124,7 @@
     void removeFromWishlist (LibraryItem item)
     {
         UserStore.removeFromWishlist(item, User);
-        toastService.ShowWarning("Removed from the Wishlist");
+        toastService.ShowSuccess("Removed from the Wishlist");
 
     }
 

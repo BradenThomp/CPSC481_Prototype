@@ -43,7 +43,7 @@
 
         @if (!LoginService.IsLoggedIn)
         {
-            @if (currentRelativeUri != "/" && currentRelativeUri != "/#" && currentRelativeUri != "" && currentRelativeUri != "#")
+            @if (currentRelativeUri != "/" && currentRelativeUri != "/#" && currentRelativeUri != "" && currentRelativeUri != "#" && !currentRelativeUri.Contains("searchresults"))
             {
                 <div class="d-flex">
                     <div class="input-group" style="width: 100%">
@@ -58,7 +58,7 @@
         }
         else
         {
-            @if (currentRelativeUri != "/" && currentRelativeUri != "/#" && currentRelativeUri != "" && currentRelativeUri != "#")
+            @if (currentRelativeUri != "/" && currentRelativeUri != "/#" && currentRelativeUri != "" && currentRelativeUri != "#" && !currentRelativeUri.Contains("searchresults"))
             {
                 <div class="d-flex">
                     <div class="input-group" style="width: 100%">

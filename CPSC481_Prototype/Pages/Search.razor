@@ -198,7 +198,17 @@
     <div style="@main">
         &nbsp;
         <div class="container">
-            <div class="row mb-4">
+            <div class="row mb-5">
+                <div class="col-12 d-flex justify-content-left">
+                    <div class="input-group search-input" style="border: 1px solid #7a9d96; border-radius: 0.35rem; width:40vw;">
+                        <input type="text" class="form-control" @onkeyup="@Enter" placeholder="Search items by genre, author or title. Ex. Harry Potter, Cooking, science fiction..." @bind-value="searchTerm" aria-label="Search..." aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn button-24" type="submit" @onclick="@searchItem" style="z-index:0;">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-6">
                 <div class="col-6">
                     <h2>@results.Count results for @showsearch found</h2>
                 </div>
@@ -753,6 +763,20 @@
     {
         UserStore.addToWishlist(item, User);
         toastService.ShowSuccess("Added " + item.Title + " to the wishlist.");
+    }
+
+    private string searchTerm;
+    private async Task searchItem()
+    {
+        UriHelper.NavigateTo($"searchresults/{searchTerm}");
+    }
+
+    protected async Task Enter(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            UriHelper.NavigateTo($"searchresults/{searchTerm}");
+        }
     }
 }
 

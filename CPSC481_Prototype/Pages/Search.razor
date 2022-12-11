@@ -1,4 +1,5 @@
 ﻿@page "/searchresults/{showSearch}"
+@page "/searchresults/"
 @inherits LayoutComponentBase
 @inject LibraryItemStore LibraryItemStore
 @inject NavigationManager UriHelper
@@ -207,7 +208,13 @@
             </div>
             <div class="row mb-4">
                 <div class="col-6">
+                @if(!String.IsNullOrEmpty(showsearch))
+                {
                     <h2>@results.Count results for @showsearch found</h2>
+                }
+                else {
+                    <h2>@results.Count results found</h2>
+                }
                 </div>
                 <div class="col-6 d-flex justify-content-end">
                     <div class="dropdown">
@@ -419,7 +426,7 @@
     void OpenNav() => width = 250;
     void CloseNav() => width = 0;
     [Parameter]
-    public string showsearch { get; set; }
+    public string showsearch { get; set; } = "";
     public LibraryItem Item { get; set; }
     public User User { get; set; }
     private List<LibraryItem> results;
@@ -602,11 +609,11 @@
         }
     }
 
-    protected override async void OnParametersSet()
+    protected override void OnParametersSet()
     {
         CurrentPage = 0;
         resetCount();
-        results = LibraryItemStore.Search(showsearch);
+        results = LibraryItemStore.Search(showsearch ?? "");
         double ceil = Math.Ceiling(results.Count() / 10.0);
         MaxPage = Convert.ToInt32(ceil);
         filterCount(results);

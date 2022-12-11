@@ -24,7 +24,7 @@ namespace CPSC481_Prototype.Models
 
         public List<string> Genres { get; init; }
 
-        public int CopiesAvailable { get; init; }
+        public int CopiesAvailable { get; set; }
 
         public double DeweyDecimal { get; init; }
 

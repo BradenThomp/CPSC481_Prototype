@@ -59,6 +59,7 @@ namespace CPSC481_Prototype.Persistence
 
         public Boolean removeFromHold(LibraryItem item, User user)
         {
+            item.CopiesAvailable++;
             int index = 0;
             foreach (var hold in user.OnHold.ToList())
             {
@@ -80,6 +81,7 @@ namespace CPSC481_Prototype.Persistence
 
         public void addToHold (LibraryItem item, User user)
         {
+            item.CopiesAvailable--;
             user.OnHold.Add(item);
         }
 

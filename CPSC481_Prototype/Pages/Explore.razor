@@ -8,42 +8,11 @@
 @inject IJSRuntime JsRuntime;
 @inject IToastService toastService
 
-<PageTitle>Search Results Page</PageTitle>
+<PageTitle>Explore</PageTitle>
 <!-- Side navigation -->
-
-<div class="row">
-    <div class="col-2">
-        @if (width == 0)
-        {
-            <button type="button" class="btn btn-outline-dark position-fixed" @onclick="OpenNav">&#9776; Filters</button>
-        }
-    </div>
-    <div class="col-8">
-        <div class="px-4">
-            <h2>@results.Count @itemtype found</h2>
-        </div>
-    </div>
-    <div class="col-2">
-        <div class="dropdown">
-            <label class="btn-label">Sort By:</label>
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Sort By:
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <button class="dropdown-item" @onclick=@(() => sortBy("tAsc")) type="button">Title(Ascending)</button>
-                <button class="dropdown-item" @onclick=@(() => sortBy("tDsc")) type="button">Title(Descending)</button>
-                <button class="dropdown-item" @onclick=@(() => sortBy("aAsc")) type="button">Author(Ascending)</button>
-                <button class="dropdown-item" @onclick=@(() => sortBy("aDsc")) type="button">Author(Descending)</button>
-            </div>
-        </div>
-    </div>
-</div>
 &nbsp;
 <div class="row">
     <div style="@sidebarWidth" class="filters">
-        <a class="closebtn" @onclick="CloseNav">&times;</a>
-        <br />
-        <br />
         <h3><a href="" @onclick=@(() => showAll()) @onclick:preventDefault><u>Reset Filters</u></a></h3>
         <br />
         <a>Media Type:</a>
@@ -231,6 +200,25 @@
     <div style="@main">
         &nbsp;
         <div class="container">
+            <div class="row mb-4">
+                <div class="col-6">
+                    <h2>@results.Count @itemtype found</h2>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                    <div class="dropdown">
+                        <label class="btn-label">Sort By:</label>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sort By:
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button class="dropdown-item" @onclick=@(() => sortBy("tAsc")) type="button">Title(Ascending)</button>
+                            <button class="dropdown-item" @onclick=@(() => sortBy("tDsc")) type="button">Title(Descending)</button>
+                            <button class="dropdown-item" @onclick=@(() => sortBy("aAsc")) type="button">Author(Ascending)</button>
+                            <button class="dropdown-item" @onclick=@(() => sortBy("aDsc")) type="button">Author(Descending)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12">
                     @for (int index = CurrentPage * 10; index < renderTo; index++)
@@ -358,10 +346,10 @@
     .filters {
         width: 200px; /* Set the width of the sidebar */
         position: fixed;
-        max-height: calc(100vh - 15rem);
+        max-height: calc(100vh - 5rem);
         overflow-y: auto;
         z-index: 1; /* Stay on top */
-        top: 200px; /* Stay at the top */
+        top: 100px; /* Stay at the top */
         left: 0px;
         background-color: transparent;
         overflow-x: hidden; /* Disable horizontal scroll */
@@ -418,7 +406,7 @@
 @code {
     string filter;
     int width = 0;
-    string sidebarWidth => $"width: {width}px;";
+    string sidebarWidth => $"width: 250px;";
     string main => $"margin-left: {width}px;";
     void OpenNav() => width = 250;
     void CloseNav() => width = 0;

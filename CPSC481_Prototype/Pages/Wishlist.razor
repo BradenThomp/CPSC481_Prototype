@@ -58,6 +58,7 @@
                                         <a href="#" class="btn button-26 m-1"  role="button" @onclick="(() => removeItemFromHold(item))" @onclick:preventDefault>Remove From Hold</a>
                                     } @if (!HoldStatus(item)) {
                                         <a href="#" class="btn button-26 m-1"  role="button" @onclick="(() => holdItem(item))" @onclick:preventDefault>Hold</a>
+
                                     }
                                     <a href="#" class="btn button-26 m-1"  role="button" @onclick="(() => removeItemFromWishlist(item))" @onclick:preventDefault>Remove From Wishlist</a>
                                     <a href="iteminfo/@item.Id" class="btn button-26 m-1"  role="button">Info</a>
@@ -137,22 +138,19 @@
         void removeItemFromWishlist(LibraryItem item)
         {
             bool a = UserStore.removeFromWishlist(item, User);
-            toastService.ShowWarning("Removed from the Wishlist");
-
+            toastService.ShowSuccess("Removed " + item.Title + " from wishlist.");
         }
 
         void holdItem(LibraryItem item)
         {
             UserStore.addToHold(item, User);
-            toastService.ShowSuccess("On Hold");
-
+            toastService.ShowSuccess("Placed " + item.Title + " on hold. Please visit the library with two business days to pick up your item.");
         }
 
         void removeItemFromHold(LibraryItem item)
         {
             UserStore.removeFromHold(item, User);
-            toastService.ShowWarning("Removed from on Hold");
-
+            toastService.ShowSuccess("Removed " + item.Title + " from on hold.");
         }
 
         public bool HoldStatus (LibraryItem item)

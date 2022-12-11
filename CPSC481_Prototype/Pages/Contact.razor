@@ -26,7 +26,9 @@
         </div>
     </div>
     <div>
-        <button class="btn button-24 m-2" @onclick="@(()=> toastService.ShowSuccess("Submitted"))" >Send</button>
+
+        <button class="btn btn-secondary" @onclick="@(()=> toastService.ShowSuccess("Inquiry recieved, our staff will review your message and get back to you via email."))" style="background-color: #6b9080">Send</button>
+
     </div>
 </EditForm>
 

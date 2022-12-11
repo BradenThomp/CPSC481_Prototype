@@ -148,6 +148,9 @@
         UriHelper.NavigateTo($"searchresults/{searchTerm}");
     }
 
+    [Parameter]
+    public Action Reload { get; set; }
+
     protected async Task Enter(KeyboardEventArgs e)
     {
         if (e.Key == "Enter")
@@ -185,6 +188,9 @@
         if (LoginService.Login(id, password))
         {
             showModal = false;
+            StateHasChanged();
+            Reload.Invoke();
+            NavigationManager.NavigateTo("/");
             toastService.ShowSuccess("Welcome");
         }
         else

@@ -11,14 +11,9 @@
 
 
 <div class="page">
-    @*
-        <div class="sidebar">
-            <NavMenu />
-        </div>
-    *@
     <main>
         <div class="navbar-wrap">
-            <NavBar />
+            <NavBar Reload="@OnReload"/>
         </div>
         
         <article class="content px-4">
@@ -34,3 +29,11 @@
                 SuccessIcon="fa fa-thumbs-up"
                 ErrorIcon="fa fa-error"
                 />
+
+@code {
+    protected void OnReload()
+    {
+        Console.WriteLine("Reload");
+        StateHasChanged();
+    }
+}

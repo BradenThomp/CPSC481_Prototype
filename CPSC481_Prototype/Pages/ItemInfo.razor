@@ -53,28 +53,28 @@
                 <hr />
                 @if (User == null)
                 {
-                    <button class="btn button-26 ms-3"  @onclick="@(()=> toastService.ShowError("Please login first"))">Hold</button>
+                    <button class="btn button-26 m-2"  @onclick="@(()=> toastService.ShowError("Please login first"))">Hold</button>
                 }
 
                 else if (HoldStatus(Item))
                 {
-                    <a href="#" class="btn button-26 ms-3" role="button" @onclick="(() => unholdItem(Item))" @onclick:preventDefault>Remove From Hold</a>
+                    <a href="#" class="btn button-26 m-2" role="button" @onclick="(() => unholdItem(Item))" @onclick:preventDefault>Remove From Hold</a>
                 }
                 else if (!HoldStatus(Item))
                 {
-                    <a href="#" class="btn button-26 ms-3"  role="button" @onclick="(() => holdItem(Item))" @onclick:preventDefault>Hold</a>
+                    <a href="#" class="btn button-26 m-2" role="button" @onclick="(() => holdItem(Item))" @onclick:preventDefault>Hold</a>
                 }
                 @if (User == null)
                 {
-                    <button class="btn button-26 ms-3"  @onclick="@(()=> toastService.ShowError("Please login first"))">Add to Wishlist</button>
+                    <button class="btn button-26 m-2" @onclick="@(()=> toastService.ShowError("Please login first"))">Add to Wishlist</button>
                 }
                 else if (WishlistStatus(Item))
                 {
-                    <a href="#" class="btn button-26 ms-3" role="button" @onclick="(() => unwishlistItem(Item))" @onclick:preventDefault>Remove From Wishlist</a>
+                    <a href="#" class="btn button-26 m-2" role="button" @onclick="(() => unwishlistItem(Item))" @onclick:preventDefault>Remove From Wishlist</a>
                 }
                 else if (User == null || !WishlistStatus(Item))
                 {
-                    <a href="#" class="btn button-26 ms-3"  role="button" @onclick="(() => addToWishlist(Item))" @onclick:preventDefault>Add To Wishlist</a>
+                    <a href="#" class="btn button-26 m-2" role="button" @onclick="(() => addToWishlist(Item))" @onclick:preventDefault>Add To Wishlist</a>
                 }
             </div>
         </div>

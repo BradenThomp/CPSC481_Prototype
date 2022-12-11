@@ -1,4 +1,4 @@
-﻿@page "/Wishlist"
+﻿@page "/CheckedOut"
 @layout MainLayout
 @inject UserStore UserStore
 @inject LibraryItemStore LibraryItemStore
@@ -18,7 +18,7 @@
 <div class="row">
     <div class="col-12">
         <div class="px-5">
-            <h2>Items Currently on Wishlist for @User.Name</h2>
+            <h2>Items Currently Checked out for @User.Name</h2>
         </div>
     </div>
 </div>
@@ -26,7 +26,7 @@
     <div class="row">
 
         <div class="col-12">
-            @foreach (LibraryItem item in wishlist)
+            @foreach (LibraryItem item in checkedout)
                 {
                 <div class="card mb-3 card-style" style="width: 101%;">
                     <div class="row no-gutters">
@@ -51,20 +51,11 @@
                                         @item.Summary
                                     </div>
                                 </div>
-                                <p class="card-text"><small class="text-muted">@item.CopiesAvailable Copies Available</small></p>
+                                
                                 <div style="text-align: left;">
-                                    @if (HoldStatus(item))
-                                    {
-                                        <a href="#" class="btn button-26 m-1"  role="button" @onclick="(() => removeItemFromHold(item))" @onclick:preventDefault>Remove From Hold</a>
-                                    } @if (!HoldStatus(item)) {
-                                        <a href="#" class="btn button-26 m-1"  role="button" @onclick="(() => holdItem(item))" @onclick:preventDefault>Hold</a>
-<<<<<<< HEAD
-
-=======
->>>>>>> checkedout
-                                    }
-                                    <a href="#" class="btn button-26 m-1"  role="button" @onclick="(() => removeItemFromWishlist(item))" @onclick:preventDefault>Remove From Wishlist</a>
-                                    <a href="iteminfo/@item.Id" class="btn button-26 m-1"  role="button">Info</a>
+                                    <p class="card-text"><large class="text-muted">Return by Jan 23, 23 </large></p>
+                                
+                                    <a href="iteminfo/@item.Id" class="btn button-26 m-1" role="button">Info</a>
                                 </div>
                             </div>
                         </div>
@@ -74,6 +65,7 @@
         </div>
     </div>
 </div>
+
 
 <style>
     .card-style {
@@ -87,6 +79,7 @@
         padding-top: 10px;
         padding-left: 10px;
     }
+
     .button-26 {
         background: #00303f;
         border: 1px solid #00303f;
@@ -123,50 +116,21 @@
             opacity: .5;
         }
 </style>
-    @code{
+
+@code{
         [Parameter]
         public string id { get; set; }
 
         public User User { get; set; }
 
-        public List<LibraryItem> wishlist { get; set; }
+        public List<LibraryItem> checkedout { get; set; }
 
         protected override void OnParametersSet()
         {
             User = LoginService.CurrentUser;
 
-            wishlist = UserStore.GetWishlist(User);
+            checkedout = UserStore.GetCheckedOut(User);
         }
+     
 
-        void removeItemFromWishlist(LibraryItem item)
-        {
-            bool a = UserStore.removeFromWishlist(item, User);
-            toastService.ShowSuccess("Removed " + item.Title + " from wishlist.");
-        }
-
-        void holdItem(LibraryItem item)
-        {
-            UserStore.addToHold(item, User);
-            toastService.ShowSuccess("Placed " + item.Title + " on hold. Please visit the library with two business days to pick up your item.");
-        }
-
-        void removeItemFromHold(LibraryItem item)
-        {
-            UserStore.removeFromHold(item, User);
-            toastService.ShowSuccess("Removed " + item.Title + " from on hold.");
-        }
-
-        public bool HoldStatus (LibraryItem item)
-        {
-            if (UserStore.isOnHold(item, User))
-            {
-                return true;
-
-            } else
-            {
-                return false;
-            }
-
-        }
-
-    }
+}

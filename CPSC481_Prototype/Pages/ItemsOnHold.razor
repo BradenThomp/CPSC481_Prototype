@@ -57,16 +57,16 @@
                                     </div>
                                     <p class="card-text"><small class="text-muted">@item.CopiesAvailable Copies Available</small></p>
                                     <div style="text-align: left;">
-                                        <a href="#" class="btn btn-secondary m-1" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromHold(item))" @onclick:preventDefault>Remove From Hold</a>
+                                        <a href="#" class="btn button-26 m-1"  role="button" @onclick="(() => removeItemFromHold(item))" @onclick:preventDefault>Remove From Hold</a>
                                         @if (wishlistStatus(item))
                                         {
-                                        <a href="#" class="btn btn-secondary m-1" style="background-color: #6b9080" role="button" @onclick="(() => removeFromWishlist(item))" @onclick:preventDefault>Remove From Wishlist</a>
+                                        <a href="#" class="btn button-26 m-1"  role="button" @onclick="(() => removeFromWishlist(item))" @onclick:preventDefault>Remove From Wishlist</a>
                                         }
                                         @if (!wishlistStatus(item))
                                         {
-                                        <a href="#" class="btn btn-secondary m-1" style="background-color: #6b9080" role="button" @onclick="(() => addToWishlist(item))" @onclick:preventDefault>Add To Wishlist</a>
+                                        <a href="#" class="btn button-26 m-1"  role="button" @onclick="(() => addToWishlist(item))" @onclick:preventDefault>Add To Wishlist</a>
                                         }
-                                    <a href="iteminfo/@item.Id" class="btn btn-secondary m-1" style="background-color: #6b9080" role="button">Info</a>
+                                    <a href="iteminfo/@item.Id" class="btn button-26 m-1"  role="button">Info</a>
                                     </div>
                                 </div>
                             </div>
@@ -90,6 +90,42 @@
         padding-top: 10px;
         padding-left: 10px;
     }
+
+    .button-26 {
+        background: #00303f;
+        border: 1px solid #00303f;
+        border-radius: 6px;
+        box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+        box-sizing: border-box;
+        color: white;
+        cursor: pointer;
+        display: inline-block;
+        font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 16px;
+        min-height: 40px;
+        outline: 0;
+        padding: 12px 14px;
+        text-align: center;
+        text-rendering: geometricprecision;
+        text-transform: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: middle;
+    }
+
+        .button-26:hover,
+        .button-26:active {
+            background-color: initial;
+            background-position: 0 0;
+            color: #00303f;
+        }
+
+        .button-26:active {
+            opacity: .5;
+        }
 </style>
 
 @code{

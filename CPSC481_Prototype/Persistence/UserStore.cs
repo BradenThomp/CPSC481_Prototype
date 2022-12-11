@@ -81,7 +81,9 @@ namespace CPSC481_Prototype.Persistence
 
         public void addToHold (LibraryItem item, User user)
         {
-            item.CopiesAvailable--;
+            if (item.CopiesAvailable > 0) { 
+                item.CopiesAvailable--;
+            }
             user.OnHold.Add(item);
         }
 

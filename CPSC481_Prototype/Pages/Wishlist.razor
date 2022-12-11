@@ -56,7 +56,12 @@
                                     @if (HoldStatus(item))
                                     {
                                         <a href="#" class="btn btn-secondary m-1" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromHold(item))" @onclick:preventDefault>Remove From Hold</a>
-                                    } @if (!HoldStatus(item)) {
+                                    } 
+                                    else if (!HoldStatus(item) && item.CopiesAvailable <= 0)
+                                    {
+                                         <button href="#" disabled="true" class="btn button-26 ms-2" role="button" @onclick="(() => holdItem(item))" @onclick:preventDefault>Hold</button>
+                                    }
+                                    else if (!HoldStatus(item)) {
                                         <a href="#" class="btn btn-secondary m-1" style="background-color: #6b9080" role="button" @onclick="(() => holdItem(item))" @onclick:preventDefault>Hold</a>
                                     }
                                     <a href="#" class="btn btn-secondary m-1" style="background-color: #6b9080" role="button" @onclick="(() => removeItemFromWishlist(item))" @onclick:preventDefault>Remove From Wishlist</a>
@@ -102,22 +107,19 @@
         void removeItemFromWishlist(LibraryItem item)
         {
             bool a = UserStore.removeFromWishlist(item, User);
-            toastService.ShowWarning("Removed from the Wishlist");
-
+            toastService.ShowSuccess("Removed " + item.Title + " from wishlist.");
         }
 
         void holdItem(LibraryItem item)
         {
             UserStore.addToHold(item, User);
-            toastService.ShowSuccess("On Hold");
-
+            toastService.ShowSuccess("Placed " + item.Title + " on hold. Please visit the library with two business days to pick up your item.");
         }
 
         void removeItemFromHold(LibraryItem item)
         {
             UserStore.removeFromHold(item, User);
-            toastService.ShowWarning("Removed from on Hold");
-
+            toastService.ShowSuccess("Removed " + item.Title + " from on hold.");
         }
 
         public bool HoldStatus (LibraryItem item)

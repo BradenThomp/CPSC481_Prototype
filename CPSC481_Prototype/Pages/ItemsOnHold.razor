@@ -111,21 +111,20 @@
     void removeItemFromHold(LibraryItem item)
     {
         bool a = UserStore.removeFromHold(item, User);
-        toastService.ShowWarning("Removed from on Hold");
+        toastService.ShowSuccess("Removed " + item.Title + " from on hold.");
     }
 
     void addToWishlist(LibraryItem item)
     {
         UserStore.addToWishlist(item, User);
-        toastService.ShowSuccess("Added to the WishList");
+        toastService.ShowSuccess("Added " + item.Title + " to the wishlist.");
 
     }
 
     void removeFromWishlist (LibraryItem item)
     {
         UserStore.removeFromWishlist(item, User);
-        toastService.ShowWarning("Removed from the Wishlist");
-
+        toastService.ShowSuccess("Removed " + item.Title + " from wishlist.");
     }
 
     public bool wishlistStatus(LibraryItem item)

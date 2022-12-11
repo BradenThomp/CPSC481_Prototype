@@ -134,13 +134,13 @@
     void removeItemFromWishlist(LibraryItem item)
     {
         bool a = UserStore.removeFromWishlist(item, User);
-
+        toastService.ShowSuccess("Removed " + item.Title + " from wishlist.");
     }
 
     void holdItem(LibraryItem item)
     {
         UserStore.addToHold(item, User);
-        toastService.ShowSuccess("On Hold");
+        toastService.ShowSuccess("Placed " + item.Title + " on hold. Please visit the library with two business days to pick up your item.");
     }
 
 
@@ -192,7 +192,7 @@
     void addToWishlist(LibraryItem item)
     {
         UserStore.addToWishlist(item, User);
-        toastService.ShowSuccess("Added to the WishList");
+        toastService.ShowSuccess("Added " + item.Title + " to the wishlist.");
     }
 
     protected PragimTech.Components.ConfirmBase DeleteConfirmation { get; set; }

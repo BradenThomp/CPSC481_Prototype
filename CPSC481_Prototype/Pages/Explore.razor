@@ -275,6 +275,10 @@
                                             {
                                                 <a href="#" class="btn button-26 ms-2"  role="button" @onclick="(() => removeItemFromHold(item))" @onclick:preventDefault>Remove From Hold</a>
                                             }
+                                            else if (!HoldStatus(item) && item.CopiesAvailable <= 0)
+                                            {
+                                                <button href="#" disabled="true" class="btn button-26 ms-2" role="button" @onclick="(() => holdItem(item))" @onclick:preventDefault>Hold</button>
+                                            }
                                             else if (!HoldStatus(item))
                                             {
                                                 <a href="#" class="btn button-26 ms-2"  role="button" @onclick="(() => holdItem(item))" @onclick:preventDefault>Hold</a>
@@ -302,16 +306,16 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container mb-4">
             <div class="row">
                 <div class="col-4">
                     @if (CurrentPage > 0)
                     {
-                        <button class="btn btn-secondary" style="background-color: #6b9080" @onclick="previousPage">Previous</button>
+                        <button class="btn button-24 ms-3" @onclick="previousPage">Previous</button>
                     }
                     else
                     {
-                        <button disabled="true" class="btn btn-secondary" style="background-color: #6b9080" @onclick="previousPage">Previous</button>
+                        <button disabled="true" class="btn button-24 ms-3" @onclick="previousPage">Previous</button>
                     }
                 </div>
                 <div class="col-4 d-flex justify-content-center">
@@ -320,11 +324,11 @@
                 <div class="col-4 d-flex justify-content-end">
                     @if (renderTo < results.Count())
                     {
-                        <button class="btn btn-secondary" style="background-color: #6b9080" @onclick="nextPage">Next</button>
+                        <button class="btn button-24 ms-3" @onclick="nextPage">Next</button>
                     }
                     else
                     {
-                        <button disabled="true" class="btn btn-secondary" style="background-color: #6b9080" @onclick="nextPage">Next</button>
+                        <button disabled="true" class="btn button-24 ms-3" @onclick="nextPage">Next</button>
                     }
                 </div>
             </div>
@@ -743,20 +747,19 @@
     void removeItemFromWishlist(LibraryItem item)
     {
         bool a = UserStore.removeFromWishlist(item, User);
-        toastService.ShowWarning("Removed from on Hold");
-
+        toastService.ShowSuccess("Removed " + item.Title + " from wishlist.");
     }
 
     void holdItem(LibraryItem item)
     {
         UserStore.addToHold(item, User);
-        toastService.ShowSuccess("On Hold");
+        toastService.ShowSuccess("Placed " + item.Title + " on hold. Please visit the library with two business days to pick up your item.");
     }
 
     void removeItemFromHold(LibraryItem item)
     {
         UserStore.removeFromHold(item, User);
-        toastService.ShowWarning("Removed from on Hold");
+        toastService.ShowSuccess("Removed " + item.Title + " from on hold.");
     }
 
     public bool HoldStatus(LibraryItem item)
@@ -786,7 +789,7 @@
     void addToWishlist(LibraryItem item)
     {
         UserStore.addToWishlist(item, User);
-        toastService.ShowSuccess("Added to the WishList");
+        toastService.ShowSuccess("Added " + item.Title + " to the wishlist.");
     }
 }
 

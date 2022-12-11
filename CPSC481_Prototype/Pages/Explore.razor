@@ -10,42 +10,9 @@
 
 <PageTitle>Explore</PageTitle>
 <!-- Side navigation -->
-&nbsp;
 <div class="row">
     <div style="@sidebarWidth" class="filters">
         <h3><a href="" @onclick=@(() => showAll()) @onclick:preventDefault><u>Reset Filters</u></a></h3>
-        <br />
-        <a>Media Type:</a>
-        <div class="indent">
-            @if (filter == "Movie")
-            {
-                <a href="" style="font-weight: bold;" @onclick=@(() => setFormatFilter(ItemType.Movie)) @onclick:preventDefault>Movie (@movieCount)</a>
-            }
-            else
-            {
-                <a href="" @onclick=@(() => setFormatFilter(ItemType.Movie)) @onclick:preventDefault>Movie (@movieCount)</a>
-            }
-        </div>
-        <div class="indent">
-            @if (filter == "Book")
-            {
-                <a href="" style="font-weight: bold;" @onclick=@(() => setFormatFilter(ItemType.Book)) @onclick:preventDefault>Book (@bookCount)</a>
-            }
-            else
-            {
-                <a href="" @onclick=@(() => setFormatFilter(ItemType.Book)) @onclick:preventDefault>Book (@bookCount)</a>
-            }
-        </div>
-        <div class="indent">
-            @if (filter == "Music")
-            {
-                <a href="" style="font-weight: bold;" @onclick=@(() => setFormatFilter(ItemType.Music)) @onclick:preventDefault>Music (@musicCount)</a>
-            }
-            else
-            {
-                <a href="" @onclick=@(() => setFormatFilter(ItemType.Music)) @onclick:preventDefault>Music (@musicCount)</a>
-            }
-        </div>
         <hr style="width:50%;text-align:left;margin-left:15px">
         <a>Classification:</a>
         <div class="indent">
@@ -461,6 +428,25 @@
     private void showAll()
     {
         filter = "";
+        if (itemtype.ToLower() == "books")
+        {
+            results = LibraryItemStore.GetByItemType(ItemType.Book);
+        }
+        if (itemtype.ToLower() == "movies")
+        {
+            results = LibraryItemStore.GetByItemType(ItemType.Movie);
+        }
+        if (itemtype.ToLower() == "music")
+        {
+            results = LibraryItemStore.GetByItemType(ItemType.Music);
+        }
+        foreach (var item in results)
+        {
+            setVisible(item);
+        }
+        CurrentPage = 0;
+        double ceil = Math.Ceiling(results.Count() / 10.0);
+        MaxPage = Convert.ToInt32(ceil);
     }
 
     private void setFormatFilter(ItemType type)

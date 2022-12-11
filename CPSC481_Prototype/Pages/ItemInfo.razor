@@ -58,7 +58,7 @@
 
                 else if (HoldStatus(Item))
                 {
-                    <a href="#" class="btn button-26 ms-3"  role="button" @onclick="(() => Delete_Click())" @onclick:preventDefault>Remove From Hold</a>
+                    <a href="#" class="btn button-26 ms-3" role="button" @onclick="(() => unholdItem(Item))" @onclick:preventDefault>Remove From Hold</a>
                 }
                 else if (!HoldStatus(Item))
                 {
@@ -70,7 +70,7 @@
                 }
                 else if (WishlistStatus(Item))
                 {
-                    <a href="#" class="btn button-26 ms-3"  role="button" @onclick="(() => Delete_Click1())" @onclick:preventDefault>Remove From Wishlist</a>
+                    <a href="#" class="btn button-26 ms-3" role="button" @onclick="(() => unwishlistItem(Item))" @onclick:preventDefault>Remove From Wishlist</a>
                 }
                 else if (User == null || !WishlistStatus(Item))
                 {
@@ -94,14 +94,6 @@
         </ModalFooter>
     </ModalContent>
 </Modal>
-
-<Confirm @ref="DeleteConfirmation" ConfirmationChanged="ConfirmDelete_Click"
-         ConfirmationMessage=@($"Are you sure you want to remove it from On Hold ? ")>
-</Confirm>
-
-<Confirm @ref="DeleteConfirmation1" ConfirmationChanged="ConfirmDelete_Click1"
-         ConfirmationMessage=@($"Are you sure you want to remove it from Wishlist ? ")>
-</Confirm>
 
 
 @code {
@@ -143,20 +135,16 @@
         toastService.ShowSuccess("Placed " + item.Title + " on hold. Please visit the library with two business days to pick up your item.");
     }
 
-
-    protected async Task ConfirmDelete_Click(bool deleteConfirmed)
+    void unholdItem(LibraryItem item)
     {
-        if (deleteConfirmed)
-        {
-            removeItemFromHold(Item);
-        }
+        UserStore.removeFromHold(item, User);
+        toastService.ShowSuccess("Removed " + item.Title + " from on hold.");
     }
-    protected async Task ConfirmDelete_Click1(bool deleteConfirmed)
+
+    void unwishlistItem(LibraryItem item)
     {
-        if (deleteConfirmed)
-        {
-            removeItemFromWishlist(Item);
-        }
+        UserStore.removeFromWishlist(item, User);
+        toastService.ShowSuccess("Removed " + item.Title + " from wishlist.");
     }
 
     void removeItemFromHold(LibraryItem item)
@@ -194,19 +182,6 @@
         UserStore.addToWishlist(item, User);
         toastService.ShowSuccess("Added " + item.Title + " to the wishlist.");
     }
-
-    protected PragimTech.Components.ConfirmBase DeleteConfirmation { get; set; }
-    protected PragimTech.Components.ConfirmBase DeleteConfirmation1 { get; set; }
-
-    protected void Delete_Click()
-    {
-        DeleteConfirmation.Show();
-    }
-    protected void Delete_Click1()
-    {
-        DeleteConfirmation1.Show();
-    }
-
 }
 
 <style>

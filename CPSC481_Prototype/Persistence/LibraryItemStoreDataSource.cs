@@ -564,7 +564,7 @@ namespace CPSC481_Prototype.Persistence
             {
                 Id = 33,
                 ImageSource = "images/33.jpg",
-                Title = "Artemis Fowl",
+                Title = "Artemis Fowl: The Atlantis Complex",
                 Author = "Eoin Colfer",
                 Length = "357 Pages",
                 Format = "Hardcover",
@@ -573,7 +573,7 @@ namespace CPSC481_Prototype.Persistence
                 Summary = "Young Artemis has frequently used high-tech fairy magic to mastermind the most devious criminal activity of the new century. Now, at a conference in Iceland, Artemis has gathered the fairies to present his latest idea to save the world from global warming.\n\nBut Artemis is behaving strangely - he seems different. Something terrible has happened to him . . . Artemis Fowl has become nice.\n\nThe fairies diagnose Atlantis Complex (that’s obsessive compulsive disorder to you and I) - it seems dabbling in magic has damaged Artemis’ main weapon: his mind. Fairy ally Captain Holly Short doesn’t know what to do. The subterranean volcanoes are under attack from vicious robots and Artemis cannot fight them. Can Holly get the real Artemis back before the robot probes destroy every human and life form?",
                 Genres = new List<string>() { "Fiction", "Fantasy", "Teen", "Kids", "Science Fiction" },
                 CopiesAvailable = 8,
-                DeweyDecimal = 23.21,
+                DeweyDecimal = 2.21,
                 IsKids = true,
                 ItemType = ItemType.Book
             });
@@ -743,7 +743,7 @@ namespace CPSC481_Prototype.Persistence
                 Summary = "Light Yagami is an ace student with great prospects - and he's bored out of his mind. But all that changes when he finds the Death Note, a notebook dropped by a rogue Shinigami, a death god. Any human whose name is written in the notebook dies, and now Light has vowed to use the power of the Death Note to rid the world of evil. But when criminals begin dropping dead, the authorities send the legendary detective L to track down the killer. With L hot on his heels, will Light lose sight of his noble goal... or his life?",
                 Genres = new List<string>() { "Fiction", "Manga", "Fantasy", "Mystery", "Adventure", "Action", "Graphic Novel", "Horror" },
                 CopiesAvailable = 3,
-                DeweyDecimal = 55.17,
+                DeweyDecimal = 809.17,
                 IsKids = false,
                 ItemType = ItemType.Book
             });
